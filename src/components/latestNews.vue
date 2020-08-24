@@ -70,5 +70,9 @@ span {
 p.text {
   font-size: Arial, sans-serif;
   font-size: xx-large;
+   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 </style>
