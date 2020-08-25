@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-sm-8">
           <div class="row">
-            <div class="col-sm-4 mb-5" v-for="item in items" :key="item.id">
+            <div class="col-sm-12 col-12 col-md-6 col-lg-4 mb-5" v-for="item in items" :key="item.id">
               <h1 class="title">{{item.title}}</h1>
               <h3 class="name">
                 by <span>{{item.author}}</span>
@@ -135,8 +135,7 @@ h1.title{
   font-size: xx-large;
   font-weight: bold;
   font-family: fantasy;
-  font-style: oblique;
-  font-weight: 100;
+  font-weight: 10;
 }
 p.text{
   font-style: normal;
@@ -152,8 +151,8 @@ p.text{
   text-align: center;
   margin-top: 2em;
   margin-bottom: 2em;
-  font-family: Trattatello, fantasy;
-  font-size: 3em;
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+  font-size: 1em;
 }
 .main {
   border-top: 3px solid #ccc;

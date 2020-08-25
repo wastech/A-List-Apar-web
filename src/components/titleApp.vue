@@ -8,6 +8,6 @@
     text-align: center;
     font-size: 20em;
     font-weight: 900;
-    margin-top: -0.8em;
+    margin-top: -0.5em;
 }
 </style>

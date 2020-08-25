@@ -1,20 +1,23 @@
 <template>
   <div class="main">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Home</a>
+    <a class="nav-link" href="/">logo</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item ">
-        <a class="nav-link" href="#">Article <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/article"> ARTICLES<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Event</a>
+        <a class="nav-link" href="/event">EVENT</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Write us</a>
+        <a class="nav-link " href="/topics" >TOPICS</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link " href="/topics" >WRITE FOR US</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -27,17 +30,13 @@
   </div>
 </template>
 <style scoped>
-a.navbar-brand{
-  font-size: 3em;
-  font-family: Luminari, fantasy;
-  font-style: normal;
-  font-weight: 200;
-  font-stretch: ultra-condensed	;
-  font-variant: small-caps;	
+
+a{
+ 	
 }
 .bg-light {
     background-color: #ffffff!important;
-    opacity: 0.6;
+    opacity: 0.9;
 }
 a.nav-link{
    font-size: 2em;

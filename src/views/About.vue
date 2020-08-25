@@ -11,4 +11,10 @@ h1{
 .container{
   margin-top: 2em;
 }
+p{
+  font-size: xx-large;
+  font-family: Georgia,Times,Times New Roman,serif;
+  font-size: 1.4rem;
+    line-height: 1.7;
+}
 </style>

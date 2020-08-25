@@ -13,12 +13,12 @@
               alt
             />
             <div class="name">
-              <h1>wastect</h1>
+              <h2>wastect</h2>
             </div>
           </div>
 
           <div class="paragrph">
-            <p>
+            <p class="text">
               Our authors are awesome and we love them. From structured markup to “the ebb and flow of things,” A List Apart’s contributing writers have changed the way professionals in this industry conceive, design, produce, code, and distribute web content. In the process, these contributors have won design jobs, book contracts, speaking deals, and the near-universal admiration of their peers around the world.
               Maybe you can be one of us—the few, the proud, the contributing writers of A List Apart. Fame, fortune, and your name on a CSS technique await you. Read our Contribute section to learn more about what our readers and editors are looking for.
               Meanwhile, inspire yourself by studying the ALA writers who have come before you—from A to Z.
@@ -44,23 +44,7 @@
         </div>
 
         <div class="col-sm-5">
-          <div class="sidetitle mt-2">
-            <h2>Browse authors</h2>
-          </div>
-           <p>
-              Our authors are awesome and we love them. From structured markup to “the ebb and flow of things,” A List Apart’s contributing writers have changed the way professionals in this industry conceive, design, produce, code, and distribute web content. In the process, these contributors have won design jobs, book contracts, speaking deals, and the near-universal admiration of their peers around the world.
-              Maybe you can be one of us—the few, the proud, the contributing writers of A List Apart. Fame, fortune, and your name on a CSS technique await you. Read our Contribute section to learn more about what our readers and editors are looking for.
-              Meanwhile, inspire yourself by studying the ALA writers who have come before you—from A to Z.
-              v Our authors are awesome and we love them. From structured markup to “the ebb and flow of things,” A List Apart’s contributing writers have changed the way professionals in this industry conceive, design, produce, code, and distribute web content. In the process, these contributors have won design jobs, book contracts, speaking deals, and the near-universal admiration of their peers around the world.
-              Maybe you can be one of us—the few, the proud, the contributing writers of A List Apart. Fame, fortune, and your name on a CSS technique await you. Read our Contribute section to learn more about what our readers and editors are looking for.
-              Meanwhile, inspire yourself by studying the ALA writers who have come before you—from A to Z.
-               Our authors are awesome and we love them. From structured markup to “the ebb and flow of things,” A List Apart’s contributing writers have changed the way professionals in this industry conceive, design, produce, code, and distribute web content. In the process, these contributors have won design jobs, book contracts, speaking deals, and the near-universal admiration of their peers around the world.
-              Maybe you can be one of us—the few, the proud, the contributing writers of A List Apart. Fame, fortune, and your name on a CSS technique await you. Read our Contribute section to learn more about what our readers and editors are looking for.
-              Meanwhile, inspire yourself by studying the ALA writers who have come before you—from A to Z.
-               Our authors are awesome and we love them. From structured markup to “the ebb and flow of things,” A List Apart’s contributing writers have changed the way professionals in this industry conceive, design, produce, code, and distribute web content. In the process, these contributors have won design jobs, book contracts, speaking deals, and the near-universal admiration of their peers around the world.
-              Maybe you can be one of us—the few, the proud, the contributing writers of A List Apart. Fame, fortune, and your name on a CSS technique await you. Read our Contribute section to learn more about what our readers and editors are looking for.
-              Meanwhile, inspire yourself by studying the ALA writers who have come before you—from A to Z.
-            </p>
+        <authorSide/>
         </div>
         
       </div>
@@ -68,8 +52,13 @@
   </div>
 </template>
 <script>
+import authorSide from '@/components/authorSide.vue'
 export default {
+  components:{
+      authorSide
+    },
   data() {
+    
     return {
       items: [],
     };
@@ -77,7 +66,10 @@ export default {
 };
 </script>
 <style scoped>
-
+h1{
+  font-family: fantasy;
+  margin-top: 2em;
+}
 p{
 overflow: auto;
   max-height: 30%;
@@ -93,7 +85,7 @@ overflow: auto;
 }
 img {
   max-width: 30%;
-  width: 30%;
+  width: 25%;
   object-fit: cover;
   border-radius: 50%;
   margin: 6em solid red;
@@ -104,6 +96,13 @@ img {
 .main {
   border-top: 2px solid #ccc;
 }
-.paragrph p {
+.text {
+  font-size: xx-large;
+  font-family: Georgia,Times,Times New Roman,serif;
+  font-size: 1.8rem;
+    line-height: 1.7;
+}
+.container{
+  max-width: 70%;
 }
 </style>
