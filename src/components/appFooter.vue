@@ -21,8 +21,8 @@
       </div>
 
       <div class="container-fluid">
-        <div class="row">
 
+        <div class="row">
           <div class="col-sm-6">
             <div class="card mb-3" style="max-width: 100%;">
               <div class="row no-gutters">
@@ -64,13 +64,14 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <div class="bottom">
+          
          <p class="head">
            ISSN 1534-0295 · Copyright © 1998–2020 A List Apart & Our Authors | Proudly powered by WordPress
          </p>
+
          <h3>Permissions & Copyright Privacy Policy Fonts by Webtyp</h3>
          <h1 class="bottom">Permissions & Copyright Privacy Policy</h1>
         </div>
