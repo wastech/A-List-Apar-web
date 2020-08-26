@@ -12,10 +12,10 @@
         </div>
 
         <div class="right float-right">
-          <p class="right float-right">be</p>
-          <p class="right float-right">hello</p>
-          <p class="right float-right">hello</p>
-          <p class="right float-right">hello</p>
+          <p class="right float-right">Rss </p>
+          <p class="right float-right">Twitter</p>
+          <p class="right float-right">Github</p>
+          <p class="right float-right">Email</p>
           <p class="right float-right">follow:us</p>
         </div>
       </div>
@@ -24,19 +24,19 @@
         <div class="row">
 
           <div class="col-sm-6">
-            <div class="card mb-3" style="max-width: 540px;">
+            <div class="card mb-3" style="max-width: 100%;">
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <img src="https://cdn.pixabay.com/photo/2020/04/25/23/47/father-5093047_1280.jpg" class="card-img" alt="..." />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">A Book Apart</h5>
                     <p
                       class="card-text"
                     >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <p class="card-text">
-                      <small class="text-muted">Last updated 3 mins ago</small>
+                      <small class="text-muted"><a href="#">Shop Now</a></small>
                     </p>
                   </div>
                 </div>
@@ -45,19 +45,19 @@
           </div>
 
           <div class="col-sm-6">
-            <div class="card mb-3" style="max-width: 540px;">
+            <div class="card mb-3" style="100%">
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <img src="https://cdn.pixabay.com/photo/2020/04/25/23/47/father-5093047_1280.jpg" class="card-img" alt="..." />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">An Event Apart</h5>
                     <p
                       class="card-text"
                     >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <p class="card-text">
-                      <small class="text-muted">Last updated 3 mins ago</small>
+                     <small class="text-muted"><a href="#">Shop Now</a></small>
                     </p>
                   </div>
                 </div>
@@ -104,6 +104,24 @@ img{
 h1.bottom{
   font-family: Impact, fantasy;
   margin-top: 1em !important;
-  font-size: 5em;
+  font-size: 3em;
 }
+@media only screen and (max-width: 768px) {
+h1.bottom{
+  font-family: Impact, fantasy;
+  margin-top: 1em !important;
+  font-size: 4em;
+}
+.container-fluid {
+  width: 95%;
+}
+.clearfix{
+  padding: 1em;
+  text-align: center;
+}
+.float-right {
+    float: left !important;
+  
+}
+} 
 </style>

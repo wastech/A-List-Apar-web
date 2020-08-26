@@ -4,6 +4,14 @@ import Article from '../views/Article.vue'
 import Event from '../views/Event.vue'
 import Topic from '../views/Topic.vue'
 import Author from  '../views/Author.vue'
+import addPost from  '../admin/addPost.vue'
+import editPost from  '../admin/editPost.vue'
+import dashBoard from  '../admin/dashBoard.vue'
+import posts from  '../admin/posts.vue'
+
+
+
+
 
 
 
@@ -17,6 +25,26 @@ const routes = [
     path: '/article',
     name: 'Article',
     component: Article
+  },
+  {
+    path: '/posts',
+    name: 'posts',
+    component: posts
+  },
+  {
+    path: '/dashboard',
+    name: 'dashBoard',
+    component: dashBoard
+  },
+  {
+    path: '/editpost',
+    name: 'editPost',
+    component: editPost
+  },
+  {
+    path: '/addpost',
+    name: 'addPost',
+    component: addPost
   },
   {
     path: '/author',

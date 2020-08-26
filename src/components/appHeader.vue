@@ -31,9 +31,6 @@
 </template>
 <style scoped>
 
-a{
- 	
-}
 .bg-light {
     background-color: #ffffff!important;
     opacity: 0.9;

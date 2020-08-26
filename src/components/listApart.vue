@@ -134,7 +134,7 @@ h1.title{
   -webkit-box-orient: vertical;
   font-size: xx-large;
   font-weight: bold;
-  font-family: fantasy;
+  font-family: fantasy; font-family: Impact, fantasy;
   font-weight: 10;
 }
 p.text{
@@ -170,5 +170,57 @@ span{
   color: blue;
 font-weight: bold;
 font-size: large;
+}
+@media only screen and (max-width: 768px) {
+ .head1{
+  
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+  font-size: 1em;
+}
+.container-fluid {
+  max-width: 95%;
+}
+h1.title{
+   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size: x-large;
+  font-weight: bold;
+   font-family: Impact, fantasy;
+  font-weight: 10;
+  text-align: center;
+}
+.head1{
+  text-align: center;
+  margin-top: 2em;
+  font-weight: 15;
+  margin-bottom: 2em;
+  font-family: Impact, fantasy;
+  font-size: 1em;
+}
+p.text{
+  font-style: normal;
+  font-weight: 200;
+  font-family: Verdana, sans-serif;
+  font-size: large;
+   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+   text-align: center;
+}
+p.blw {
+  padding: 1em;
+  background-color: #ccc;
+  font-size: bold;
+ font-weight: 15;
+font-family: Impact, fantasy;
+  text-align: center;
+  font-weight: 100;
+}
+
 }
 </style>

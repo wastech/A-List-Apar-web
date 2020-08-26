@@ -14,7 +14,6 @@
       </h3>
       <p class="text">{{item.text}}</p>
     </div>
-    <hr />
   </div>
 </template>
 <script>
@@ -75,4 +74,42 @@ p.text {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+@media only screen and (max-width: 768px) {
+ button {
+  padding: 2px;
+  border-radius: 5px;
+}
+small {
+  font-size: 0.5em;
+  font-weight: bold;
+  margin-left: 1em;
+}
+span {
+  color: blue;
+  font-size: medium;
+  font-weight: bold;
+}
+h1.title {
+  font-family: Impact, fantasy;
+  font-style: normal;
+  font-weight: 100;
+  margin-top: 0.4em;
+  font-size: large;
+}
+p.text {
+  font-size: Arial, sans-serif;
+  font-size: large;
+   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  text-align: center;
+}
+.container-fluid {
+  max-width: 95%;
+}
+.content{
+  margin-bottom: 1em;
+}
+} 
 </style>
