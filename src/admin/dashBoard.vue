@@ -48,13 +48,16 @@ export default {
     return{
       items: [
         {head:'POSTS',link:'ADD  POST', link1:'EDIT  POST', link2:'POSTS'},
-         {head:'POSTS',link:'ADD  POST', link1:'EDIT  POST', link2:'POSTS'}
+         {head:'AUTHORS',link:'ADD  AUTHOR', link1:'EDIT  AUTHOR', link2:'AUTHORS'}
       ]
     }
   }
 };
 </script>
 <style scoped>
+.container-fluid{
+  height: 35em;
+}
 .title{
   font-weight: bold;
   font-size: x-large;
@@ -81,6 +84,7 @@ img {
 .col-sm-2 {
   background-color: #ccc;
   border-right: 10px solid green;
+  height: 35em !important;
 }
 .mt-5, .my-5 {
     margin-top: 1rem!important;
