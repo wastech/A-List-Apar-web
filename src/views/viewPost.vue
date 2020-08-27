@@ -1,5 +1,5 @@
 <template>
-  <div class="cointainer">
+  <div class="container">
     <hero/>
     <div class="content">
       <div class="title">
