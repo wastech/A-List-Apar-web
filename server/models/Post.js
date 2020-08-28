@@ -11,7 +11,10 @@ const postSchema = new Schema({
     default: "https://images5.alphacoders.com/713/thumb-1920-713442.jpg",
   },
   date: { type: String, default: moment().format("MMMM Do YYYY, h:mm:ss a") },
-  topics: [{ code: "", content: "", design: "", process: "" }],
+  code: String,
+   content: String,
+    design: String,
+     process: String,
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Author",
