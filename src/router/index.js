@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Article from '../views/Article.vue'
-import Event from '../views/Event.vue'
-import Topic from '../views/Topic.vue'
-import Author from  '../views/Author.vue'
-import viewPost from  '../views/viewPost.vue'
-import addPost from  '../admin/addPost.vue'
-import editPost from  '../admin/editPost.vue'
-import dashBoard from  '../admin/dashBoard.vue'
-import posts from  '../admin/posts.vue'
-import addAuthor from  '../admin/addAuthor.vue'
-
-
+const Home = () => import('../views/Home.vue')
+const Article = () => import('../views/Article.vue')
+const Event = () => import('../views/Event.vue')
+const Topic = () => import('../views/Topic.vue')
+const Author = () => import('../views/Author.vue')
+const viewPost = () => import('../views/viewPost.vue')
+const addPost = () => import('../admin/addPost.vue')
+const editPost = () => import('../admin/editPost.vue')
+const dashBoard = () => import('../admin/dashBoard.vue')
+const posts = () => import('../admin/posts.vue')
+const addAuthor = () => import('../admin/addAuthor.vue')
+const register = () => import('../admin/register.vue')
+const login = () => import('../admin/login.vue')
 
 
 
@@ -70,9 +70,19 @@ const routes = [
     component: addAuthor
   },
   {
-    path: '/viewpost',
-    name: 'viewpost',
-    component: viewPost
+    path: '/addauthor',
+    name: 'addauthor',
+    component: addAuthor
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: register
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   },
   {
     path: '/about',

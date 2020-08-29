@@ -2,6 +2,9 @@ const Post = require("../models/Post");
 
 module.exports = {
   addPost(req, res) {
+    Author.find({userName:req.body.userName},(err,result)=>{
+      if(err)
+           res.json("No author with the given username found");
     const newPost = new Post({
       title: req.body.title,
       body: req.body.body,
@@ -13,6 +16,8 @@ module.exports = {
       process: req.body.process,
       category: req.body.category,
     });
+    result[0].posts.push(newPost._id);
+    result[0].save();
     newPost.save(function(err, newPost) {
       if (err) {
         console.log(err);
@@ -20,7 +25,8 @@ module.exports = {
       }
       res.status(201).json(newPost);
     });
-  },
+  })},
+
   // Get all posts
   getPosts(req, res) {
     Post.find({})

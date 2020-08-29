@@ -10,4 +10,14 @@
     font-weight: 900;
     margin-top: -0.5em;
 }
+
+@media only screen and (max-width: 768px) {
+  .title h1{
+  text-align: center;
+    font-size: 5em !important;
+    font-weight: 900;
+    margin-top: -0.5em;
+ 
+}
+} 
 </style>
