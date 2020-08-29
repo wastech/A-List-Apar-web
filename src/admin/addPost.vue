@@ -4,7 +4,10 @@
     <div class="row">
       <div class="col-sm-12">
         <form>
-         <div class="form-group required">
+          <div v-if="!isLoggedIn">
+            <h3>You have to Login or SignUp first to post!</h3>
+          </div>
+          <div class="form-group required">
             <label for="" class="control-label">userName</label>
             <input
               type="text"
@@ -70,7 +73,7 @@
               v-model="design"
             />
           </div>
-          <div class="form-group required mt-2">
+          <!-- <div class="form-group required mt-2">
             <label for="exampleInputPassword1" class="control-label"
               >Industry & Business</label
             >
@@ -80,7 +83,7 @@
               placeholder="Industry & Business...."
               v-model="Industry"
             />
-          </div>
+          </div>-->
           ory of the post
           <div class="form-group required mt-2">
             <label for="exampleInputPassword1" class="control-label"
@@ -93,7 +96,6 @@
               v-model="process"
             />
           </div>
-
 
           <div class="form-group">
             <label for="exampleInputFile">imageUrl</label>
@@ -119,7 +121,7 @@
           <button
             type="button"
             class="btn btn-primary btn-lg btn-block mt-5 "
-            @click="addPost"
+            v-on:click.prevent="validateInputs"
           >
             submit
           </button>
@@ -130,18 +132,61 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-        title: "",
-        category: "",
-        imageUrl: "",
-        body: "",
-        code:"",
-        content:"",
-        design:"",
-        process:'',
+      title: "",
+      category: "",
+      imageUrl: "",
+      body: "",
+      code: "",
+      content: "",
+      design: "",
+      process: "",
+      userName: "",
     };
+  },
+
+  methods: {
+    validateInputs() {
+      if (this.title === "" || this.content === "")
+        return alert("Please Fill All The Necessary Fields");
+      this.addPost();
+    },
+    addPost() {
+      //   axios.post(`${process.env.ROOT_API}/posts/`,{
+      axios
+        .post("http://localhost:3000/post/addpost", {
+          title: this.title,
+          category: this.category,
+          imageUrl: this.imageUrl,
+          body: this.body,
+          code: this.code,
+          userName: this.userName,
+          content: this.content,
+          design: this.design,
+          process: this.process,
+          isLoggedIn: false,
+        })
+        .then((res) => {
+          console.log(res);
+          // this.$router.push("/posts")
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      this.title = "";
+      this.content = "";
+      this.imageUrl = "";
+      this.userName = "";
+    },
+  },
+  created() {
+    if (JSON.parse(localStorage.getItem("userData")).userName) {
+      this.userName = JSON.parse(localStorage.getItem("userData")).userName;
+      this.isLoggedIn = true;
+    }
   },
 };
 </script>

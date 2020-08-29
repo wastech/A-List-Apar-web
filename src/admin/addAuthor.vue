@@ -148,7 +148,7 @@ export default {
         .then((res) => {
           window.localStorage.setItem(
             "userData",
-            JSON.stringify(res.data.data)
+            JSON.stringify(res.data)
           );
           console.log(res.data);
           this.$router.push("/posts");

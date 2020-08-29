@@ -1,4 +1,5 @@
 const Post = require("../models/Post");
+const Author = require("../models/Author");
 
 module.exports = {
   addPost(req, res) {
