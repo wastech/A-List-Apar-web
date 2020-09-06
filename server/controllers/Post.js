@@ -1,64 +1,118 @@
-const Post = require("../models/Post");
-const Author = require("../models/Author");
+const { Post, Author } = require("../models");
+//const Author = require("../models/Author");
 
 module.exports = {
-  addPost(req, res) {
-    Author.find({userName:req.body.userName},(err,result)=>{
-      if(err)
-           res.json("No author with the given username found");
-    const newPost = new Post({
-      title: req.body.title,
-      body: req.body.body,
-      imageUrl: req.body.imageUrl,
-      topics: req.body.topic,
-      code: req.body.code,
-      content: req.body.content,
-      design: req.body.design,
-      process: req.body.process,
-      category: req.body.category,
-    });
-    result[0].posts.push(newPost._id);
-    result[0].save();
-    newPost.save(function(err, newPost) {
-      if (err) {
-        console.log(err);
-        return res.status(500).end();
-      }
-      res.status(201).json(newPost);
-    });
-  })},
+  async addPost(req, res) {
+    try {
+      //Author.findAll({userName:req.body.userName});
+      //    console.log(userName)
+      const author = await Author.findAll({
+        where: {
+          userName: req.body.userName,
+        },
+      });
+      if (!author) {
+        return res.status(400).send({
+          error: "athor field require",
+        });
+      
+        const post = await Post.create(req.body);
+        res
+          .status(200)
+          .json(post)
+          .send({
+            msg: "successfully sent data to the database",
+          });}
+      
+    } catch (err) {
+      res.status(500).send({
+        error: err + "an error has occured while trying to post to database",
+      });
+    }
+    
+  },
+  // )
+  //},
 
   // Get all posts
-  getPosts(req, res) {
-    Post.find({})
-      .populate("author")
-      .exec((err, result) => {
-        if (err) res.status(202).send(err);
-        res.json(result);
+  async getPosts(req, res) {
+    try {
+      const posts = await Post.findAll();
+      res
+        .status(200)
+        .json(posts)
+        .send({
+          msg: "successfully get data to the database",
+        });
+    } catch (err) {
+      res.status(500).send({
+        error: err + "an error has occured while trying to fetch  posts",
       });
+    }
   },
 
-  deletePost(req, res) {
-    Post.findByIdAndRemove({ _id: req.params.id }).then(function() {
-      res.status(200).end();
-    });
+  async deletePost(req, res) {
+    try {
+      const { id } = req.params;
+      const post = await Post.findByPk(id);
+
+      if (post === null || post === undefined) {
+        return res.status(404).send({
+          message: "post Does Not Exist",
+        });
+      }
+      await post.destroy();
+      res.status(201).send({
+        msg: " message deleted succesfully",
+      });
+    } catch (e) {
+      console.log(e.message);
+      res.status(500).send({
+        message: "Internal Server Error",
+        error: e.message,
+      });
+    }
   },
 
-  getPost(req, res) {
-    Post.findById(req.params.id)
-      .populate("author")
-      .exec((err, result) => {
-        if (err) res.status(202).send(err);
-        res.json(result);
+  async getPost(req, res) {
+    try {
+      const id = req.params.id;
+      const post = await Post.findAll({
+        where: {
+          id: id,
+        },
       });
+      if (post === null || post === undefined) {
+        return res.status(404).send({
+          message: "Resource Not Found, Item Does Not Exist",
+        });
+      }
+
+      res.status(200).send(post);
+    } catch (err) {
+      res.status(500).json({
+        message: "Error Processing Function",
+        error: err.message,
+      });
+    }
   },
 
-  updatePost(req, res) {
-    let requestBody = req.body;
-    Post.findByIdAndUpdate(req.params.id, requestBody).then(function() {
-      Post.findOne({ _id: req.params.id }).then(function(post) {
-        res.status(200).json(post);
+  async updatePost(req, res) {
+    try {
+      const postId = req.params.id;
+      const post = await Post.update(req.body, {
+        where: {
+          id: postId,
+        },
       });
-    });
+      res.status(201).send(post);
+      console.log(post);
+    } catch (e) {
+      res.status(500).send({
+        message: "Error Creating Edit Request",
+        error: e.message,
+      });
+      console.log(e.message);
+    }
   },
 };

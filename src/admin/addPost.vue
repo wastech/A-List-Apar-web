@@ -155,7 +155,6 @@ export default {
       this.addPost();
     },
     addPost() {
-      //   axios.post(`${process.env.ROOT_API}/posts/`,{
       axios
         .post("http://localhost:3000/post/addpost", {
           title: this.title,

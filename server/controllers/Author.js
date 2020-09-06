@@ -1,108 +1,152 @@
-const Author = require("../models/Author");
-const bcrypt=require('bcrypt');
+const {Author} = require("../models");
+const jwt = require('jsonwebtoken');
+const config = require('../config/config');
+
+function jwtSignUser(author){
+  const ONE_WEEK= 60*60*24*7;
+  return jwt.sign(author,config.authentication.jwtSecret,{
+      expiresIn: ONE_WEEK
+  })
+}
 
 module.exports = {
 
-  //Save author details
+  //*Save author details
   async addAuthor (req, res) {
-    let author= await  Author.findOne({email:req.body.email});
-    if(author)
-        return res.status(400).send('User already registered');
+    try{
+      const author = await Author.create(req.body);
+      res.status(201).json({
+          message:'User Created Successfully',
+          author,
+          token:jwtSignUser(author.toJSON())
+      })
+      console.log(author)
+  }catch (e) {
+      console.log(e.message);
+      res.status(409).json({
+          error:'Email Address is Already in use, Please Try another email'
+      })
+  }
+},
 
-    const salt= await  bcrypt.genSalt(10);
-    const hashedValue= await bcrypt.hash(req.body.password,salt);
-    author=new Author({
-        email:req.body.email,
-        password:hashedValue,
-        userName:req.body.userName,
-        name:req.body.name,
-        bio:req.body.bio,
-        website:req.body.website,
-        profileImg:req.body.profileImg
-    })
-    author.save(function(err, author) {
-      if (err) {
-        console.log(err);
-        return res.status(500).end();
-      }
-      res.status(201).json(author);
+
+//* get an author
+async getAuthor(req, res) {
+try {
+  const userName = req.params.username;
+  const author = await Author.findByPk({
+    where: {
+      username: username,
+    },
+  });
+  if (author === null || author === undefined) {
+    return res.status(404).send({
+      message: "no author found",
     });
-  },
+  }
 
-  //!get author details
-  getAuthor(req, res) {
-    Author.find({userName:req.params.username}).populate('posts').exec((err,result)=>{
-      if(err)
-          res.status(202).send(err);
-      res.json(result);
-  })
-  },
+  res.status(200).send(post);
+} catch (err) {
+  res.status(500).json({
+    message: "Error Processing Function",
+    error: err.message,
+  });
+}
 
-  //! Update Author
-  async updateAuthor(req, res) {
-    let author= await  Author.find({'userName':req.body.userName}).populate('posts');
-    if(!author)
-        return res.status(400).send('An Error Occured! Please try again later.');
+},
 
-    if(req.body.password){
-        const salt= await  bcrypt.genSalt(10);
-        const hashedValue=await bcrypt.hash(req.body.password,salt);
-        author[0].password=hashedValue;
+
+//*get all author details
+async allAuthorDetails(req,res){
+try{
+  const posts = await  Author.findAll()
+  res.status(200).json(posts) .send({
+    msg:'successfully get data to the database'
+})
+} catch(err) {
+  res.status(500).send({
+    error: err + 'an error has occured while trying to fetch  posts'
+})
+
+}
+},
+
+//*Get all posts of an author
+async getAuthorPost(req,res){
+  try {
+    const authorID = req.params.authorID;
+    const author = await Author.findByPk({
+      where: {
+        authorID: authorID,
+      },
+    });
+    if (author === null || author === undefined) {
+      return res.status(404).send({
+        message: "no author found",
+      });
     }
-    if(req.body.profileImg)
-        author[0].profileImg=req.body.profileImg;
-    if(req.body.website)
-        author[0].website=req.body.website;
-    if(req.body.bio)
-        author[0].bio=req.body.bio;   
 
-    const newResult= author[0].save();
-    res.json(newResult);    
-     
+    res.status(200).send(post);
+  } catch (err) {
+    res.status(500).json({
+      message: "Error Processing Function",
+      error: err.message,
+    });
+  }
+
 },
-//!Get all posts of an author
-getAuthorPost(req,res){
-  Author.findById(req.params.authorID).populate('posts').exec((err,result)=>{
-      if(err)
-          res.status(202).send(err);
-      res.json(result);
+
+
+//*get all author details
+async allAuthorDetails(req,res){
+  try{
+    const posts = await  Author.findAll()
+    res.status(200).json(posts) .send({
+      msg:'successfully get data to the database'
   })
-
-},
-
-// !Get All Author Details
-
-allAuthorDetails(req,res){
-  Author.find({}).exec((err,result)=>{
-      if(err)
-          res.status(202).send(err);
-      res.json(result);
+} catch(err) {
+    res.status(500).send({
+      error: err + 'an error has occured while trying to fetch  posts'
   })
+  
+}
 },
 
 
 
-//? Signin
+//*Signin
 
  async signIn(req, res,next){  
   
-   try{
-    const {email, password} = req.body
-  let author= await Author.find({'email':req.body.email}).populate('posts');
-  if(!author)
-      return res.status(400).send('No User found with the given email'); 
+  try{
+    const {email,password} = req.body;
+    const author = await Author.findOne({
+       where:{
+           email:email
+       }
+    });
+    if(!author){
+        return  res.status(403).json({
+            error:'Provided Information was Incorrect'
+        })
+    }
+        const isPasswordValid = await author.comparePassword(password);
+        if (!isPasswordValid) {
+            return res.status(403).json({
+                error: 'Provided Information is not Correct'
+            });
+        }
 
+    res.status(201).json({
+        message:'Authentication was Successful',
+        author,
+        token:jwtSignUser(author.toJSON())
+    });
 
-  const validPassword= await  bcrypt.compare(req.body.password, author[0].password);
-  if(!validPassword)
-      return res.status(400).send("The Email or Password Provided is Incorrect");
-
-  res.json(author[0]);
-  
-
- }
- catch(err){
-   next(err)
- }
+}catch (e) {
+    res.status(500).json({
+        error:e.message
+    })
+}
  }
 }

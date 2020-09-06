@@ -1,47 +1,73 @@
 <template>
   <form>
-  <label>
-    <p class="label-txt">ENTER YOUR EMAIL</p>
-    <input type="text" class="input">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <label>
-    <p class="label-txt">ENTER YOUR NAME</p>
-    <input type="text" class="input">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <label>
-    <p class="label-txt">ENTER YOUR PASSWORD</p>
-    <input type="text" class="input">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <button type="submit">submit</button>
-</form>
+
+      <p v-if="isError">Provided Email and Password do not match</p>
+     
+    <label>
+      <p class="label-txt">ENTER YOUR EMAil</p>
+      <input type="text" class="input"  v-model="email"/>
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <label>
+      <p class="label-txt">ENTER YOUR PASSWORD</p>
+      <input type="text" class="input" v-model="password" />
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <button type="submit" v-on:click.prevent="validateInputs">submit</button>
+  </form>
 </template>
 <script>
-
-$(document).ready(function(){
-
-  $('.input').focus(function(){
-    $(this).parent().find(".label-txt").addClass('label-active');
+import axios from 'axios'
+$(document).ready(function() {
+  $(".input").focus(function() {
+    $(this)
+      .parent()
+      .find(".label-txt")
+      .addClass("label-active");
   });
 
-  $(".input").focusout(function(){
-    if ($(this).val() == '') {
-      $(this).parent().find(".label-txt").removeClass('label-active');
-    };
+  $(".input").focusout(function() {
+    if ($(this).val() == "") {
+      $(this)
+        .parent()
+        .find(".label-txt")
+        .removeClass("label-active");
+    }
   });
-
 });
 export default {
-  
-}
+  data(){
+    return{
+         email:'',
+        password:'',
+        isError:false
+    }
+  },
+   methods:{
+      validateInputs(){
+          if(this.email==='' || this.password==='')
+            alert('Please Fill All The Necessary Fields');
+         this.signIn();
+      },
+      signIn(){
+          axios.post('http://localhost:3000/author/authors/signIn',{
+              password:this.password,
+              email:this.email
+          }).then(res=>{
+              window.localStorage.setItem('userData',JSON.stringify(res.data));
+            console.log(res.data);
+             this.$router.push("/addpost")
+          }) .catch((error)=>{
+              this.isError=true;
+          }) 
+               
+      }
+  },
+};
 </script>
 <style scoped>
 form {
@@ -50,8 +76,8 @@ form {
   background: #efefef;
   padding: 60px 120px 80px 120px;
   text-align: center;
-  -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
-  box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 label {
   display: block;
@@ -63,10 +89,10 @@ label {
   top: -1.6em;
   padding: 10px;
   font-family: sans-serif;
-  font-size: .8em;
+  font-size: 0.8em;
   letter-spacing: 1px;
-  color: rgb(120,120,120);
-  transition: ease .3s;
+  color: rgb(120, 120, 120);
+  transition: ease 0.3s;
 }
 .input {
   width: 100%;
@@ -80,7 +106,7 @@ label {
   position: relative;
   width: 100%;
   height: 2px;
-  background: #BCBCBC;
+  background: #bcbcbc;
 }
 
 .line {
@@ -90,8 +116,8 @@ label {
   top: 0px;
   left: 50%;
   transform: translateX(-50%);
-  background: #8BC34A;
-  transition: ease .6s;
+  background: #8bc34a;
+  transition: ease 0.6s;
 }
 
 .input:focus + .line-box .line {
@@ -105,19 +131,18 @@ label {
 button {
   display: inline-block;
   padding: 12px 24px;
-  background: rgb(220,220,220);
+  background: rgb(220, 220, 220);
   font-weight: bold;
-  color: rgb(120,120,120);
+  color: rgb(120, 120, 120);
   border: none;
   outline: none;
   border-radius: 3px;
   cursor: pointer;
-  transition: ease .3s;
+  transition: ease 0.3s;
 }
 
 button:hover {
-  background: #8BC34A;
+  background: #8bc34a;
   color: #ffffff;
 }
-
 </style>

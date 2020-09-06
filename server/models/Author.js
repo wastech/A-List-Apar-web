@@ -1,4 +1,4 @@
-const mongoose=require('mongoose');
+/*const mongoose=require('mongoose');
 
 const authorSchema= mongoose.Schema({
     name:{type:String,required:true},
@@ -16,4 +16,52 @@ const authorSchema= mongoose.Schema({
       email:{type:String, required:true}
 })
 
-module.exports=mongoose.model('Author',authorSchema);
+module.exports=mongoose.model('Author',authorSchema);*/
+const Promise = require('bluebird')
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'))
+
+function hashPassword (author, options) {
+    const SALT_FACTOR = 8
+
+    if (!author.changed('password')) {
+        return
+    }
+
+    return bcrypt
+        .genSaltAsync(SALT_FACTOR)
+        .then(salt => bcrypt.hashAsync(author.password, salt, null))
+        .then(hash => {
+         author.setDataValue('password', hash)
+        })
+}
+
+module.exports = (sequelize, DataTypes) => {
+    const Author = sequelize.define('Author', {
+        email: {
+            type: DataTypes.STRING,
+            unique: true
+        },
+        password: DataTypes.STRING,
+        name:DataTypes.STRING,
+        userName:DataTypes.STRING,
+        bio:DataTypes.TEXT,
+        //url:DataTypes.STRING,
+        profileImg:DataTypes.STRING,
+    },
+     {
+        hooks: {
+            beforeSave: hashPassword
+        }
+    })
+
+    Author.prototype.comparePassword = function (password) {
+        return bcrypt.compareAsync(password, this.password)
+    }
+
+    Author.associate = function (models) {
+     
+      Author.hasOne(models.Post)
+       }
+     
+    return Author
+}
