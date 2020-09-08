@@ -25,19 +25,16 @@ var Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;*/
 module.exports = (sequelize, DataTypes) => {
-  const Post = sequelize.define('Post', {
-      title: DataTypes.STRING,
-      body: DataTypes.STRING,
-      category: DataTypes.STRING,
-      content: DataTypes.STRING,
-      imageUrl: DataTypes.STRING,
-      code: DataTypes.STRING,
-      process: DataTypes.TEXT,
-      design: DataTypes.TEXT,
+  const Post = sequelize.define("Post", {
+    title: DataTypes.STRING,
+    body: DataTypes.STRING,
+    category: DataTypes.STRING,
+    content: DataTypes.STRING,
+    imageUrl: DataTypes.STRING,
+    code: DataTypes.STRING,
+    process: DataTypes.TEXT,
+    design: DataTypes.TEXT,
   });
-  Post.associate = function (models) {
-    Post.belongsTo(models.Author)
-  }
 
-  return Post
+  return Post;
 };

@@ -17,51 +17,53 @@ const authorSchema= mongoose.Schema({
 })
 
 module.exports=mongoose.model('Author',authorSchema);*/
-const Promise = require('bluebird')
-const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'))
+const Promise = require("bluebird");
+const bcrypt = Promise.promisifyAll(require("bcrypt-nodejs"));
 
-function hashPassword (author, options) {
-    const SALT_FACTOR = 8
+function hashPassword(author, options) {
+  const SALT_FACTOR = 8;
 
-    if (!author.changed('password')) {
-        return
-    }
+  if (!author.changed("password")) {
+    return;
+  }
 
-    return bcrypt
-        .genSaltAsync(SALT_FACTOR)
-        .then(salt => bcrypt.hashAsync(author.password, salt, null))
-        .then(hash => {
-         author.setDataValue('password', hash)
-        })
+  return bcrypt
+    .genSaltAsync(SALT_FACTOR)
+    .then((salt) => bcrypt.hashAsync(author.password, salt, null))
+    .then((hash) => {
+      author.setDataValue("password", hash);
+    });
 }
 
 module.exports = (sequelize, DataTypes) => {
-    const Author = sequelize.define('Author', {
-        email: {
-            type: DataTypes.STRING,
-            unique: true
-        },
-        password: DataTypes.STRING,
-        name:DataTypes.STRING,
-        userName:DataTypes.STRING,
-        bio:DataTypes.TEXT,
-        //url:DataTypes.STRING,
-        profileImg:DataTypes.STRING,
+  const Author = sequelize.define(
+    "Author",
+    {
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      password: DataTypes.STRING,
+      name: DataTypes.STRING,
+      userName: DataTypes.STRING,
+      bio: DataTypes.TEXT,
+      //url:DataTypes.STRING,
+      profileImg: DataTypes.STRING,
     },
-     {
-        hooks: {
-            beforeSave: hashPassword
-        }
-    })
-
-    Author.prototype.comparePassword = function (password) {
-        return bcrypt.compareAsync(password, this.password)
+    {
+      hooks: {
+        beforeSave: hashPassword,
+      },
     }
+  );
 
-    Author.associate = function (models) {
-     
-      Author.hasOne(models.Post)
-       }
-     
-    return Author
-}
+  Author.prototype.comparePassword = function(password) {
+    return bcrypt.compareAsync(password, this.password);
+  };
+
+  // Author.associate = function(models) {
+  //   Author.hasOne(models.Post);
+  // };
+
+  return Author;
+};
