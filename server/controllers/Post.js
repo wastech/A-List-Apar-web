@@ -4,32 +4,27 @@ const { Post, Author } = require("../models");
 module.exports = {
   async addPost(req, res) {
     try {
-      //Author.findAll({userName:req.body.userName});
-      //    console.log(userName)
+      const {userName} = req.body;
       const author = await Author.findAll({
-        where: {
-          userName: req.body.userName,
-        },
-      });
-      if (!author) {
-        return res.status(400).send({
-          error: "athor field require",
-        });
-      
+          where:{
+            userName: userName,
+           
+          },
+      })
+     // Post.find({ where: { ...}, include: [User]})
         const post = await Post.create(req.body);
         res
           .status(200)
           .json(post)
           .send({
             msg: "successfully sent data to the database",
-          });}
+          });
       
     } catch (err) {
       res.status(500).send({
         error: err + "an error has occured while trying to post to database",
       });
     }
-    
   },
   // )
   //},

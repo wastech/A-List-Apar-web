@@ -17,6 +17,7 @@ const authorSchema= mongoose.Schema({
 })
 
 module.exports=mongoose.model('Author',authorSchema);*/
+
 const Promise = require('bluebird')
 const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'))
 
@@ -57,11 +58,9 @@ module.exports = (sequelize, DataTypes) => {
     Author.prototype.comparePassword = function (password) {
         return bcrypt.compareAsync(password, this.password)
     }
-
-    Author.associate = function (models) {
-     
-      Author.hasOne(models.Post)
-       }
      
     return Author
 }
+
+
+

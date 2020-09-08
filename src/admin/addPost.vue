@@ -155,6 +155,7 @@ export default {
       this.addPost();
     },
     addPost() {
+     
       axios
         .post("http://localhost:3000/post/addpost", {
           title: this.title,
@@ -182,8 +183,8 @@ export default {
     },
   },
   created() {
-    if (JSON.parse(localStorage.getItem("userData")).userName) {
-      this.userName = JSON.parse(localStorage.getItem("userData")).userName;
+    if (JSON.parse(localStorage.getItem("userData")).author.userName) {
+      this.userName = JSON.parse(localStorage.getItem("userData")).author.userName;
       this.isLoggedIn = true;
     }
   },
