@@ -1,41 +1,37 @@
 
-const  {Post, Category} = require("../models");
+const {Post , Category} = require("../models");
 
 module.exports = {
-
-async getCategories(req, res) {
-  try {
-    let categories = await Category.findAll({})
-    res.send({
-      code: 200,
-      msg: "fetched",
-      categories
+  
+  // Get all posts
+ /* getCategories(req, res) {
+    Category.find(function (err, categories) {
+      if (err) return console.log(err);
+      res.status(200).json(categories);
+    });
+  },*/
+  
+  // Get all posts
+   getCategories(req, res, next) {
+    Category.findAll({})
+    .then(result=>{
+      res.json(result)
     })
-  } catch (error) {
-    throw(error)
-  }
-
+    .catch(error =>{
+      throw(error)
+    }) 
+  
 },
 
-   async getCategory(req, res) {
-    try {
-      var query = {
-        where: { categoryId: req.params.id }
-    };
-      const category = Post.find(query);
-      if (category === null || category === undefined) {
-        return res.status(404).send({
-          message: "no category found",
-        });
-      }
-
-      res.status(200).send(category);
-    } catch (err) {
-      res.status(500).json({
-        message: "Error Processing Function",
-        error: err.message,
+  getCategory(req, res) {
+    Category.findOne({title: req.params.category}, function (err, category) {
+      if (err) return console.log(err);
+      Post.findById({category: category.title}, function(err, post) {
+        if (err) return console.log(err);
+        res.status(200).json(post);
       });
-    }
+    });
   }
  
+
 }

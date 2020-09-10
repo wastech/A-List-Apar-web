@@ -36,7 +36,7 @@ try {
   const userName = req.params.username;
   const author = await Author.findByPk({
     where: {
-      userName: userName,
+      username: username,
     },
   });
   if (author === null || author === undefined) {

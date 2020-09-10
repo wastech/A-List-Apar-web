@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('dev'))
 app.use('/post', post)
-app.use( category)
+app.use('/category', category)
 app.use('/author', author)
 dotenv.config({path: './config.env'});
 
