@@ -183,8 +183,9 @@ export default {
     },
   },
   created() {
-    if (JSON.parse(localStorage.getItem("userData")).author.userName) {
-      this.userName = JSON.parse(localStorage.getItem("userData")).author.userName;
+    const data = JSON.parse(localStorage.getItem("userData"));
+    if (data.author.userName) {
+      this.userName = data.author.userName;
       this.isLoggedIn = true;
     }
   },
