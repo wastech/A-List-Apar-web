@@ -2,34 +2,22 @@ const { Post, Author } = require("../models");
 //const Author = require("../models/Author");
 
 module.exports = {
-  async addPost(req, res) {
+  async addPost(req, res, next) {
     try {
-      //Author.findAll({userName:req.body.userName});
-      //    console.log(userName)
-      const author = await Author.findAll({
-        where: {
-          userName: req.body.userName,
-        },
-      });
-      if (!author) {
-        return res.status(400).send({
-          error: "athor field require",
-        });
-      
-        const post = await Post.create(req.body);
-        res
-          .status(200)
-          .json(post)
-          .send({
-            msg: "successfully sent data to the database",
-          });}
-      
-    } catch (err) {
+     
+      const newPost = await Post.create({
+        author_id: req.body.userName });
+      res.status(201).send({
+          message:'post Recorded',
+          newPost
+      })
+  }catch (e) {
+      console.log(e.message);
       res.status(500).send({
-        error: err + "an error has occured while trying to post to database",
+          message:'Internal Server Error',
+          error:e.message
       });
-    }
-    
+  }
   },
   // )
   //},
