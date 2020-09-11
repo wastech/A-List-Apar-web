@@ -38,6 +38,7 @@ try {
     where: {
       username: username,
     },
+    include: [model.Post]
   });
   if (author === null || author === undefined) {
     return res.status(404).send({
@@ -59,7 +60,9 @@ try {
 //*get all author details
 async allAuthorDetails(req,res){
 try{
-  const posts = await  Author.findAll()
+  const posts = await  Author.findAll({
+    include: [model.Post]
+  })
   res.status(200).json(posts) .send({
     msg:'successfully get data to the database'
 })

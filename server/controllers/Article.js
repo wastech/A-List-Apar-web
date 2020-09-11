@@ -1,23 +1,21 @@
-const { Post, Author } = require("../models");
+const { Article, Author } = require("../models");
 //const Author = require("../models/Author");
 
 module.exports = {
-  async addPost(req, res, next) {
+  async addPost(req, res) {
     try {
-     
-      const newPost = await Post.create({
-        author_id: req.body.userName });
-      res.status(201).send({
-          message:'post Recorded',
-          newPost
-      })
-  }catch (e) {
-      console.log(e.message);
-      res.status(500).send({
-          message:'Internal Server Error',
-          error:e.message
+        const post = await Article.create(req.body);
+        res
+          .json({post,
+            msg: "successfully sent data to the database"
+          })
+         console.log(post)
+      
+    } catch (err) {
+      res.send({
+        error: err + "an error has occured while trying to post to database",
       });
-  }
+    }
   },
   // )
   //},
@@ -25,11 +23,14 @@ module.exports = {
   // Get all posts
   async getPosts(req, res) {
     try {
-      const posts = await Post.findAll();
-      res
-        .status(200)
-        .json(posts)
-        .send({
+     
+      const posts = await Article.findAll({
+        include: [{
+          model: Author,
+          attributes: ['userName', 'profileImg', 'bio']  
+        }],
+      })
+      res.json(posts).send({
           msg: "successfully get data to the database",
         });
     } catch (err) {
@@ -42,7 +43,7 @@ module.exports = {
   async deletePost(req, res) {
     try {
       const { id } = req.params;
-      const post = await Post.findByPk(id);
+      const post = await Article.findByPk(id);
 
       if (post === null || post === undefined) {
         return res.status(404).send({
@@ -65,18 +66,19 @@ module.exports = {
   async getPost(req, res) {
     try {
       const id = req.params.id;
-      const post = await Post.findAll({
+      const post = await Article.findAll({
         where: {
           id: id,
         },
+        include: [Author]
       });
       if (post === null || post === undefined) {
         return res.status(404).send({
           message: "Resource Not Found, Item Does Not Exist",
         });
       }
-
-      res.status(200).send(post);
+       console.log(post)
+      res.send(post);
     } catch (err) {
       res.status(500).json({
         message: "Error Processing Function",
@@ -88,7 +90,7 @@ module.exports = {
   async updatePost(req, res) {
     try {
       const postId = req.params.id;
-      const post = await Post.update(req.body, {
+      const post = await Article.update(req.body, {
         where: {
           id: postId,
         },

@@ -22,16 +22,16 @@ const postSchema = new Schema({
 var Post = mongoose.model("Post", postSchema);
 module.exports = Post;*/
 module.exports = (sequelize, DataTypes) => {
-  const Post = sequelize.define("Post", {
-    title: { type: DataTypes.STRING, allowNull: true},
+  const Article = sequelize.define("Article", {
+    title: DataTypes.STRING,
     body: DataTypes.STRING,
-    category:  { type: DataTypes.STRING, allowNull: true},
     content: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
     code: DataTypes.STRING,
     process: DataTypes.TEXT,
     design: DataTypes.TEXT,
+    author:DataTypes.TEXT
   })
 
-  return Post;
+  return Article;
 };

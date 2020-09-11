@@ -59,7 +59,7 @@
             />
           </div>
 
-          <div class="form-group required">
+       <!--   <div class="form-group required">
             <label for="" class="control-label">website Link</label>
             <input
               type="text"
@@ -68,7 +68,7 @@
               v-model="website"
               placeholder="website Link"
             />
-          </div>
+          </div>-->
 
           <div class="form-group">
             <label for="exampleInputFile">image</label>
@@ -115,7 +115,7 @@ export default {
       password: "",
       cpassword: "",
       bio: "",
-      website: "",
+    //  website: "",
       profileImg: "",
       email: "",
     };
@@ -139,9 +139,9 @@ export default {
         .post("http://localhost:3000/author/addauthor", {
           name: this.name,
           userName: this.userName,
-          profileImg: this.imageUrl,
+          profileImg: this.profileImg,
           bio: this.bio,
-          website: this.website,
+         // website: this.website,
           password: this.password,
           email: this.email,
         })

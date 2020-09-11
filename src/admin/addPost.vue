@@ -29,7 +29,7 @@
             />
           </div>
 
-          <div class="form-group required mt-2">
+       <!--   <div class="form-group required mt-2">
             <label for="exampleInputPassword1" class="control-label"
               >category</label
             >
@@ -39,7 +39,7 @@
               placeholder="category of the post"
               v-model="category"
             />
-          </div>
+          </div>-->
           <div class="form-group required mt-2">
             <label for="exampleInputPassword1" class="control-label"
               >Code</label
@@ -137,7 +137,6 @@ export default {
   data() {
     return {
       title: "",
-      category: "",
       imageUrl: "",
       body: "",
       code: "",
@@ -157,9 +156,8 @@ export default {
     addPost() {
      
       axios
-        .post("http://localhost:3000/post/addpost", {
+        .post("http://localhost:3000/article/addpost", {
           title: this.title,
-          category: this.category,
           imageUrl: this.imageUrl,
           body: this.body,
           code: this.code,

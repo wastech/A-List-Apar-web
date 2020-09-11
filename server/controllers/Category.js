@@ -9,7 +9,7 @@ async getCategories(req, res) {
     res.send({
       code: 200,
       msg: "fetched",
-      categories
+      categories 
     })
   } catch (error) {
     throw(error)

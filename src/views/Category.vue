@@ -4,13 +4,11 @@
         <div class="row">
     <div class="col-sm-8">
      <div class="classify">
-      
           <h1 class="head">Articles</h1>
-    
-          <div class="col mb-5" v-for="article in articles" :key="article._id">
-           <router-link v-bind:to="{ name: 'singlearticle', params: { title:article._id}}">  <h3 class="title">{{article.title}}</h3></router-link>
-            <h4 class="author mb-2"> by <small>{{article.authorId}}  </small> <i>{{article.createdAt}}</i></h4>
-            <p class="paragraph">{{article.body}}</p>
+          <div class="col mb-5" v-for="item in items" :key="item.id">
+            <h3 class="title">{{item.title}}</h3>
+            <h4 class="author mb-2"> by <small>{{item.author}}  </small> <i>20 jan 200</i></h4>
+            <p class="paragraph">{{item.paragraph}}</p>
           </div>
 
         </div>
@@ -23,30 +21,37 @@
     </div>
   </div>
 </template>
-
 <script>
 import axios from 'axios'
-import articleSide from '@/components/articleSide'
 export default {
-  components:{
-articleSide
-  },
+    props: ['category'],
     data() {
         return {
-            articles: [],
+            items: []
         }
     },
-  
-        created() {
-             axios.get('http://localhost:3000/article/getposts')
+    
+    created() {
+        this.fetch();
+    },
+    watch: {
+        '$route' (to, from) {
+            if(from.params.category !== to.params.category){
+                this.fetch()
+            }
+        }
+    },
+    methods: {
+        fetch() {
+             axios.get(`http://localhost:3000/category/category/${this.category}`)
             .then(response => {
-                 this.articles =response.data
-                
+                 this.products = response.data
             });
-        
-}
+        }
+    }
 }
 </script>
+
 <style scoped>
 .col-sm-8 {
   border-right: 1px solid #ccc;

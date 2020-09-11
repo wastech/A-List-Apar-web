@@ -4,7 +4,7 @@ const Article = () => import('../views/Article.vue')
 const Event = () => import('../views/Event.vue')
 const Topic = () => import('../views/Topic.vue')
 const Author = () => import('../views/Author.vue')
-const viewPost = () => import('../views/viewPost.vue')
+const singleArticle = () => import('../views/singleArticle.vue')
 const addPost = () => import('../admin/addPost.vue')
 const editPost = () => import('../admin/editPost.vue')
 const dashBoard = () => import('../admin/dashBoard.vue')
@@ -84,6 +84,12 @@ const routes = [
     name: 'login',
     component: login
   },
+  {
+    path: '/article/:title',
+    name: 'singlearticle',
+    component: singleArticle
+  },
+  
   {
     path: '/about',
     name: 'About',

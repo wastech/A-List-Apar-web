@@ -9,8 +9,7 @@ module.exports = mongoose.model('Category', CategorySchema)*/
 
 module.exports = (sequelize, DataTypes) => {
     const Category = sequelize.define('Category', {
-        title: { type: DataTypes.STRING, allowNull: true}
-        
+        title: DataTypes.STRING,
       
     });
 

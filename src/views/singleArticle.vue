@@ -4,16 +4,15 @@
         <div class="row">
     <div class="col-sm-8">
      <div class="classify">
-      
-          <h1 class="head">Articles</h1>
-    
-          <div class="col mb-5" v-for="article in articles" :key="article._id">
-           <router-link v-bind:to="{ name: 'singlearticle', params: { title:article._id}}">  <h3 class="title">{{article.title}}</h3></router-link>
+         
+       
+            <h3 class="title">{{article.title}}</h3>
             <h4 class="author mb-2"> by <small>{{article.authorId}}  </small> <i>{{article.createdAt}}</i></h4>
             <p class="paragraph">{{article.body}}</p>
-          </div>
+        
 
-        </div>
+    
+     </div>
     </div>
     <div class="col-sm-4">
       <articleSide/>
@@ -28,19 +27,22 @@
 import axios from 'axios'
 import articleSide from '@/components/articleSide'
 export default {
+  name: 'article',
   components:{
+    
 articleSide
   },
     data() {
         return {
-            articles: [],
+            article: {},
+             id: this.$route.params.title,
         }
     },
   
         created() {
-             axios.get('http://localhost:3000/article/getposts')
+             axios.get(`http://localhost:3000/article/getpost/${this.id}`)
             .then(response => {
-                 this.articles =response.data
+                 this.article =response.data
                 
             });
         

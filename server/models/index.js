@@ -12,15 +12,11 @@ const sequelize = new Sequelize(
 );
 
 function connectModels(db) {
-  if (db.Post && db.Author && db.Category) {
+  if (db.Article && db.Author) {
     console.log(db);
     console.log("connecting models.....")
-    db.Post.belongsTo(db.Author);
-    db.Post.belongsTo(db.Category, {
-      foreignKey: {
-          allowNull: false
-      }}),
-    db.Category.hasMany(db.Post);
+    db.Article.belongsTo(db.Author);
+    db.Author.hasMany(db.Article);
   }
 }
 

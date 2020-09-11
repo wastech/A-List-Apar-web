@@ -3,9 +3,8 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const post = require('./routes/Post')
+const article = require('./routes/Article')
 const author = require('./routes/author')
-const category = require('./routes/Category')
 const {sequelize}  = require('./models');
 const dotenv = require('dotenv')
 const config = require('./config/config')
@@ -16,8 +15,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('dev'))
-app.use('/post', post)
-app.use('/category', category)
+app.use('/article', article)
 app.use('/author', author)
 dotenv.config({path: './config.env'});
 
