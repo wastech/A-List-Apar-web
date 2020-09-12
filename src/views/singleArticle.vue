@@ -7,7 +7,7 @@
          
        
             <h3 class="title">{{article.title}}</h3>
-            <h4 class="author mb-2"> by <small>{{article.authorId}}  </small> <i>{{article.createdAt}}</i></h4>
+            <h4 class="author mb-2"> by <small>{{article.userName}}  </small> <i>{{article.createdAt}}</i></h4>
             <p class="paragraph">{{article.body}}</p>
         
 

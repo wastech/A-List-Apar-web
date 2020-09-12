@@ -9,9 +9,9 @@
       <h2>past Events</h2>
       <div class="row">
         <div class="col-sm-6" v-for="item in items" :key="item.id">
-          <h1 class="title1">{{item.title}}</h1>
-          <h4 class="date">{{item.date}}</h4>
-          <h5 class="paragraph">{{item.paragraph}}</h5>
+          <h2 class="title1">{{item.title}}</h2>
+          <h4 class="date">{{item.createdAt}}</h4>
+          <h5 class="paragraph">{{item.body}}</h5>
         </div>
       </div>
     </div>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import About from "../views/About.vue";
 export default {
   components: {
@@ -28,34 +29,17 @@ export default {
   },
   data() {
     return {
-      items: [
-        {
-          title: "Web Typography & Layout: Past, Present, and Future",
-          date: "November 04, 2015",
-          paragraph:
-            "Front-end dev is changing quickly, and plenty of readers are asking: what do we need to know now? During this event on November 4, an expert panel ranging from designers who code to engineers working across the development stack explored the skill sets, career paths, and technologies that make up this diverse field.",
-        },
-        {
-          title: "Ask Dr. Web—Live",
-          date: "November 04, 2015",
-          paragraph:
-            "In this excerpt from World Wide Waste, Gerry McGovern examines the environmental impact of bloated websites and unnecessary assets. Digital is physical. It seems cheap and free, but it’s not—it costs the Earth",
-        },
-        {
-          title: "The State of Front-End Dev",
-          date: "November 04, 2015",
-          paragraph:
-            "In this excerpt from World Wide Waste, Gerry McGovern examines the environmental impact of bloated websites and unnecessary assets. Digital is physical. It seems cheap and free, but it’s not—it costs the Earth",
-        },
-        {
-          title: "Love Your CMS",
-          date: "November 04, 2015",
-          paragraph:
-            "In this excerpt from World Wide Waste, Gerry McGovern examines the environmental impact of bloated websites and unnecessary assets. Digital is physical. It seems cheap and free, but it’s not—it costs the Earth",
-        },
-      ],
+      items: [],
     };
   },
+        created() {
+             axios.get('http://localhost:3000/event/getevents')
+            .then(response => {
+                 this.items =response.data.events
+                
+            });
+        
+}
 };
 </script>
 <style scoped>
@@ -74,26 +58,34 @@ h4{
 .main{
   border-bottom: 2px solid #ccc;
 }
-h2 {
+/*h2 {
   text-align: center;
   font-family: Times, Times New Roman, serif;
   margin-top: 1em;
   margin-bottom: 2em;
-}
+}*/
 .title1{
   color: #2455c3;
   text-align: center;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .date{
   text-align: center;
   margin-top: 1;
-  margin-bottom: 2;
+  margin-bottom: 1em;
 }
 .paragraph{
   font-size: x-large;
   font-family: Georgia,Times,Times New Roman,serif;
   font-size: 1.4rem;
     line-height: 1.7;
+    overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
  
 }
 .col-sm-6{

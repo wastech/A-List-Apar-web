@@ -30,11 +30,11 @@ module.exports = {
           attributes: ['userName', 'profileImg', 'bio']  
         }],
       })
-      res.json(events).send({
+      res.json({events,
           msg: "successfully get data to the database",
         });
     } catch (err) {
-      res.status(500).send({
+      res.send({
         error: err + "an error has occured while trying to fetch  posts",
       });
     }
