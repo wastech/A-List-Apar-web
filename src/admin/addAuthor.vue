@@ -146,10 +146,7 @@ export default {
           email: this.email,
         })
         .then((res) => {
-          window.localStorage.setItem(
-            "userData",
-            JSON.stringify(res.data)
-          );
+         
           console.log(res.data);
           this.$router.push("/posts");
         })

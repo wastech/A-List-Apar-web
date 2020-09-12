@@ -12,11 +12,13 @@ const sequelize = new Sequelize(
 );
 
 function connectModels(db) {
-  if (db.Article && db.Author) {
+  if (db.Article && db.Author && db.Event) {
     console.log(db);
     console.log("connecting models.....")
     db.Article.belongsTo(db.Author);
+    db.Event.belongsTo(db.Author);
     db.Author.hasMany(db.Article);
+    db.Author.hasMany(db.Event);
   }
 }
 

@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 const article = require('./routes/Article')
 const author = require('./routes/author')
+const event = require('./routes/Event')
 const {sequelize}  = require('./models');
 const dotenv = require('dotenv')
 const config = require('./config/config')
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(morgan('dev'))
 app.use('/article', article)
 app.use('/author', author)
+app.use('/event', event)
 dotenv.config({path: './config.env'});
 
 /*mongoose.connect(process.env.DB_HOST, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true})

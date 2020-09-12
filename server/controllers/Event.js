@@ -1,15 +1,15 @@
-const { Article, Author } = require("../models");
+const { Event, Author } = require("../models");
 //const Author = require("../models/Author");
 
 module.exports = {
-  async addPost(req, res) {
+  async addEvent(req, res) {
     try {
-        const post = await Article.create(req.body);
+        const event = await Event.create(req.body);
         res
-          .json({post,
+          .json({event,
             msg: "successfully sent data to the database"
           })
-         console.log(post)
+         console.log(event)
       
     } catch (err) {
       res.send({
@@ -21,16 +21,16 @@ module.exports = {
   //},
 
   // Get all posts
-  async getPosts(req, res) {
+  async getEvents(req, res) {
     try {
      
-      const posts = await Article.findAll({
+      const events = await Event.findAll({
         include: [{
           model: Author,
           attributes: ['userName', 'profileImg', 'bio']  
         }],
       })
-      res.json(posts).send({
+      res.json(events).send({
           msg: "successfully get data to the database",
         });
     } catch (err) {
@@ -40,17 +40,17 @@ module.exports = {
     }
   },
 
-  async deletePost(req, res) {
+  async deleteEvent(req, res) {
     try {
       const { id } = req.params;
-      const post = await Article.findByPk(id);
+      const event = await Event.findByPk(id);
 
-      if (post === null || post === undefined) {
+      if (event === null || event === undefined) {
         return res.status(404).send({
           message: "post Does Not Exist",
         });
       }
-      await post.destroy();
+      await event.destroy();
       res.status(201).send({
         msg: " message deleted succesfully",
       });
@@ -63,23 +63,23 @@ module.exports = {
     }
   },
 
-  async getPost(req, res) {
+  async getEvent(req, res) {
     try {
       const id = req.params.id;
-      const post = await Article.findAll({
+      const event = await Event.findAll({
         
         where: {
           id: id,
         },
         include: [Author]
       });
-      if (post === null || post === undefined) {
+      if (event === null || event === undefined) {
         return res.status(404).send({
           message: "Resource Not Found, Item Does Not Exist",
         });
       }
-       console.log(post)
-      res.send(post);
+       console.log(event)
+      res.send(event);
     } catch (err) {
       res.status(500).json({
         message: "Error Processing Function",
@@ -88,16 +88,16 @@ module.exports = {
     }
   },
 
-  async updatePost(req, res) {
+  async updateEvent(req, res) {
     try {
-      const postId = req.params.id;
-      const post = await Article.update(req.body, {
+      const eventId = req.params.id;
+      const event = await Event.update(req.body, {
         where: {
-          id: postId,
+          id: eventId,
         },
       });
-      res.status(201).send(post);
-      console.log(post);
+      res.status(201).send(event);
+      console.log(event);
     } catch (e) {
       res.status(500).send({
         message: "Error Creating Edit Request",

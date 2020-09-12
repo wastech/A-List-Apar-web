@@ -42,11 +42,12 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
       password: DataTypes.STRING,
-      name: DataTypes.STRING,
       userName: DataTypes.STRING,
       bio: DataTypes.TEXT,
-      //url:DataTypes.STRING,
+      
+      url:DataTypes.STRING,
       profileImg: DataTypes.STRING,
+      category: DataTypes.STRING
     },
     {
       hooks: {

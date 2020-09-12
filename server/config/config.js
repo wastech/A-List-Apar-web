@@ -8,7 +8,7 @@ module.exports = {
         options:{
             dialect:process.env.DIALECT || 'sqlite',
             host:process.env.HOST || 'http://127.0.0.1',
-            storage:'./listApp.sqlite'
+            storage:'./database.sqlite'
         }
     },
     authentication:{

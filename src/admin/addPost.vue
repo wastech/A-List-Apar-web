@@ -4,19 +4,9 @@
     <div class="row">
       <div class="col-sm-12">
         <form>
-          <div v-if="!isLoggedIn">
+       <!--   <div v-if="!isLoggedIn">
             <h3>You have to Login or SignUp first to post!</h3>
-          </div>
-          <div class="form-group required">
-            <label for="" class="control-label">userName</label>
-            <input
-              type="text"
-              class="form-control shadow"
-              aria-describedby="textHelp"
-              v-model="userName"
-              placeholder="name"
-            />
-          </div>
+          </div>-->
           <div class="form-group required">
             <label for="exampleInputPassword1" class="control-label"
               >Title</label
@@ -142,8 +132,7 @@ export default {
       code: "",
       content: "",
       design: "",
-      process: "",
-      userName: "",
+      process: ""
     };
   },
 
@@ -161,11 +150,10 @@ export default {
           imageUrl: this.imageUrl,
           body: this.body,
           code: this.code,
-          userName: this.userName,
           content: this.content,
           design: this.design,
           process: this.process,
-          isLoggedIn: false,
+        //  isLoggedIn: false,
         })
         .then((res) => {
           console.log(res);
@@ -177,16 +165,16 @@ export default {
       this.title = "";
       this.content = "";
       this.imageUrl = "";
-      this.userName = "";
+      
     },
   },
-  created() {
+/*  created() {
     const data = JSON.parse(localStorage.getItem("userData"));
     if (data.author.userName) {
       this.userName = data.author.userName;
       this.isLoggedIn = true;
     }
-  },
+  },*/
 };
 </script>
 <style scoped>

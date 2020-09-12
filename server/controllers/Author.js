@@ -1,13 +1,7 @@
 const {Author} = require("../models");
-const jwt = require('jsonwebtoken');
-const config = require('../config/config');
 
-function jwtSignUser(author){
-  const ONE_WEEK= 60*60*24*7;
-  return jwt.sign(author,config.authentication.jwtSecret,{
-      expiresIn: ONE_WEEK
-  })
-}
+
+
 
 module.exports = {
 
@@ -18,7 +12,7 @@ module.exports = {
       res.status(201).json({
           message:'User Created Successfully',
           author,
-          token:jwtSignUser(author.toJSON())
+         
       })
       console.log(author)
   }catch (e) {
