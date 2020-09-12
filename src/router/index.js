@@ -10,6 +10,7 @@ const editPost = () => import('../admin/editPost.vue')
 const dashBoard = () => import('../admin/dashBoard.vue')
 const posts = () => import('../admin/posts.vue')
 const addAuthor = () => import('../admin/addAuthor.vue')
+const addEvent = () => import('../admin/addEvent.vue')
 const register = () => import('../admin/register.vue')
 const login = () => import('../admin/login.vue')
 
@@ -70,9 +71,9 @@ const routes = [
     component: addAuthor
   },
   {
-    path: '/addauthor',
-    name: 'addauthor',
-    component: addAuthor
+    path: '/addevent',
+    name: 'addevent',
+    component: addEvent
   },
   {
     path: '/register',
