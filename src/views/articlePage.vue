@@ -7,10 +7,10 @@
       
           <h1 class="head">Articles</h1>
     
-          <div class="col mb-5" v-for="article in articles" :key="article._id">
-           <router-link v-bind:to="{ name: 'singlearticle', params: { title:article._id}}">  <h3 class="title">{{article.title}}</h3></router-link>
-            <h4 class="author mb-2"> by <small>{{article.authorId}}  </small> <i>{{article.createdAt}}</i></h4>
-            <p class="paragraph">{{article.body}}</p>
+          <div class="col mb-5" v-for="post in posts" :key="post._id">
+           <router-link v-bind:to="{ name: 'singlearticle', params: { title:post._id}}">  <h3 class="title">{{post.title}}</h3></router-link>
+            <h4 class="author mb-2"> by <small>{{post.authorId}}  </small> <i>{{post.createdAt}}</i></h4>
+            <p class="paragraph">{{post.body}}</p>
           </div>
 
         </div>
@@ -28,19 +28,20 @@
 import axios from 'axios'
 import articleSide from '@/components/articleSide'
 export default {
+  name:'articlepage',
   components:{
 articleSide
   },
     data() {
         return {
-            articles: [],
+            posts: [],
         }
     },
   
         created() {
              axios.get('http://localhost:3000/article/getposts')
             .then(response => {
-                 this.articles =response.data
+                 this.posts =response.data.posts
                 
             });
         
@@ -63,6 +64,10 @@ h1{
 }
 .title{
   color: blue;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 small{
   color:blue;
@@ -71,6 +76,10 @@ small{
   font-family: Times, Times New Roman, serif;
   font-size: x-large;
   font-weight: 500;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
  
   
   

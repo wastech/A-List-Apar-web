@@ -66,7 +66,7 @@ module.exports = {
   async getEvent(req, res) {
     try {
       const id = req.params.id;
-      const event = await Event.findAll({
+      const event = await Event.findOne({
         
         where: {
           id: id,
@@ -78,8 +78,9 @@ module.exports = {
           message: "Resource Not Found, Item Does Not Exist",
         });
       }
-       console.log(event)
-      res.send(event);
+      res.json({event,
+        msg: "successfully get data to the database",
+      });
     } catch (err) {
       res.status(500).json({
         message: "Error Processing Function",

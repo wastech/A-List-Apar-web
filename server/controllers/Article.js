@@ -30,9 +30,9 @@ module.exports = {
           attributes: ['userName', 'profileImg', 'bio']  
         }],
       })
-      res.json(posts).send({
-          msg: "successfully get data to the database",
-        });
+      res.json({posts,
+        msg: "successfully get data to the database",
+      });
     } catch (err) {
       res.status(500).send({
         error: err + "an error has occured while trying to fetch  posts",
@@ -66,7 +66,7 @@ module.exports = {
   async getPost(req, res) {
     try {
       const id = req.params.id;
-      const post = await Article.findAll({
+      const post = await Article.findOne({
         
         where: {
           id: id,

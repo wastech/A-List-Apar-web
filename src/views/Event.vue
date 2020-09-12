@@ -8,8 +8,8 @@
       <div class="container">
       <h2>past Events</h2>
       <div class="row">
-        <div class="col-sm-6" v-for="item in items" :key="item.id">
-          <h2 class="title1">{{item.title}}</h2>
+        <div class="col-sm-6" v-for="item in items" :key="item.title">
+           <router-link v-bind:to="{ name: 'singleevent', params: { title:item.id}}">  <h2 class="title1">{{item.title}}</h2></router-link>
           <h4 class="date">{{item.createdAt}}</h4>
           <h5 class="paragraph">{{item.body}}</h5>
         </div>

@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 const Home = () => import('../views/Home.vue')
-const Article = () => import('../views/Article.vue')
+const articlePage = () => import('../views/articlePage.vue')
 const Event = () => import('../views/Event.vue')
 const Topic = () => import('../views/Topic.vue')
 const Author = () => import('../views/Author.vue')
-const singleArticle = () => import('../views/singleArticle.vue')
 const addPost = () => import('../admin/addPost.vue')
 const editPost = () => import('../admin/editPost.vue')
 const dashBoard = () => import('../admin/dashBoard.vue')
@@ -13,6 +12,8 @@ const addAuthor = () => import('../admin/addAuthor.vue')
 const addEvent = () => import('../admin/addEvent.vue')
 const register = () => import('../admin/register.vue')
 const login = () => import('../admin/login.vue')
+const singleEvent = () => import('../views/singleEvent.vue')
+const singleArticle = () => import('../views/singleArticle.vue')
 
 
 
@@ -27,8 +28,8 @@ const routes = [
   },
   {
     path: '/article',
-    name: 'Article',
-    component: Article
+    name: 'articlepage',
+    component: articlePage
   },
   {
     path: '/posts',
@@ -86,9 +87,14 @@ const routes = [
     component: login
   },
   {
-    path: '/article/:title',
-    name: 'singlearticle',
+    path: "/article/:title",
+    name: "singlearticle",
     component: singleArticle
+  },
+  {
+    path: "/event/:title",
+    name: "singleevent",
+    component: singleEvent
   },
   
   {
