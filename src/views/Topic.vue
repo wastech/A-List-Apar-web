@@ -47,6 +47,18 @@ export default {
           paragraph:
             "In this excerpt from World Wide Waste, Gerry McGovern examines the environmental impact of bloated websites and unnecessary assets. Digital is physical. It seems cheap and free, but it’s not—it costs the Earth",
         },
+        {
+            image:'https://alistapart.com/wp-content/uploads/2013/01/industry_2.jpg?w=300',
+
+          paragraph:
+            "In this excerpt from World Wide Waste, Gerry McGovern examines the environmental impact of bloated websites and unnecessary assets. Digital is physical. It seems cheap and free, but it’s not—it costs the Earth",
+        },
+        {
+            image:'https://alistapart.com/wp-content/uploads/2013/01/industry_2.jpg?w=300',
+
+          paragraph:
+            "In this excerpt from World Wide Waste, Gerry McGovern examines the environmental impact of bloated websites and unnecessary assets. Digital is physical. It seems cheap and free, but it’s not—it costs the Earth",
+        },
       ],
     };
   },

@@ -9,19 +9,28 @@
         </h4>
         <p class="paragraph">{{ posts.body }}</p>
       </div>
-      <hr>
-      <About/>
+     
+      <featuring/>
+       <hr>
+     <pastEvent/>
+         <hr>
+      
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import About from "@/views/About";
+//import About from "@/views/About";
+import featuring from "@/components/featuring.vue"
+import pastEvent from "@/components/pastEvent.vue"
+
 export default {
   name: "post",
 components:{
-  About
+  featuring,
+ // About,
+  pastEvent
 },
   data() {
     return {

@@ -40,6 +40,7 @@ export default {
       items: [
         {name:'POSTS',link:'/posts', link2:'/addpost', link3:'/', name2:'VIEW POST'},
         {name:'AUTHORS',link:'/author', link2:'/addauthor', link3:'/author', name2:'VIEW POST'},
+                {name:'EVENTS',link:'/event', link2:'/addevent', link3:'/singleevent', name2:'VIEW EVENT'},
       
       ]
     }
