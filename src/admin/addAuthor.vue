@@ -5,6 +5,9 @@
       <div class="col-sm-12">
         <form>
           <div class="form-group required">
+            <div class="alert alert-danger" role="alert" v-if="error">
+ {{error}}
+</div>
             <label for="" class="control-label">userName</label>
             <input
               type="text"
@@ -48,16 +51,7 @@
             />
           </div>
 
-          <div class="form-group required">
-            <label for="" class="control-label">name</label>
-            <input
-              type="text"
-              class="form-control shadow"
-              aria-describedby="textHelp"
-              v-model="name"
-              placeholder="author name"
-            />
-          </div>
+        
 
        <!--   <div class="form-group required">
             <label for="" class="control-label">website Link</label>
@@ -110,7 +104,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      name: "",
+  
       userName: "",
       password: "",
       cpassword: "",
@@ -118,12 +112,12 @@ export default {
     //  website: "",
       profileImg: "",
       email: "",
+      error: ""
     };
   },
   methods: {
     validateInputs() {
       if (
-        this.name === "" ||
         this.email === "" ||
         this.password === "" ||
         this.cpassword === "" ||
@@ -137,7 +131,7 @@ export default {
     signUp() {
       axios
         .post("http://localhost:3000/author/addauthor", {
-          name: this.name,
+         
           userName: this.userName,
           profileImg: this.profileImg,
           bio: this.bio,
@@ -150,7 +144,8 @@ export default {
           console.log(res.data);
           this.$router.push("/posts");
         })
-        .catch(function(error) {
+        .catch((error)=> {
+          this.error = error.response.data.error
           console.log(error);
         });
     },

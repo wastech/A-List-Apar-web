@@ -1,9 +1,12 @@
 <template>
   <form>
 
-      <p v-if="isError">Provided Email and Password do not match</p>
+     
      
     <label>
+        <div class="alert alert-danger" role="alert" v-if="error">
+ {{error}}
+</div>
       <p class="label-txt">ENTER YOUR EMAil</p>
       <input type="text" class="input"  v-model="email"/>
       <div class="line-box">
@@ -44,7 +47,7 @@ export default {
     return{
          email:'',
         password:'',
-        isError:false
+        error:''
     }
   },
    methods:{
@@ -57,12 +60,12 @@ export default {
           axios.post('http://localhost:3000/author/authors/signIn',{
               password:this.password,
               email:this.email
-          }).then(res=>{
-              window.localStorage.setItem('userData',JSON.stringify(res.data));
-            console.log(res.data);
+          }).then(response=>{
+             localStorage.setItem('jwtToken', response.data.token)
+            console.log(response.data.token);
              this.$router.push("/addpost")
           }) .catch((error)=>{
-              this.isError=true;
+              this.error=error.response.data.error
           }) 
                
       }

@@ -8,7 +8,10 @@
           </div>
 
           <div class="img">
-           
+            <img
+              :src="items.imageUrl"
+              alt
+            />
             <div class="name">
               <h2>{{items.userName}}</h2>
             </div>
@@ -49,7 +52,7 @@
   </div>
 </template>
 <script>
-
+import axios from 'axios'
 import authorSide from '@/components/authorSide.vue'
 export default {
   components:{
@@ -59,10 +62,16 @@ export default {
     
     return {
       items: {},
-      
+       id: this.$route.params.title,
     };
   },
-   
+   created() {
+    let url = `http://localhost:3000/author/getauthor/${this.id}`;
+    axios.get(url).then((response) => {
+      this.items = response.data;
+      console.log("eventid" + response.data);
+    });
+  },
 };
 </script>
 <style scoped>

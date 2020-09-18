@@ -3,25 +3,31 @@
     <h1 class="head">TOPIC S</h1>
     <ul class="list-group list-group-flush mt-4">
       <li class="list-group-item" v-for="item in items" :key="item.id">
-        <h2>{{ item.name }}</h2>
+        <h2>
+          <router-link v-bind:to="{ name: 'singleauthor', params: { title:item.id}}">
+            {{ item.userName }}
+          </router-link></h2>
       </li>
     </ul>
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
-      items: [
-        { name: "Ida Aalen" },
-        { name: "areIda Aalenmu" },
-        { name: "areIda Aalenmu" },
-        { name: "areIda Aalenmu" },
-        { name: "areIda Aalenmu" },
-        { name: "areIda Aalenmu" },
-      ],
+      items: [],
     };
   },
+  
+        created() {
+             axios.get('http://localhost:3000/author/authors')
+            .then(response => {
+                 this.items =response.data
+                
+            });
+        
+}
 };
 </script>
 <style scoped>

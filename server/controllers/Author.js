@@ -1,46 +1,49 @@
-const {Author} = require("../models");
+const {Author, article} = require("../models");
+const jwt = require('jsonwebtoken')
+const config = require('../config/config')
 
-
+function jwtSignUser (user) {
+  const ONE_WEEK = 60 * 60 * 24 * 7
+  return jwt.sign(user, config.authentication.jwtSecret, {
+    expiresIn: ONE_WEEK
+  })
+}
 
 
 module.exports = {
 
   //*Save author details
-  async addAuthor (req, res) {
-    try{
-      const author = await Author.create(req.body);
-      res.status(201).json({
-          message:'User Created Successfully',
-          author,
-         
+   async addAuthor (req, res) {
+    try {
+      const user = await Author.create(req.body)
+      const userJson = user.toJSON()
+      res.send({
+        user: userJson,
+        token: jwtSignUser(userJson)
       })
-      console.log(author)
-  }catch (e) {
-      console.log(e.message);
-      res.status(409).json({
-          error:'Email Address is Already in use, Please Try another email'
+    } catch (err) {
+      res.status(400).send({
+        error:  err + 'This email account is already in use.'
       })
-  }
+    }
 },
 
 
 //* get an author
 async getAuthor(req, res) {
 try {
-  const userName = req.params.username;
-  const author = await Author.findByPk({
+  const author = await Author.findOne({
     where: {
-      username: username,
-    },
-    include: [model.Post]
+      id: req.params.id
+    }
   });
   if (author === null || author === undefined) {
-    return res.status(404).send({
+    return res.send({
       message: "no author found",
     });
   }
 
-  res.status(200).send(post);
+  res.status(200).send(author);
 } catch (err) {
   res.status(500).json({
     message: "Error Processing Function",
@@ -113,37 +116,37 @@ async allAuthorDetails(req,res){
 
 //*Signin
 
- async signIn(req, res,next){  
-  
-  try{
-    const {email,password} = req.body;
-    const author = await Author.findOne({
-       where:{
-           email:email
-       }
-    });
-    if(!author){
-        return  res.status(403).json({
-            error:'Provided Information was Incorrect'
-        })
-    }
-        const isPasswordValid = await author.comparePassword(password);
-        if (!isPasswordValid) {
-            return res.status(403).json({
-                error: 'Provided Information is not Correct'
-            });
+ async signIn(req, res){  
+    try {
+      const {email, password} = req.body
+      const user = await Author.findOne({
+        where: {
+          email: email
         }
+      })
 
-    res.status(201).json({
-        message:'Authentication was Successful',
-        author,
-        token:jwtSignUser(author.toJSON())
-    });
+      if (!user) {
+        return res.status(403).send({
+          error: 'The login information was incorrect'
+        })
+      }
 
-}catch (e) {
-    res.status(500).json({
-        error:e.message
-    })
-}
- }
+      const isPasswordValid = await user.comparePassword(password)
+      if (!isPasswordValid) {
+        return res.status(403).send({
+          error: 'The login information was incorrect'
+        })
+      }
+
+      const userJson = user.toJSON()
+      res.send({
+        user: userJson,
+        token: jwtSignUser(userJson)
+      })
+    } catch (err) {
+      res.status(500).send({
+        error: err+  'An error has occured trying to log in'
+      })
+    }
+  }
 }

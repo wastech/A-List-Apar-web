@@ -7,6 +7,9 @@
        <!--   <div v-if="!isLoggedIn">
             <h3>You have to Login or SignUp first to post!</h3>
           </div>-->
+          <div class="alert alert-danger" role="alert" v-if="error">
+ {{error}}
+</div>
           <div class="form-group required">
             <label for="exampleInputPassword1" class="control-label"
               >Title</label
@@ -132,7 +135,8 @@ export default {
       code: "",
       content: "",
       design: "",
-      process: ""
+      process: "",
+      error: ''
     };
   },
 
@@ -160,7 +164,7 @@ export default {
           // this.$router.push("/posts")
         })
         .catch(function(error) {
-          console.log(error);
+         this.error= error.response.data.error
         });
       this.title = "";
       this.content = "";

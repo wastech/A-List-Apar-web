@@ -9,7 +9,7 @@
     
           <div class="col mb-5" v-for="post in posts" :key="post._id">
            <router-link v-bind:to="{ name: 'singlearticle', params: { title:post._id}}">  <h3 class="title">{{post.title}}</h3></router-link>
-            <h4 class="author mb-2"> by <small>{{post.authorId}}  </small> <i>{{post.createdAt}}</i></h4>
+            <h4 class="author mb-2"> by <small>{{post.Author.userName}}  </small> <i>{{post.createdAt}}</i></h4>
             <p class="paragraph">{{post.body}}</p>
           </div>
 
@@ -41,7 +41,7 @@ articleSide
         created() {
              axios.get('http://localhost:3000/article/getposts')
             .then(response => {
-                 this.posts =response.data.posts
+                 this.posts =response.data
                 
             });
         

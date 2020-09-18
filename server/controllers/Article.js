@@ -4,6 +4,8 @@ const { Article, Author } = require("../models");
 module.exports = {
   async addPost(req, res) {
     try {
+      const user = req.user
+      console.log( "username" +req.user)
         const post = await Article.create(req.body);
         res
           .json({post,
@@ -21,23 +23,17 @@ module.exports = {
   //},
 
   // Get all posts
-  async getPosts(req, res) {
-    try {
-     
-      const posts = await Article.findAll({
-        include: [{
-          model: Author,
-          attributes: ['userName', 'profileImg', 'bio']  
-        }],
-      })
-      res.json({posts,
-        msg: "successfully get data to the database",
-      });
-    } catch (err) {
-      res.status(500).send({
-        error: err + "an error has occured while trying to fetch  posts",
-      });
+   getPosts(req, res) {
+    var query = {};
+    if (req.query.author_id) {
+      query.AuthorId = req.query.author_id;
     }
+    Article.findAll({
+      where: query,
+      include: [Author]
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
   },
 
   async deletePost(req, res) {

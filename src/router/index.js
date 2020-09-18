@@ -14,6 +14,8 @@ const register = () => import('../admin/register.vue')
 const login = () => import('../admin/login.vue')
 const singleEvent = () => import('../views/singleEvent.vue')
 const singleArticle = () => import('../views/singleArticle.vue')
+const singleAuthor = () => import('../views/singleAuthor.vue')
+
 
 
 
@@ -51,11 +53,7 @@ const routes = [
     name: 'addPost',
     component: addPost
   },
-  {
-    path: '/author',
-    name: 'Author',
-    component: Author
-  },
+ 
   {
     path: '/event',
     name: 'Event',
@@ -82,6 +80,12 @@ const routes = [
     component: register
   },
   {
+    path: '/authors',
+    name: 'Author',
+    component: Author
+  },
+  
+  {
     path: '/login',
     name: 'login',
     component: login
@@ -95,6 +99,16 @@ const routes = [
     path: "/event/:title",
     name: "singleevent",
     component: singleEvent
+  },
+  {
+    path: '/authors/:title',
+    name: 'singleauthor',
+    component: singleAuthor
+  },
+  {
+    path: '/authors/author/:title',
+    name: 'author',
+    component: Author
   },
   
   {

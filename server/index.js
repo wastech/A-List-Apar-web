@@ -1,6 +1,8 @@
 
 const express = require('express')
+const session = require('express-session');
 const morgan = require('morgan')
+const passport = require('passport');
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const article = require('./routes/Article')
@@ -16,21 +18,22 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('dev'))
+
+// Express session middleware
+// =============================================
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// Routing
+// =============================================
 app.use('/article', article)
 app.use('/author', author)
 app.use('/event', event)
 dotenv.config({path: './config.env'});
 
-/*mongoose.connect(process.env.DB_HOST, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true})
-.then(() => console.log('MongoDB Connected...'))
-.catch((err) => console.log(err))
 
-
-
-const port = process.env.PORT || 5000
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})*/
 sequelize.sync({force:false})
     .then(()=>{
         app.listen(config.port,(err)=>{
