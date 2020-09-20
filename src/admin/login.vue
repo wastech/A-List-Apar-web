@@ -24,6 +24,7 @@
   </form>
 </template>
 <script>
+import AuthenticationService from '@/services/AuthenticationService'
 import axios from 'axios'
 $(document).ready(function() {
   $(".input").focus(function() {
@@ -54,21 +55,24 @@ export default {
       validateInputs(){
           if(this.email==='' || this.password==='')
             alert('Please Fill All The Necessary Fields');
-         this.signIn();
+         this.login();
       },
-      signIn(){
-          axios.post('http://localhost:3000/author/authors/signIn',{
-              password:this.password,
-              email:this.email
-          }).then(response=>{
-             localStorage.setItem('jwtToken', response.data.token)
-            console.log(response.data.token);
-             this.$router.push("/addpost")
-          }) .catch((error)=>{
-              this.error=error.response.data.error
-          }) 
-               
+     async login () {
+      try {
+        const response = await AuthenticationService.login({
+          email: this.email,
+          password: this.password
+        })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+       // this.$router.push({
+        //  name: 'songs'
+       // })
+       console.log( "hello"+ response.data.token  +   response.data.user )
+      } catch (error) {
+        this.error = error.response.data.error
       }
+    }
   },
 };
 </script>

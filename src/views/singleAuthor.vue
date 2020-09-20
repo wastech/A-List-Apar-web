@@ -19,28 +19,10 @@
 
           <div class="paragrph">
             <p class="text">
-              Our authors are awesome and we love them. From structured markup to “the ebb and flow of things,” A List Apart’s contributing writers have changed the way professionals in this industry conceive, design, produce, code, and distribute web content. In the process, these contributors have won design jobs, book contracts, speaking deals, and the near-universal admiration of their peers around the world.
-              Maybe you can be one of us—the few, the proud, the contributing writers of A List Apart. Fame, fortune, and your name on a CSS technique await you. Read our Contribute section to learn more about what our readers and editors are looking for.
-              Meanwhile, inspire yourself by studying the ALA writers who have come before you—from A to Z.
+            
             </p>
           </div>
-          <div class="from">
-            <h3>
-              also from this author
-            </h3>
-          </div>
-          <div class="human">
-            <h2>
-              Human-to-Human Design
-            </h2>
-          </div>
-          <div class="date">
-            June 26, 2007
-          </div>
-          <div class="text">
-          Help your audience fall in love with you by moving beyond human-to-computer interfaces and embracing human-to-human design.
-
-        </div>
+        
         </div>
 
         <div class="col-sm-5">
@@ -61,15 +43,15 @@ export default {
   data() {
     
     return {
-      items: {},
-       id: this.$route.params.title,
+      items: [],
+       userName: this.$route.params.userName,
     };
   },
    created() {
-    let url = `http://localhost:3000/author/getauthor/${this.id}`;
+    let url = `http://localhost:3000/author/getauthor/${this.userName}`;
     axios.get(url).then((response) => {
       this.items = response.data;
-      console.log("eventid" + response.data);
+      console.log("eventid" + response.data [0]);
     });
   },
 };

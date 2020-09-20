@@ -4,9 +4,12 @@ const { Article, Author } = require("../models");
 module.exports = {
   async addPost(req, res) {
     try {
-      const user = req.user
-      console.log( "username" +req.user)
-        const post = await Article.create(req.body);
+        const post = await Article.create({
+          author_id: req.body.author_id,
+		title: req.body.title,
+    body: req.body.body,
+    
+        });
         res
           .json({post,
             msg: "successfully sent data to the database"

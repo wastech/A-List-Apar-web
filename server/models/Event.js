@@ -2,8 +2,13 @@
 const moment = require('moment')
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define("Event", {
-   
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     title: DataTypes.STRING,
+    Transcript:DataTypes.STRING,
     body: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
     createdAt: {
@@ -14,6 +19,14 @@ module.exports = (sequelize, DataTypes) => {
           'DD-MM-YYYY'
         )
       }
+    },
+    AuthorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Event",
+        key: "id",
+      },
     },
     updatedAt: {
       type: DataTypes.DATE,

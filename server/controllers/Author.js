@@ -1,4 +1,4 @@
-const {Author, article} = require("../models");
+const {Author, Article} = require("../models");
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 
@@ -29,23 +29,28 @@ module.exports = {
 },
 
 
-//* get an author
+//!get author's posts by author ID
 async getAuthor(req, res) {
 try {
+  const  userName  = req.params.userName;
   const author = await Author.findOne({
-    where: {
-      id: req.params.id
-    }
+    where:{
+      userName:userName
+    },
+    include: [{
+			model: Article,
+			as: 'articles'
+		}]
   });
   if (author === null || author === undefined) {
     return res.send({
-      message: "no author found",
+      message: "no author found ",
     });
   }
 
-  res.status(200).send(author);
+  res.send(author);
 } catch (err) {
-  res.status(500).json({
+  res.json({
     message: "Error Processing Function",
     error: err.message,
   });
@@ -53,24 +58,7 @@ try {
 
 },
 
-
-//*get all author details
-async allAuthorDetails(req,res){
-try{
-  const posts = await  Author.findAll({
-    include: [model.Post]
-  })
-  res.status(200).json(posts) .send({
-    msg:'successfully get data to the database'
-})
-} catch(err) {
-  res.status(500).send({
-    error: err + 'an error has occured while trying to fetch  posts'
-})
-
-}
-},
-
+/*
 //*Get all posts of an author
 async getAuthorPost(req,res){
   try {
@@ -94,7 +82,7 @@ async getAuthorPost(req,res){
     });
   }
 
-},
+},*/
 
 
 //*get all author details

@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import AuthenticationService from '@/services/AuthenticationService'
 export default {
   data() {
     return {
@@ -128,26 +128,24 @@ export default {
         alert("Please make sure the passwords match");
       this.signUp();
     },
-    signUp() {
-      axios
-        .post("http://localhost:3000/author/addauthor", {
-         
-          userName: this.userName,
-          profileImg: this.profileImg,
-          bio: this.bio,
-         // website: this.website,
-          password: this.password,
+     async  signUp() {
+      try {
+        const response = await AuthenticationService.register({
           email: this.email,
+          userName: this.userName,
+          password: this.password,
+          bio: this.bio,
+          profileImg: this.profileImg,
+          
         })
-        .then((res) => {
-         
-          console.log(res.data);
-          this.$router.push("/posts");
-        })
-        .catch((error)=> {
-          this.error = error.response.data.error
-          console.log(error);
-        });
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+       // this.$router.push({
+       //   name: 'songs'
+       // })
+      } catch (error) {
+        this.error = error.response.data.error
+      }
     },
   },
 };

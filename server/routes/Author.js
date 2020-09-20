@@ -9,7 +9,7 @@ router.post("/addauthor",  Author.addAuthor);
 router.post('/authors/signin',  Author.signIn);
 //router.get('/authors/:username', Author.getAuthor);
 router.get('/authors/', Author.allAuthorDetails);
-router.get('/getauthor/:id', Author.getAuthor);
+router.get('/getauthor/:userName', Author.getAuthor);
 
 
 

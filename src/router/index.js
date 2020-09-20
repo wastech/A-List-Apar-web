@@ -101,15 +101,11 @@ const routes = [
     component: singleEvent
   },
   {
-    path: '/authors/:title',
+    path: '/authors/:userName',
     name: 'singleauthor',
     component: singleAuthor
   },
-  {
-    path: '/authors/author/:title',
-    name: 'author',
-    component: Author
-  },
+ 
   
   {
     path: '/about',

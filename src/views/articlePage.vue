@@ -8,8 +8,14 @@
           <h1 class="head">Articles</h1>
     
           <div class="col mb-5" v-for="post in posts" :key="post._id">
-           <router-link v-bind:to="{ name: 'singlearticle', params: { title:post._id}}">  <h3 class="title">{{post.title}}</h3></router-link>
-            <h4 class="author mb-2"> by <small>{{post.Author.userName}}  </small> <i>{{post.createdAt}}</i></h4>
+           <router-link v-bind:to="{ name: 'singlearticle', params: { title:post.title}}">  <h3 class="title">{{post.title}}</h3></router-link>
+            <h4 class="author mb-2"> 
+          <router-link v-bind:to="{ name: 'singleauthor', params: { userName:post.Author.userName}}">
+              by <small>{{post.Author.userName}} </small> 
+                 
+          </router-link>
+           <i>{{post.createdAt}}</i>  
+                </h4>
             <p class="paragraph">{{post.body}}</p>
           </div>
 

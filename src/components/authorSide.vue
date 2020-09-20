@@ -4,7 +4,7 @@
     <ul class="list-group list-group-flush mt-4">
       <li class="list-group-item" v-for="item in items" :key="item.id">
         <h2>
-          <router-link v-bind:to="{ name: 'singleauthor', params: { title:item.id}}">
+          <router-link v-bind:to="{ name: 'singleauthor', params: { userName:item.userName}}">
             {{ item.userName }}
           </router-link></h2>
       </li>
