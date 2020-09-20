@@ -4,12 +4,12 @@
     <div class="row">
       <div class="col-sm-12">
         <form>
-       <!--   <div v-if="!isLoggedIn">
+          <!--   <div v-if="!isLoggedIn">
             <h3>You have to Login or SignUp first to post!</h3>
           </div>-->
           <div class="alert alert-danger" role="alert" v-if="error">
- {{error}}
-</div>
+            {{ error }}
+          </div>
           <div class="form-group required">
             <label for="exampleInputPassword1" class="control-label"
               >Title</label
@@ -20,87 +20,6 @@
               placeholder="title goes here"
               v-model="title"
             />
-          </div>
-
-       <!--   <div class="form-group required mt-2">
-            <label for="exampleInputPassword1" class="control-label"
-              >category</label
-            >
-            <input
-              type="text"
-              class="form-control shadow"
-              placeholder="category of the post"
-              v-model="category"
-            />
-          </div>-->
-          <div class="form-group required mt-2">
-            <label for="exampleInputPassword1" class="control-label"
-              >Code</label
-            >
-            <input
-              type="text"
-              class="form-control shadow"
-              placeholder="Code..."
-              v-model="code"
-            />
-          </div>
-          <div class="form-group required mt-2">
-            <label for="exampleInputPassword1" class="control-label"
-              >Content</label
-            >
-            <input
-              type="text"
-              class="form-control shadow"
-              placeholder="Content ...."
-              v-model="content"
-            />
-          </div>
-          <div class="form-group required mt-2">
-            <label for="exampleInputPassword1" class="control-label"
-              >Design</label
-            >
-            <input
-              type="text"
-              class="form-control shadow"
-              placeholder="Design..."
-              v-model="design"
-            />
-          </div>
-          <!-- <div class="form-group required mt-2">
-            <label for="exampleInputPassword1" class="control-label"
-              >Industry & Business</label
-            >
-            <input
-              type="text"
-              class="form-control shadow"
-              placeholder="Industry & Business...."
-              v-model="Industry"
-            />
-          </div>-->
-          ory of the post
-          <div class="form-group required mt-2">
-            <label for="exampleInputPassword1" class="control-label"
-              >Process</label
-            >
-            <input
-              type="text"
-              class="form-control shadow"
-              placeholder="Process...."
-              v-model="process"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputFile">imageUrl</label>
-            <input
-              type="text"
-              class="form-control shadow"
-              placeholder="Image URL...."
-              id="exampleInputFile"
-              aria-describedby="fileHelp"
-              v-model="imageUrl"
-            />
-            <!--<small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
           </div>
           <div class="form-group">
             <textarea
@@ -113,7 +32,7 @@
           </div>
           <button
             type="button"
-            class="btn btn-primary btn-lg btn-block mt-5 "
+            class="btn btn-primary btn-lg btn-block mt-5"
             v-on:click.prevent="validateInputs"
           >
             submit
@@ -136,7 +55,7 @@ export default {
       content: "",
       design: "",
       process: "",
-      error: ''
+      error: "",
     };
   },
 
@@ -147,7 +66,6 @@ export default {
       this.addPost();
     },
     addPost() {
-     
       axios
         .post("http://localhost:3000/article/addpost", {
           title: this.title,
@@ -157,22 +75,21 @@ export default {
           content: this.content,
           design: this.design,
           process: this.process,
-        //  isLoggedIn: false,
+          //  isLoggedIn: false,
         })
         .then((res) => {
           console.log(res);
           // this.$router.push("/posts")
         })
         .catch(function(error) {
-         this.error= error.response.data.error
+          this.error = error.response.data.error;
         });
       this.title = "";
       this.content = "";
       this.imageUrl = "";
-      
     },
   },
-/*  created() {
+  /*  created() {
     const data = JSON.parse(localStorage.getItem("userData"));
     if (data.author.userName) {
       this.userName = data.author.userName;

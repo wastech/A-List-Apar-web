@@ -4,18 +4,26 @@
     <div class="row">
       <div class="col-sm-12">
         <form>
-       <!--   <div v-if="!isLoggedIn">
+          <!--   <div v-if="!isLoggedIn">
             <h3>You have to Login or SignUp first to post!</h3>
           </div>-->
           <div class="form-group required">
-            <label for="exampleInputPassword1" class="control-label"
-              >Title</label
-            >
+            <label for="exampleInputPassword1" class="control-label">Title</label>
             <input
               type="text"
               class="form-control shadow"
               placeholder="title goes here"
               v-model="title"
+            />
+          </div>
+
+ <div class="form-group required">
+            <label for="exampleInputPassword1" class="control-label">Title</label>
+            <input
+              type="text"
+              class="form-control shadow"
+              placeholder="Transcript goes here"
+              v-model="transcript"
             />
           </div>
 
@@ -29,8 +37,8 @@
               aria-describedby="fileHelp"
               v-model="imageUrl"
             />
-            <!--<small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
           </div>
+          
           <div class="form-group">
             <textarea
               class="form-control shadow"
@@ -42,11 +50,9 @@
           </div>
           <button
             type="button"
-            class="btn btn-primary btn-lg btn-block mt-5 "
+            class="btn btn-primary btn-lg btn-block mt-5"
             v-on:click.prevent="validateInputs"
-          >
-            submit
-          </button>
+          >submit</button>
         </form>
       </div>
     </div>
@@ -60,7 +66,10 @@ export default {
     return {
       title: "",
       imageUrl: "",
-      body: ""
+      body: "",
+      transcript:""
+    
+
     };
   },
 
@@ -71,19 +80,19 @@ export default {
       this.addPost();
     },
     addPost() {
-     
       axios
         .post("http://localhost:3000/event/addevent", {
           title: this.title,
           imageUrl: this.imageUrl,
-          body: this.body
-        //  isLoggedIn: false,
+          body: this.body,
+           transcript: this.transcript
+          //  isLoggedIn: false,
         })
         .then((res) => {
           console.log(res);
           // this.$router.push("/posts")
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
       this.title = "";
@@ -92,7 +101,7 @@ export default {
       
     },
   },
-/*  created() {
+  /*  created() {
     const data = JSON.parse(localStorage.getItem("userData"));
     if (data.author.userName) {
       this.userName = data.author.userName;

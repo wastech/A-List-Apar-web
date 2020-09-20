@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userName: {
         type: DataTypes.STRING,
-        unique: false,
+        unique: true,
       },
       bio: DataTypes.TEXT,
 

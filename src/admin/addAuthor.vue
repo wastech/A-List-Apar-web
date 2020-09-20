@@ -6,15 +6,15 @@
         <form>
           <div class="form-group required">
             <div class="alert alert-danger" role="alert" v-if="error">
- {{error}}
-</div>
+              {{ error }}
+            </div>
             <label for="" class="control-label">userName</label>
             <input
               type="text"
               class="form-control shadow"
               aria-describedby="textHelp"
               v-model="userName"
-              placeholder="userName"
+              placeholder=" enter your userName"
             />
           </div>
 
@@ -51,18 +51,16 @@
             />
           </div>
 
-        
-
-       <!--   <div class="form-group required">
-            <label for="" class="control-label">website Link</label>
+          <div class="form-group required">
+            <label for="" class="control-label">category</label>
             <input
               type="text"
               class="form-control shadow"
               aria-describedby="textHelp"
-              v-model="website"
-              placeholder="website Link"
+              v-model="category"
+              placeholder="category"
             />
-          </div>-->
+          </div>
 
           <div class="form-group">
             <label for="exampleInputFile">image</label>
@@ -74,7 +72,18 @@
               aria-describedby="fileHelp"
               v-model="profileImg"
             />
-            <!--<small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputFile">social medial link</label>
+            <input
+              type="text"
+              class="form-control shadow"
+              placeholder="Image URL...."
+              id="exampleInputFile"
+              aria-describedby="fileHelp"
+              v-model="url"
+            />
           </div>
           <div class="form-group">
             <label for="" class="control-label">bio</label>
@@ -100,19 +109,19 @@
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
+import AuthenticationService from "@/services/AuthenticationService";
 export default {
   data() {
     return {
-  
       userName: "",
       password: "",
       cpassword: "",
       bio: "",
-    //  website: "",
+       category: "",
       profileImg: "",
       email: "",
-      error: ""
+      url:'',
+      error: "",
     };
   },
   methods: {
@@ -121,14 +130,17 @@ export default {
         this.email === "" ||
         this.password === "" ||
         this.cpassword === "" ||
-        this.bio === ""
+        this.bio === "" ||
+        this.category === "" ||
+        this.profileImg === "" 
+
       )
         alert("Please Fill All The Necessary Fields");
       if (this.password !== this.cpassword)
         alert("Please make sure the passwords match");
       this.signUp();
     },
-     async  signUp() {
+    async signUp() {
       try {
         const response = await AuthenticationService.register({
           email: this.email,
@@ -136,15 +148,17 @@ export default {
           password: this.password,
           bio: this.bio,
           profileImg: this.profileImg,
-          
-        })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-       // this.$router.push({
-       //   name: 'songs'
-       // })
+          url: this.url,
+          category: this.category
+
+        });
+        this.$store.dispatch("setToken", response.data.token);
+        this.$store.dispatch("setUser", response.data.user);
+        // this.$router.push({
+        //   name: 'songs'
+        // })
       } catch (error) {
-        this.error = error.response.data.error
+        this.error = error.response.data.error;
       }
     },
   },
