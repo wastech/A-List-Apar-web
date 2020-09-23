@@ -49,13 +49,8 @@ export default {
   data() {
     return {
       title: "",
-      imageUrl: "",
       body: "",
-      code: "",
-      content: "",
-      design: "",
-      process: "",
-      error: "",
+      error: ""
     };
   },
 
@@ -69,12 +64,8 @@ export default {
       axios
         .post("http://localhost:3000/article/addpost", {
           title: this.title,
-          imageUrl: this.imageUrl,
           body: this.body,
-          code: this.code,
-          content: this.content,
-          design: this.design,
-          process: this.process,
+          
           //  isLoggedIn: false,
         })
         .then((res) => {
@@ -85,7 +76,7 @@ export default {
           this.error = error.response.data.error;
         });
       this.title = "";
-      this.content = "";
+     
       this.imageUrl = "";
     },
   },

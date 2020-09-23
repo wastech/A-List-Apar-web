@@ -68,7 +68,6 @@
               type="text"
               class="form-control shadow"
               placeholder="Image URL...."
-              id="exampleInputFile"
               aria-describedby="fileHelp"
               v-model="profileImg"
             />
@@ -80,7 +79,6 @@
               type="text"
               class="form-control shadow"
               placeholder="Image URL...."
-              id="exampleInputFile"
               aria-describedby="fileHelp"
               v-model="url"
             />

@@ -6,8 +6,8 @@ module.exports = {
     try {
         const post = await Article.create({
           author_id: req.body.author_id,
-		title: req.body.title,
-    body: req.body.body,
+           title: req.body.title,
+            body: req.body.body
     
         });
         res

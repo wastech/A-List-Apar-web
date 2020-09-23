@@ -1,20 +1,4 @@
-const Promise = require("bluebird");
-const bcrypt = Promise.promisifyAll(require("bcrypt-nodejs"));
 
-function hashPassword(user, options) {
-  const SALT_FACTOR = 8;
-
-  if (!user.changed("password")) {
-    return;
-  }
-
-  return bcrypt
-    .genSaltAsync(SALT_FACTOR)
-    .then((salt) => bcrypt.hashAsync(user.password, salt, null))
-    .then((hash) => {
-      user.setDataValue("password", hash);
-    });
-}
 module.exports = (sequelize, DataTypes) => {
   const Author = sequelize.define(
     "Author",
@@ -32,15 +16,16 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isEmail: true,
         },
-        category: DataTypes.STRING,
+        
       },
+      category: DataTypes.STRING,
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        
       },
       userName: {
         type: DataTypes.STRING,
-        unique: true,
+        unique: false,
       },
       bio: DataTypes.TEXT,
 
@@ -48,18 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       profileImg: DataTypes.STRING,
      
     },
-    {
-      hooks: {
-        beforeCreate: hashPassword,
-        beforeUpdate: hashPassword,
-        beforeSave: hashPassword,
-      },
-    }
+   
   );
 
-  Author.prototype.comparePassword = function(password) {
-    return bcrypt.compareAsync(password, this.password);
-  };
 
   // Author.associate = function(models) {
   //   Author.hasOne(models.Post);

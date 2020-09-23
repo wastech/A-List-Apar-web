@@ -1,32 +1,6 @@
-const {Author, Article} = require("../models");
-const jwt = require('jsonwebtoken')
-const config = require('../config/config')
-
-function jwtSignUser (user) {
-  const ONE_WEEK = 60 * 60 * 24 * 7
-  return jwt.sign(user, config.authentication.jwtSecret, {
-    expiresIn: ONE_WEEK
-  })
-}
 
 
 module.exports = {
-
-  //*Save author details
-   async addAuthor (req, res) {
-    try {
-      const user = await Author.create(req.body)
-      const userJson = user.toJSON()
-      res.send({
-        user: userJson,
-        token: jwtSignUser(userJson)
-      })
-    } catch (err) {
-      res.status(400).send({
-        error:  err + 'This email account is already in use.'
-      })
-    }
-},
 
 
 //!get author's posts by author ID
@@ -104,37 +78,4 @@ async allAuthorDetails(req,res){
 
 //*Signin
 
- async signIn(req, res){  
-    try {
-      const {email, password} = req.body
-      const user = await Author.findOne({
-        where: {
-          email: email
-        }
-      })
-
-      if (!user) {
-        return res.status(403).send({
-          error: 'The login information was incorrect'
-        })
-      }
-
-      const isPasswordValid = await user.comparePassword(password)
-      if (!isPasswordValid) {
-        return res.status(403).send({
-          error: 'The login information was incorrect'
-        })
-      }
-
-      const userJson = user.toJSON()
-      res.send({
-        user: userJson,
-        token: jwtSignUser(userJson)
-      })
-    } catch (err) {
-      res.status(500).send({
-        error: err+  'An error has occured trying to log in'
-      })
-    }
-  }
 }
