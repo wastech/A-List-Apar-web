@@ -29,7 +29,7 @@ module.exports = (passport) => {
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
 
-      function(req, email, password, done) {
+      function( email, password, done) {
         var generateHash = password => {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         };
@@ -41,28 +41,22 @@ module.exports = (passport) => {
             });
           } else {
             var userPassword = generateHash(password);
-            var data = {
-              email: email,
+           
+            Author.create({email: email,
               password: userPassword,
               category: req.body.category,
               userName: req.body.userName,
               bio:req.body.bio,
               url:req.body.url,
-              profileImg:req.body.profileImg,
-
-
-            };
-
-            Author.create(data).then((newUser, created) => {
-              if (!newUser) {
-                return done(null, false);
-              }
-
+              profileImg:req.body.profileImg}).then((newUser) => {
               if (newUser) {
-                return done(null, newUser);
+                res.send( newUser);
                
               }
-            });
+            })
+            .catch(err => {
+                                      console.log(err)
+                               })
           }
          
         });
@@ -81,8 +75,7 @@ module.exports = (passport) => {
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
 
-      function(req, email, password, done) {
-        var Author = author;
+      function( email, password, done) {
 
         var isValidPassword = (userpass, password) => {
           return bCrypt.compareSync(password, userpass);

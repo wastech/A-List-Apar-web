@@ -2,6 +2,7 @@
   <div class="main">
     <div class="container">
       <div class="classify">
+       
         <h1 class="title">{{ posts.title }}</h1>
          <img :src="posts.imageUrl" alt="">
         <h4 class="author mb-2">

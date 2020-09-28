@@ -1,4 +1,3 @@
-
 const express = require('express')
 const session = require('express-session');
 const morgan = require('morgan')
@@ -37,7 +36,7 @@ app.use('/event', event)
 dotenv.config({path: './config.env'});
 
 
-sequelize.sync()
+sequelize.sync({force:false})
     .then(()=>{
         app.listen(config.port,(err)=>{
             if(!err){
