@@ -50,7 +50,7 @@ export default {
         password:'',
         error:''
     }
-  },
+  },  
    methods:{
       validateInputs(){
           if(this.email==='' || this.password==='')
@@ -63,13 +63,14 @@ export default {
           email: this.email,
           password: this.password
         })
+        console.log("hello"+  response)
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
-       // this.$router.push({
-        //  name: 'songs'
-       // })
-       console.log( "hello"+ response.data.token  +   response.data.user )
+        this.$router.push({
+         name: 'Home'
+        })
       } catch (error) {
+        console.log("hello"+error)
         this.error = error.response.data.error
       }
     }

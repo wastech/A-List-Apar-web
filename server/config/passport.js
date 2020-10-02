@@ -1,17 +1,20 @@
 //load bcrypt
-const bCrypt = require('bcrypt-nodejs');
-const { Author}  = require("../models");
-const LocalStrategy = require('passport-local').Strategy;
+const bCrypt = require("bcrypt-nodejs");
+const { Author } = require("../models");
+const LocalStrategy = require("passport-local").Strategy;
 
 module.exports = (passport) => {
-
   passport.serializeUser((author, done) => {
+    console.log("serializeUser", author.id);
     done(null, author.id);
   });
 
   // used to deserialize the user
   passport.deserializeUser((id, done) => {
-    Author.findByPk(id).then(author => {
+    console.log("deserializeUser", id);
+
+    Author.findByPk(id).then((author) => {
+      console.log("Author.findByPk", author);
       if (author) {
         done(null, author.get());
       } else {
@@ -21,44 +24,41 @@ module.exports = (passport) => {
   });
 
   passport.use(
-    'local-signup',
+    "local-signup",
     new LocalStrategy(
       {
         usernameField: 'email',
         passwordField: 'password',
-        passReqToCallback: true // allows us to pass back the entire request to the callback
+        passReqToCallback: true, // allows us to pass back the entire request to the callback
       },
-
-      function( email, password, done) {
-        var generateHash = password => {
+      function(req, _, _, done) {
+        const { email, password } = req.body;
+        var generateHash = (password) => {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         };
 
-        Author.findOne({ where: { email: email } }).then(author => {
+        return Author.findOne({ where: { email: email } }).then((author) => {
           if (author) {
-            return done(null, false, {
-              message: 'That email is already taken'
-            });
+            return done("That email is already taken");
           } else {
             var userPassword = generateHash(password);
-           
-            Author.create({email: email,
+
+            Author.create({
+              email: email,
               password: userPassword,
               category: req.body.category,
               userName: req.body.userName,
-              bio:req.body.bio,
-              url:req.body.url,
-              profileImg:req.body.profileImg}).then((newUser) => {
-              if (newUser) {
-                res.send( newUser);
-               
-              }
+              bio: req.body.bio,
+              url: req.body.url,
+              profileImg: req.body.profileImg,
             })
-            .catch(err => {
-                                      console.log(err)
-                               })
+              .then((newUser) => {
+                return done(null, newUser.dataValues);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           }
-         
         });
       }
     )
@@ -66,40 +66,38 @@ module.exports = (passport) => {
 
   //LOCAL SIGNIN
   passport.use(
-    'local-signin',
+    "local-signin",
     new LocalStrategy(
       {
-        // by default, local strategy uses username and password, we will override with email
         usernameField: 'email',
         passwordField: 'password',
-        passReqToCallback: true // allows us to pass back the entire request to the callback
+        passReqToCallback: true, // allows us to pass back the entire request to the callback
       },
 
-      function( email, password, done) {
-
+      function(req,email, password, done) {
         var isValidPassword = (userpass, password) => {
           return bCrypt.compareSync(password, userpass);
         };
 
         Author.findOne({ where: { email: email } })
-          .then(author => {
+          .then((author) => {
             if (!author) {
-              return done(null, false, { message: 'Email does not exist' });
+              return done(null, false, { message: "Email does not exist" });
             }
 
             if (!isValidPassword(author.password, password)) {
-              return done(null, false, { message: 'Incorrect password.' });
+              return done(null, false, { message: "Incorrect password." });
             }
 
             var authorinfo = author.get();
 
             return done(null, authorinfo);
           })
-          .catch(err => {
-            console.log('Error:', err);
+          .catch((err) => {
+            // console.log("Error:", err);
 
             return done(null, false, {
-              message: 'Something went wrong with your Signin'
+              message: "Something went wrong with your Signin",
             });
           });
       }

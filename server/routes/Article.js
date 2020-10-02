@@ -6,7 +6,7 @@ const Article = require("../controllers/Article");
 router.post("/addpost", Article.addPost);
 router.get("/getposts", Article.getPosts);
 router.delete("/deletepost/:id", Article.deletePost);
-router.get("/getpost/:id", Article.getPost);
+router.get("/getpost/:title", Article.getPost);
 router.post("/updatepost/:id", Article.updatePost);
 
 

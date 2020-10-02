@@ -72,7 +72,7 @@ export default {
           console.log(res);
           // this.$router.push("/posts")
         })
-        .catch(function(error) {
+        .catch(function(error) { 
           this.error = error.response.data.error;
         });
       this.title = "";

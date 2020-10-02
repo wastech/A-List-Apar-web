@@ -20,14 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         )
       }
     },
-    AuthorId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "Event",
-        key: "id",
-      },
-    },
     updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,

@@ -4,22 +4,19 @@ const { Article, Author } = require("../models");
 module.exports = {
   async addPost(req, res) {
     try {
-        const post = await Article.create({
-          author_id: req.body.author_id,
-           title: req.body.title,
-            body: req.body.body
-    
-        });
+        const post = await Article.create(req.body);
         res
           .json({post,
-            msg: "successfully sent data to the database"
+            msg: "successfully sent data to the database",
+          
           })
-         console.log(post)
+         
       
     } catch (err) {
-      res.send({
+      res.send({ 
         error: err + "an error has occured while trying to post to database",
       });
+      console.log("hhh" +err)
     }
   },
   // )
@@ -33,7 +30,8 @@ module.exports = {
     }
     Article.findAll({
       where: query,
-      include: [Author]
+      include: [{
+        model:Author}]
     }).then(function(dbPost) {
       res.json(dbPost);
     });
@@ -64,13 +62,16 @@ module.exports = {
 
   async getPost(req, res) {
     try {
-      const id = req.params.id;
+      const title = req.params.title;
       const post = await Article.findOne({
         
         where: {
-          id: id,
+          title: title,
         },
-        include: [Author]
+        include: [{
+          model: Author,
+          where: {userName: userName}
+         }]
       });
       if (post === null || post === undefined) {
         return res.status(404).send({
@@ -80,7 +81,7 @@ module.exports = {
        console.log(post)
       res.send(post);
     } catch (err) {
-      res.status(500).json({
+      res.json({
         message: "Error Processing Function",
         error: err.message,
       });
