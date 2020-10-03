@@ -40,7 +40,7 @@ app.use((err, req, res, next,) => {
 dotenv.config({ path: "./config.env" });
 
 sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     app.listen(config.port, (err) => {
       if (!err) {

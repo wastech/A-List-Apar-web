@@ -69,8 +69,7 @@ module.exports = {
           title: title,
         },
         include: [{
-          model: Author,
-          where: {userName: userName}
+          model: Author
          }]
       });
       if (post === null || post === undefined) {

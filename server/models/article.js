@@ -1,6 +1,8 @@
 const moment = require("moment");
 module.exports = (sequelize, DataTypes) => {
   const Article = sequelize.define("Article", {
+    
+
     title: DataTypes.STRING,
     body: DataTypes.STRING,
     author_id: {
@@ -8,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      field: 'author_id'
+      
     },
 
     createdAt: {
