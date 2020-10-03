@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     body: DataTypes.STRING,
     author_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+     
+      primaryKey: true
+
       
     },
 
