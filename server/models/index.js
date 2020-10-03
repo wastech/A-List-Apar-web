@@ -11,13 +11,24 @@ const sequelize = new Sequelize(
   config.db.options
 );
 
+// function connectModels(db) {
+//   if (db.Article && db.Author && db.Event) {
+//     console.log(db);
+//     console.log("connecting models.....")
+//     db.Article.belongsTo(db.Author,{foreignKey: 'author_id'});
+//     db.Event.belongsTo(db.Author);
+//     db.Author.hasMany(db.Article,{foreignKey: 'author_id'});
+//     db.Author.hasMany(db.Event);
+//   }
+// }
+
 function connectModels(db) {
   if (db.Article && db.Author && db.Event) {
-    console.log(db);
-    console.log("connecting models.....")
-    db.Article.belongsTo(db.Author,{foreignKey: 'author_id'});
+    console.log("connecting models.....");
+    db.Author.hasMany(db.Article);
+    db.Article.belongsTo(db.Author);
+
     db.Event.belongsTo(db.Author);
-    db.Author.hasMany(db.Article,{foreignKey: 'author_id'});
     db.Author.hasMany(db.Event);
   }
 }

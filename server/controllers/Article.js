@@ -2,21 +2,19 @@ const { Article, Author } = require("../models");
 //const Author = require("../models/Author");
 
 module.exports = {
-  async addPost(req, res) {
+  async addPost(req, res, next) {
+    const {id} = req.user || {};
+    if (!id) { // TODO: Move to auth middleware
+      return next("No user found");
+    }
     try {
-        const post = await Article.create(req.body);
-        res
-          .json({post,
-            msg: "successfully sent data to the database",
-          
-          })
-         
-      
+      console.log("req.user", req.user);
+      const post = await Article.create({ AuthorId: req.user.id, ...req.body });
+      res.json({ post, msg: "successfully sent data to the database" });
     } catch (err) {
-      res.send({ 
-        error: err + "an error has occured while trying to post to database",
+      return next({
+        error: err + " an error has occured while trying to post to database",
       });
-      console.log("hhh" +err)
     }
   },
   // )
@@ -64,7 +62,7 @@ module.exports = {
     try {
       const title = req.params.title;
       const post = await Article.findOne({
-        
+
         where: {
           title: title,
         },

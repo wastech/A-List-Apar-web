@@ -1,18 +1,13 @@
 const moment = require("moment");
 module.exports = (sequelize, DataTypes) => {
   const Article = sequelize.define("Article", {
-    
-
     title: DataTypes.STRING,
     body: DataTypes.STRING,
-    author_id: {
+    AuthorId: {
       type: DataTypes.INTEGER,
-     
-      primaryKey: true
-
-      
+      primaryKey: true,
+      allowNull: false
     },
-
     createdAt: {
       type: DataTypes.DATE,
       get() {

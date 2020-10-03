@@ -22,9 +22,7 @@ app.use(morgan("dev"));
 
 // Express session middleware
 // =============================================
-app.use(session({secret: 'mysecret', 
-                 saveUninitialized: true,
-                 resave: true}));
+app.use(session({ secret: "mysecret", saveUninitialized: true, resave: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -33,10 +31,10 @@ app.use(passport.session());
 app.use("/article", article);
 app.use("/author", author);
 app.use("/event", event);
-app.use((err, req, res, next,) => {
-    console.log(err);
-    res.send(err)
-})
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).send(err);
+});
 dotenv.config({ path: "./config.env" });
 
 sequelize

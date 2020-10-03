@@ -11,10 +11,7 @@ module.exports = (passport) => {
 
   // used to deserialize the user
   passport.deserializeUser((id, done) => {
-    console.log("deserializeUser", id);
-
     Author.findByPk(id).then((author) => {
-      console.log("Author.findByPk", author);
       if (author) {
         done(null, author.get());
       } else {
