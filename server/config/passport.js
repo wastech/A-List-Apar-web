@@ -83,7 +83,7 @@ module.exports = (passport) => {
             }
 
             if (!isValidPassword(author.password, password)) {
-              return done(null, false, { message: "Incorrect password." });
+              return done({ message: "Incorrect password." });
             }
 
             var authorinfo = author.get();
