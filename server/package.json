@@ -9,11 +9,13 @@
   "author": "Wastech",
   "license": "MIT",
   "dependencies": {
+    "add": "^2.0.6",
     "bcrypt": "^5.0.0",
     "bcrypt-nodejs": "^0.0.3",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -29,7 +31,8 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "sequelize": "^6.3.4",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

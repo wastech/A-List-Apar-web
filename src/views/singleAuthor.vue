@@ -9,7 +9,7 @@
 
           <div class="img">
             <img
-              :src="items.imageUrl"
+              :src="items.url"
               alt
             />
             <div class="name">
@@ -19,7 +19,7 @@
 
           <div class="paragrph">
             <p class="text">
-            
+            {{items.bio}}
             </p>
           </div>
         
@@ -50,8 +50,8 @@ export default {
    created() {
     let url = `http://localhost:3000/author/getauthor/${this.userName}`;
     axios.get(url).then((response) => {
-      this.items = response.data;
-      console.log("eventid" + response.data [0]);
+      this.items = response.data[0] ;
+      console.log( response.data[0]);
     });
   },
 };

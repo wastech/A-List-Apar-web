@@ -4,10 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     "Author",
     {
       id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+        type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false
       },
       email: {
         type: DataTypes.STRING,
@@ -21,11 +21,11 @@ module.exports = (sequelize, DataTypes) => {
       category: DataTypes.STRING,
       password: {
         type: DataTypes.STRING,
-        
+        allowNull: false,
       },
       userName: {
         type: DataTypes.STRING,
-        unique: false,
+        unique: true,
       },
       bio: DataTypes.TEXT,
 

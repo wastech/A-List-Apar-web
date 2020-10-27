@@ -73,11 +73,9 @@ export default {
           // this.$router.push("/posts")
         })
         .catch(function(error) { 
-          this.error = error.response.data.error;
+          this.error = response.data.error;
         });
       this.title = "";
-     
-      this.imageUrl = "";
     },
   },
   /*  created() {

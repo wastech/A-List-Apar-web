@@ -15,7 +15,9 @@ router.post(
 
 router.post("/authors/signin", passport.authenticate("local-signin", {
   successRedirect: "/article/getposts", // change this to your preferred route
-  failureRedirect: "/article/getposts" // change this to your preferred route
+  failureRedirect: "/article/getposts",
+  failureFlash: true
+  // change this to your preferred route
 }));
 //router.get('/authors/:username', Author.getAuthor);
 router.get("/authors/", Author.allAuthorDetails);

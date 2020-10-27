@@ -11,10 +11,7 @@ module.exports = (passport) => {
 
   // used to deserialize the user
   passport.deserializeUser((id, done) => {
-    console.log("deserializeUser", id);
-
     Author.findByPk(id).then((author) => {
-      console.log("Author.findByPk", author);
       if (author) {
         done(null, author.get());
       } else {
@@ -82,11 +79,11 @@ module.exports = (passport) => {
         Author.findOne({ where: { email: email } })
           .then((author) => {
             if (!author) {
-              return done(null, false, { message: "Email does not exist" });
+              return done({ message: "Email does not exist" });
             }
 
             if (!isValidPassword(author.password, password)) {
-              return done(null, false, { message: "Incorrect password." });
+              return done({ message: "Incorrect password." });
             }
 
             var authorinfo = author.get();
@@ -95,8 +92,8 @@ module.exports = (passport) => {
           })
           .catch((err) => {
             // console.log("Error:", err);
-
-            return done(null, false, {
+            console.log(err);
+            return done({
               message: "Something went wrong with your Signin",
             });
           });

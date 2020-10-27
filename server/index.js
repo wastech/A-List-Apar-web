@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const article = require("./routes/Article");
 const author = require("./routes/Author");
 const event = require("./routes/Event");
+var flash = require('connect-flash');
 const { sequelize } = require("./models");
 const dotenv = require("dotenv");
 const config = require("./config/config");
@@ -22,21 +23,19 @@ app.use(morgan("dev"));
 
 // Express session middleware
 // =============================================
-app.use(session({secret: 'mysecret', 
-                 saveUninitialized: true,
-                 resave: true}));
+app.use(session({ secret: "mysecret", saveUninitialized: true, resave: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 // Routing
 // =============================================
 app.use("/article", article);
 app.use("/author", author);
 app.use("/event", event);
-app.use((err, req, res, next,) => {
-    console.log(err);
-    res.send(err)
-})
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).send(err);
+});
 dotenv.config({ path: "./config.env" });
 
 sequelize
