@@ -16,12 +16,6 @@ const singleEvent = () => import('../views/singleEvent.vue')
 const singleArticle = () => import('../views/singleArticle.vue')
 const singleAuthor = () => import('../views/singleAuthor.vue')
 
-
-
-
-
-
-
 const routes = [
   {
     path: '/',
@@ -91,12 +85,12 @@ const routes = [
     component: login
   },
   {
-    path: "/article/:title",
+    path: "/article/:id",
     name: "singlearticle",
     component: singleArticle
   },
   {
-    path: "/event/:title",
+    path: "/event/:id",
     name: "singleevent",
     component: singleEvent
   },

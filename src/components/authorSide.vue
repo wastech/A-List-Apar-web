@@ -21,8 +21,8 @@ export default {
   },
   
         created() {
-             axios.get('http://localhost:3000/author/authors')
-            .then(response => {
+             axios.get('/author/authors')
+            .then((response) => {
                  this.items =response.data
                 
             });

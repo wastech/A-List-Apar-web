@@ -2,18 +2,18 @@ const { Event, Author } = require("../models");
 //const Author = require("../models/Author");
 
 module.exports = {
-  async addEvent(req, res) {
+  async addEvent(req, res, next) {
+    const {id} = req.user || {};
+    if (!id) { // TODO: Move to auth middleware
+      return next("No user found");
+    }
     try {
-        const event = await Event.create(req.body);
-        res
-          .json({event,
-            msg: "successfully sent data to the database"
-          })
-         console.log(event)
-      
+      console.log("req.user", req.user);
+      const event = await Event.create({ AuthorId: req.user.id, ...req.body });
+      res.json({ event, msg: "successfully sent data to the database" });
     } catch (err) {
-      res.send({
-        error: err + "an error has occured while trying to post to database",
+      return next({
+        error: err + " an error has occured while trying to post to database",
       });
     }
   },

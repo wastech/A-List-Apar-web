@@ -11,12 +11,16 @@ module.exports = (sequelize, DataTypes) => {
     transcript:DataTypes.STRING,
     body: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
+    AuthorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
       get () {
         return moment(this.getDataValue('created_at')).format(
-          'DD-MM-YYYY'
+          'MMMM DD,YYYY'
         )
       }
     },

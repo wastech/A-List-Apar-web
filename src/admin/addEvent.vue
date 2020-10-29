@@ -18,7 +18,7 @@
           </div>
 
  <div class="form-group required">
-            <label for="exampleInputPassword1" class="control-label">Title</label>
+            <label for="exampleInputPassword1" class="control-label">transcript</label>
             <input
               type="text"
               class="form-control shadow"
@@ -81,7 +81,7 @@ export default {
     },
     addPost() {
       axios
-        .post("http://localhost:3000/event/addevent", {
+        .post("/event/addevent", {
           title: this.title,
           imageUrl: this.imageUrl,
           body: this.body,

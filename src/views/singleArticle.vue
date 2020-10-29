@@ -5,10 +5,12 @@
     <div class="col-sm-8">
      <div class="classify">
          
+         
        
             <h3 class="title">{{article.title}}</h3>
-            <h4 class="author mb-2"> by <small>{{article.Author.userName}}  </small> <i>{{article.createdAt}}</i></h4>
+            <h4 class="author mb-2"> by <small>  </small> <i>{{article.createdAt}}</i></h4>
             <p class="paragraph">{{article.body}}</p>
+             
         
 
     
@@ -27,7 +29,7 @@
 import axios from 'axios'
 import articleSide from '@/components/articleSide'
 export default {
-  name: 'article',
+  name: 'singlearticle',
   components:{
     
 articleSide
@@ -35,14 +37,15 @@ articleSide
     data() {
         return {
             article: {},
-             id: this.$route.params.title,
+             id: this.$route.params.id,
         }
     },
   
         created() {
-             axios.get(`http://localhost:3000/article/getpost/${this.id}`)
-            .then(response => {
+             axios.get(`/article/getpost/${this.id}`)
+            .then((response )=> {
                  this.article =response.data
+                 console.log(this.article)
                 
             });
         

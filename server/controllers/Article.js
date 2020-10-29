@@ -2,6 +2,39 @@ const { Article, Author } = require("../models");
 //const Author = require("../models/Author");
 
 module.exports = {
+  
+  async index (req, res) {
+    try {
+      let articles  = null
+      const {search} = req.query
+      if (search) {
+        articles = await Article.findAll({
+          where: {
+            $or: [
+              'title', 'body'
+            ].map(key => ({
+              [key]: {
+                $like: `%${search}%`
+              }
+            }))
+          },
+          include: [{
+            model:Author}]
+        })
+      } else {
+        articles = await Article.findAll({
+          limit: 10
+        })
+      }
+      res.send(articles)
+    } catch (err) {
+      console.log(err)
+      res.status(500).send({
+        error: 'An error has occured, trying to fetch the articles'
+      })
+    }
+  },
+
   async addPost(req, res, next) {
     const {id} = req.user || {};
     if (!id) { // TODO: Move to auth middleware
@@ -60,11 +93,11 @@ module.exports = {
 
   async getPost(req, res) {
     try {
-      const title = req.params.title;
+      const id = req.params.id;
       const post = await Article.findOne({
 
         where: {
-          title: title,
+          id: id,
         },
         include: [{
           model: Author
@@ -75,7 +108,6 @@ module.exports = {
           message: "Resource Not Found, Item Does Not Exist",
         });
       }
-       console.log(post)
       res.send(post);
     } catch (err) {
       res.json({

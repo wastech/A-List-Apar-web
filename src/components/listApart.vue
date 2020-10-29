@@ -10,15 +10,27 @@
             <div class="row">
               <div
                 class="col-sm-12 col-12 col-md-6 col-lg-4 mb-5"
-                v-for="item in items"
+                v-for="item in items.slice(0,3).reverse()"
                 :key="item.id"
               >
+              <router-link
+                v-bind:to="{ name: 'singlearticle', params: { id: item.id } }"
+              >
                 <h1 class="title">{{item.title}}</h1>
+              </router-link>
                 <h3 class="name">
                   by
-                  <span>{{item.author}}</span>
+                  <router-link
+                      v-bind:to="{
+                        name: 'singleauthor',
+                        params: { userName: item.Author.userName },
+                      }"
+                    >
+                  <span>{{item.Author.userName}}</span>
+                  </router-link>
                 </h3>
-                <p class="text">{{item.text}}</p>
+                <p class="text">{{item.body}}</p>
+                <p >{{item.Author.category}}</p>
               </div>
             </div>
           </div>
@@ -38,6 +50,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import listApartSide from "@/components/listApartSide";
 export default {
   components: {
@@ -45,98 +58,16 @@ export default {
   },
   data() {
     return {
-      items: [
-        {
-          date: "34 jan 2019",
-          title: "Mr. Roboto: Connecting with Technology",
-          author: "Gerry McGovern",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Color Craft & Counterpoint: A Designer’s Life with Color Vision Deficiency",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-        {
-          date: "34 jan 201",
-          title:
-            "Building the Woke Web: Web Accessibility, Inclusion & Social Justice",
-          author: "Justin Dauer",
-          text:
-            " Companies often tout their “culture” as a reason to yoshould consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from CreativeCulture, Justin Dauer draws direct connections betweenan organizations’ true culture and the design work that it does.",
-        },
-      ],
+      items: [],
     };
   },
-};
+  created() {
+    axios.get("article/getposts").then((response) => {
+      this.items = response.data;
+      console.log(this.items)
+    });
+  },
+}
 </script>
 <style scoped>
 .container-fluid {

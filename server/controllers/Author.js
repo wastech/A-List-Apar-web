@@ -1,6 +1,7 @@
 const {Article, Author} = require("../models")
 module.exports = {
-  //!get author's posts by author ID
+
+  //get author by unique username
   async getAuthor(req, res) {
     try {
       const userName = req.params.userName;
@@ -32,29 +33,29 @@ module.exports = {
     }
   },
 
-  /*
-  //*Get all posts of an author
-  async getAuthorPost(req,res){
+  
+  //*Get author categories
+  async categories(req,res){
     try {
-      const authorID = req.params.authorID;
-      const author = await Author.findByPk({
+      const category = req.query.category;
+      const categories = await Author.find({
         where: {
-          authorID: authorID,
+          category: category,
         },
       });
-      if (author === null || author === undefined) {
+      if (category === null || category === undefined) {
         return res.status(404).send({
-          message: "no author found",
+          message: "no category found",
         });
       }
-      res.status(200).send(post);
+      res.status(200).send(categories);
     } catch (err) {
       res.status(500).json({
         message: "Error Processing Function",
         error: err.message,
       });
     }
-  },*/
+  },
 
   //*get all author details
   async allAuthorDetails(req, res) {

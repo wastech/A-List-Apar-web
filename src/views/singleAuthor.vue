@@ -8,61 +8,105 @@
           </div>
 
           <div class="img">
-            <img
-              :src="items.url"
-              alt
-            />
+            <img :src="items.profileImg" alt />
             <div class="name">
-              <h2>{{items.userName}}</h2>
+              <h2>{{ items.userName }}</h2>
             </div>
+            <button type="button" class="btn btn-outline-primary mt-1 mb-1">{{ items.url }}</button>
           </div>
 
           <div class="paragrph">
             <p class="text">
-            {{items.bio}}
+              {{ items.bio }}
             </p>
           </div>
-        
-        </div>
 
-        <div class="col-sm-5">
-        <authorSide/>
+ <!--  the all author posts-->
+
+          <div class="authorposts">
+           <h2 class="head2">
+             Also from this author
+           </h2>
+                <div
+                  class="col mb-5"
+                  v-for="Article in items.Articles"
+                  :key="Article.index"
+                >
+                  <router-link
+                    v-bind:to="{
+                      name: 'singlearticle',
+                      params: { id: Article.id },
+                    }"
+                  >
+                    <h3 class="title">{{ Article.title }}</h3></router-link
+                  >
+                  <h5 class="author mb-2">
+                    <i>{{ Article.createdAt }}</i>
+                  </h5>
+                  <p class="paragraph">{{ Article.body }}</p>
+                </div>
+              </div>
+           
+         
         </div>
-        
+        <div class="col-sm-5">
+          <authorSide />
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import axios from 'axios'
-import authorSide from '@/components/authorSide.vue'
+import axios from "axios";
+import authorSide from "@/components/authorSide.vue";
 export default {
-  components:{
-      authorSide
-    },
+  components: {
+    authorSide,
+  },
   data() {
-    
     return {
-      items: [],
-       userName: this.$route.params.userName,
+      items: {},
+      userName: this.$route.params.userName,
     };
   },
-   created() {
-    let url = `http://localhost:3000/author/getauthor/${this.userName}`;
+ /* created() {
+    let url = `/author/getauthor/${this.userName}`;
     axios.get(url).then((response) => {
-      this.items = response.data[0] ;
-      console.log( response.data[0]);
+      this.items = response.data[0];
+      console.log(this.items);
     });
   },
-};
+  
+};*/
+
+    methods: {
+      getPost() {
+        let url = `/author/getauthor/${this.userName}`;
+    axios.get(url)
+          .then(res => {
+            this.items = res.data[0]
+          }).catch(res => {
+            console.log(res)
+          })
+      }
+    },
+    watch: {
+      $route: {
+        immediate: true,
+        handler(to, from) {
+          this.getPost()
+        }
+      }
+    }
+  }
 </script>
 <style scoped>
-h1{
+h1 {
   font-family: fantasy;
   margin-top: 2em;
 }
-p{
-overflow: auto;
+p {
+  overflow: auto;
   max-height: 30%;
 }
 .img {
@@ -71,7 +115,7 @@ overflow: auto;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
-.from{
+.from {
   margin-top: 3em;
 }
 img {
@@ -89,11 +133,34 @@ img {
 }
 .text {
   font-size: xx-large;
-  font-family: Georgia,Times,Times New Roman,serif;
+  font-family: Georgia, Times, Times New Roman, serif;
   font-size: 1.8rem;
-    line-height: 1.7;
+  line-height: 1.7;
+  
 }
-.container{
+.container {
   max-width: 70%;
+}
+
+.title {
+  color: #2455c3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.paragraph {
+  font-family: Times, Times New Roman, serif;
+  font-size: x-large;
+  font-weight: 500;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+.head2{
+  margin-top: 3em;
+  margin-bottom: 1em;
+  font-weight:900;
 }
 </style>

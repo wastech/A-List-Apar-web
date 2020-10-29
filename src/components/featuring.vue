@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="container">
 <div>
   <div class="head">
     <h1>FEATURING</h1>

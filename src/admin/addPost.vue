@@ -62,14 +62,14 @@ export default {
     },
     addPost() {
       axios
-        .post("http://localhost:3000/article/addpost", {
+        .post("/article/addpost", {
           title: this.title,
           body: this.body,
           
           //  isLoggedIn: false,
         })
-        .then((res) => {
-          console.log(res);
+        .then((response) => {
+          console.log(response);
           // this.$router.push("/posts")
         })
         .catch(function(error) { 
