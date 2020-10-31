@@ -27,6 +27,7 @@
   <img :src="item.image" class="mr-3 img-thumbnail" alt="...">
   <div class="media-body">
     <h2 class="mt-0">{{item.userName}}</h2>
+    
 
 
 <div class="bio">
@@ -42,7 +43,7 @@
 import axios from 'axios'
 export default {
    props: {
-    category: String,
+    categories: String,
   },
   data(){
     return{
@@ -54,12 +55,12 @@ export default {
   watch: {
     $props: {
       handler: async function (newProps) {
-        console.log("newProps.category", newProps.category);
+        console.log("newProps.categories", newProps.categories);
         const response = await axios.get(
-          `/author/${newProps.category}`
+          `/author/${newProps.categories}`
         );
         this.items = response.data;
-        console.log(response)
+        console.log(this.items)
       },
       deep: true,
     },

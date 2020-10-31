@@ -49,6 +49,7 @@ module.exports = {
         });
       }
       res.status(200).send(categories);
+      console.log(" ========>" + categories)
     } catch (err) {
       res.status(500).json({
         message: "Error Processing Function",

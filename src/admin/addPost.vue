@@ -7,6 +7,12 @@
           <!--   <div v-if="!isLoggedIn">
             <h3>You have to Login or SignUp first to post!</h3>
           </div>-->
+          <div class="alert alert-success" role="alert" v-if="success">
+  <h4 class="alert-heading"></h4>
+  <p>the data has been successfuly sent to database</p>
+  <hr>
+  <p class="mb-0">have an awesome day Ahead!</p>
+</div>
           <div class="alert alert-danger" role="alert" v-if="error">
             {{ error }}
           </div>
@@ -50,7 +56,8 @@ export default {
     return {
       title: "",
       body: "",
-      error: ""
+      error: "",
+      success: false
     };
   },
 
@@ -71,11 +78,13 @@ export default {
         .then((response) => {
           console.log(response);
           // this.$router.push("/posts")
+          this.success= true;
         })
         .catch(function(error) { 
           this.error = response.data.error;
         });
       this.title = "";
+      this.body = "";
     },
   },
   /*  created() {

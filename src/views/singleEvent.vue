@@ -4,10 +4,11 @@
       <div class="classify">
         <h1 class="title">{{ posts.title }}</h1>
         <p class="paragraph">{{ posts.body }}</p>
+        <p class="paragraph">{{ posts.Author.category }}</p>
         <div class="row">
           <div class="col-sm-9">
             <div class="featuring">
-              <topFeaturing v-bind:category="posts.Author.category"/>
+              <topFeaturing :categories="posts.Author.category"/>
             </div>
 
             <div class="transcript">
@@ -50,7 +51,7 @@ export default {
   },
 
   created() {
-    let url = `http://localhost:3000/event/getevent/${this.id}`;
+    let url = `/event/getevent/${this.id}`;
     axios.get(url).then((response) => {
       this.posts = response.data.event;
       console.log(response.data);

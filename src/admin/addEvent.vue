@@ -7,6 +7,12 @@
           <!--   <div v-if="!isLoggedIn">
             <h3>You have to Login or SignUp first to post!</h3>
           </div>-->
+             <div class="alert alert-success" role="alert" v-if="success">
+  <h4 class="alert-heading"></h4>
+  <p>the data has been successfuly sent to database</p>
+  <hr>
+  <p class="mb-0">have an awesome day Ahead!</p>
+</div>
           <div class="form-group required">
             <label for="exampleInputPassword1" class="control-label">Title</label>
             <input
@@ -67,7 +73,9 @@ export default {
       title: "",
       imageUrl: "",
       body: "",
-      transcript:""
+      transcript:"",
+      success: false
+
     
 
     };
@@ -91,6 +99,7 @@ export default {
         .then((res) => {
           console.log(res);
           // this.$router.push("/posts")
+          this.success= true
         })
         .catch(function (error) {
           console.log(error);
@@ -98,7 +107,7 @@ export default {
       this.title = "";
       this.body = "";
       this.imageUrl = "";
-      
+      this.transcript =""
     },
   },
   /*  created() {

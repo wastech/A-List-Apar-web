@@ -69,7 +69,7 @@ export default {
       userName: this.$route.params.userName,
     };
   },
- /* created() {
+  created() {
     let url = `/author/getauthor/${this.userName}`;
     axios.get(url).then((response) => {
       this.items = response.data[0];
@@ -77,28 +77,7 @@ export default {
     });
   },
   
-};*/
-
-    methods: {
-      getPost() {
-        let url = `/author/getauthor/${this.userName}`;
-    axios.get(url)
-          .then(res => {
-            this.items = res.data[0]
-          }).catch(res => {
-            console.log(res)
-          })
-      }
-    },
-    watch: {
-      $route: {
-        immediate: true,
-        handler(to, from) {
-          this.getPost()
-        }
-      }
-    }
-  }
+};
 </script>
 <style scoped>
 h1 {

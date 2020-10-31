@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="content" v-for="item in items.slice(0,3).reverse()" :key="item._id">
+    <div class="content" v-for="item in items.slice(0,2).reverse()" :key="item._id">
       <h1>
         <button type="button" class="btn btn-danger">
           <h3>new!</h3>

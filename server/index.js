@@ -23,7 +23,7 @@ app.use(morgan("dev"));
 
 // Express session middleware
 // =============================================
-app.use(session({ secret: "mysecret", saveUninitialized: true, resave: true }));
+app.use(session({ secret: "mysecret", saveUninitialized: true, resave: true ,cookie: {}}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

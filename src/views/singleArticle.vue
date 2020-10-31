@@ -2,8 +2,8 @@
   <div class="main">
     <div class="container">
         <div class="row">
-    <div class="col-sm-8">
-     <div class="classify">
+    <div class="col-sm-10">
+     
          
          
        
@@ -13,26 +13,42 @@
              
         
 
-    
-     </div>
+    <!-- more from author-->
+     <div >
+       <h3 class="moretitle">About the Author</h3>
+    <div class="media" >
+  <img :src="article.Author.profileImg" class="mr-3 img-thumbnail" alt="article.Author.userName">
+  <div class="media-body">
+    <h2 class="mt-0">{{article.Author.userName}}</h2>
+    <p class="paragraph">{{article.Author.bio}}</p>
+  </div>
+</div>
+  </div>
+
+
+
+   
     </div>
-    <div class="col-sm-4">
-      <articleSide/>
+    <div class="col-sm-2">
+      <listApartSide/>
     </div>
    
   </div>
     </div>
+   
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import articleSide from '@/components/articleSide'
+import listApartSide from '@/components/listApartSide'
+import moreFromAuthor from '@/components/moreFromAuthor'
 export default {
   name: 'singlearticle',
   components:{
     
-articleSide
+listApartSide,
+moreFromAuthor
   },
     data() {
         return {
@@ -53,11 +69,18 @@ articleSide
 }
 </script>
 <style scoped>
-.col-sm-8 {
-  border-right: 1px solid #ccc;
+
+.moretitle{
+  text-align: center;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
 }
-.main {
-  border-top: 1px solid #ccc;
+img {
+  max-width: 30%;
+  width: 25%;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 6em solid red;
 }
 h1{
   margin-top: 1rem;
