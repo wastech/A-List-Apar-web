@@ -92,9 +92,11 @@ moreFromAuthor
 </script>
 <style scoped>
 
- .image1> img{
+ .image1 img{
   max-width: 50%;
   width: 100%;
+  max-height:30% ;
+  height: 30em;
   object-fit: cover;
  
 }
@@ -132,7 +134,7 @@ moreFromAuthor
   margin-top: 1.5em;
   margin-bottom: 1.5em;
 }
-img {
+.media img {
   max-width: 30%;
   width: 25%;
   object-fit: cover;

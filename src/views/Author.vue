@@ -9,18 +9,7 @@
 
           <div class="paragrph">
             <p class="text">
-              ur authors are awesome and we love them. From structured markup to
-              “the ebb and flow of things,” A List Apart’s contributing writers
-              have changed the way professionals in this industry conceive,
-              design, produce, code, and distribute web content. In the process,
-              these contributors have won design jobs, book contracts, speaking
-              deals, and the near-universal admiration of their peers around the
-              world. Maybe you can be one of us—the few, the proud, the
-              contributing writers of A List Apart. Fame, fortune, and your name
-              on a CSS technique await you. Read our Contribute section to learn
-              more about what our readers and editors are looking for.
-              Meanwhile, inspire yourself by studying the ALA writers who have
-              come before you—from A to Z.
+              {{item.bio}}
             </p>
           </div>
         
@@ -35,15 +24,26 @@
 </template>
 <script>
 import authorSide from "@/components/authorSide.vue";
+import axios from 'axios'
 export default {
-  components: {
+   components: {
     authorSide,
   },
   data() {
     return {
-    
+      item: {},
     };
   },
+  
+        created() {
+             axios.get('/author/authors')
+            .then((response) => {
+                 this.item =response.data[0]
+                 console.log(this.item)
+                
+            });
+        
+}
 };
 </script>
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h1 class="head">TOPIC S</h1>
+    <h1 class="head">TOPICS</h1>
     <ul class="list-group list-group-flush mt-4">
       <li class="list-group-item" v-for="item in items" :key="item.id">
         <h2>
@@ -45,7 +45,5 @@ h1 {
 h2 {
   color: #2455c3;
 }
-.main {
-  margin-top: 5em;
-}
+
 </style>

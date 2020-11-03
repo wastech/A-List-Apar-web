@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-sm-7">
           <div class="title">
-            <h1>wastech</h1>
+            <h1>Authors</h1>
           </div>
 
           <div class="img">
@@ -122,7 +122,7 @@ img {
 }
 
 .title {
-  color: #2455c3;
+ 
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;

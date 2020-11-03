@@ -55,9 +55,9 @@ export default {
   watch: {
     $props: {
       handler: async function (newProps) {
-        console.log("newProps.categories", newProps.categories);
+        console.log("newProps.category", newProps.category);
         const response = await axios.get(
-          `/author/${newProps.categories}`
+          `/author/${newProps.category}`
         );
         this.items = response.data;
         console.log(this.items)
