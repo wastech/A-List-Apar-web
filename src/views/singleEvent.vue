@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-sm-9">
             <div class="featuring">
-              <topFeaturing :categories="posts.Author.category"/>
+              <topFeaturing :category="posts.Author.category"/>
             </div>
 
             <div class="transcript">

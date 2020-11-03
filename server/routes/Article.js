@@ -9,5 +9,6 @@ router.get("/", Article.index);
 router.delete("/deletepost/:id", Article.deletePost);
 router.get("/getpost/:id", Article.getPost);
 router.post("/updatepost/:id", Article.updatePost);
+router.post("/getpost/:tags", Article.tags);
 
 module.exports = router;

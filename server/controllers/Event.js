@@ -26,8 +26,7 @@ module.exports = {
      
       const events = await Event.findAll({
         include: [{
-          model: Author,
-          attributes: ['userName', 'profileImg', 'bio']  
+          model: Author 
         }],
       })
       res.json({events,

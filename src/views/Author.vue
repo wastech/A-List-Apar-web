@@ -7,12 +7,6 @@
             <h1>Authors</h1>
           </div>
 
-          <div class="img">
-            <div class="name">
-              <h2>{{ items.userName }}</h2>
-            </div>
-          </div>
-
           <div class="paragrph">
             <p class="text">
               ur authors are awesome and we love them. From structured markup to
@@ -47,7 +41,7 @@ export default {
   },
   data() {
     return {
-      items: {},
+    
     };
   },
 };

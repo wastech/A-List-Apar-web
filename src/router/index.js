@@ -15,6 +15,7 @@ const login = () => import('../admin/login.vue')
 const singleEvent = () => import('../views/singleEvent.vue')
 const singleArticle = () => import('../views/singleArticle.vue')
 const singleAuthor = () => import('../views/singleAuthor.vue')
+const tagSearch = () => import('../views/tagSearch.vue')
 
 const routes = [
   {
@@ -95,6 +96,11 @@ const routes = [
     component: singleEvent
   },
   {
+    path: "/article/:tags",
+    name: "tagsearch",
+    component: tagSearch
+  },
+  {
     path: '/authors/:userName',
     name: 'singleauthor',
     component: singleAuthor
@@ -113,7 +119,8 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior: () => ({ y: 0 }),
 })
 
 export default router

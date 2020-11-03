@@ -4,10 +4,21 @@
     <div class="row">
       <div class="col-sm-12">
         <form>
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" v-if="isSuccess">
+  <div class="toast-header">
+    <img src="" class="rounded mr-2" alt="...">
+    <strong class="mr-auto">Bootstrap</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+</div>
           <div class="form-group required">
-            <div class="alert alert-danger" role="alert" v-if="error">
-              {{ error }}
-            </div>
+           
             <label for="" class="control-label">userName</label>
             <input
               type="text"
@@ -63,13 +74,13 @@
           </div>
 
           <div class="form-group">
-            <label for="exampleInputFile">image</label>
+            <label for="exampleInputFile">imageUrl</label>
             <input
               type="text"
               class="form-control shadow"
               placeholder="Image URL...."
               aria-describedby="fileHelp"
-              v-model="profileImg"
+              v-model="imageUrl"
             />
           </div>
 
@@ -116,10 +127,10 @@ export default {
       cpassword: "",
       bio: "",
        category: "",
-      profileImg: "",
+      imageUrl: "",
       email: "",
       url:'',
-      error: "",
+      isSuccess: "",
     };
   },
   methods: {
@@ -130,7 +141,7 @@ export default {
         this.cpassword === "" ||
         this.bio === "" ||
         this.category === "" ||
-        this.profileImg === "" 
+        this.imageUrl === "" 
 
       )
         alert("Please Fill All The Necessary Fields");
@@ -145,17 +156,18 @@ export default {
           userName: this.userName,
           password: this.password,
           bio: this.bio,
-          profileImg: this.profileImg,
+          imageUrl: this.imageUrl,
           url: this.url,
           category: this.category
 
         });
         this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({
-           name: 'Home'
-        })
+       // this.$router.push({
+       //    name: 'Home'
+       // })
+       this.isSuccess= true
       } catch (error) {
-        this.error = error.response.data.error;
+      //  this.error = error.response.data.error;
       }
     },
   },

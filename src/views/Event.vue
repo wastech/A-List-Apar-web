@@ -37,8 +37,9 @@ export default {
     };
   },
   created() {
-    axios.get("http://localhost:3000/event/getevents").then((response) => {
+    axios.get("/event/getevents").then((response) => {
       this.items = response.data.events;
+      console.log(this.items)
     });
   },
 };

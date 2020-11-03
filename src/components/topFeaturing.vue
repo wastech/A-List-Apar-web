@@ -43,7 +43,7 @@
 import axios from 'axios'
 export default {
    props: {
-    categories: String,
+    category: String,
   },
   data(){
     return{

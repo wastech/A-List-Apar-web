@@ -8,7 +8,7 @@
           </div>
 
           <div class="img">
-            <img :src="items.profileImg" alt />
+            <img :src="items.imageUrl" alt />
             <div class="name">
               <h2>{{ items.userName }}</h2>
             </div>
@@ -73,7 +73,7 @@ export default {
     let url = `/author/getauthor/${this.userName}`;
     axios.get(url).then((response) => {
       this.items = response.data[0];
-      console.log(this.items);
+      console.log("lll" +this.items);
     });
   },
   

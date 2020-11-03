@@ -53,6 +53,32 @@ module.exports = {
   // )
   //},
 
+  //*Get a post by tag
+  async tags(req,res){
+    try {
+      const tags = req.query.tags;
+      const article = await Article.find({
+        where: {
+          tags: tags,
+        },
+        include: [{
+          model:Author}]
+      });
+      if (category === null || category === undefined) {
+        return res.status(404).send({
+          message: "no category found",
+        });
+      }
+      res.status(200).send(article);
+      console.log(" ========>" + article)
+    } catch (err) {
+      res.status(500).json({
+        message: "Error Processing Function",
+        error: err.message,
+      });
+    }
+  },
+
   // Get all posts
    getPosts(req, res) {
     var query = {};

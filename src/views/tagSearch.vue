@@ -11,20 +11,10 @@
      <div class="header">
 <h1 class="title">{{article.title}}</h1>
 <h4 class="author mb-2"> by <small> {{article.Author.userName}} </small> <i>{{article.createdAt}}</i></h4>
-<!--
 <p>publish in <code>
   <div class="tags">
-                <router-link v-bind:to="{ name: 'tagsearch', params: { tags:article.tags}}">{{article.tags}}</router-link>
+                <code  class="tag my-2 mr-3">{{article.tags}}</code>
               </div></code></p>
--->
-
-                <div class="tags" v-for="tag in article.tags" v-bind:key=tag.id>
-                <router-link v-bind:to="{ name: 'tagsearch', params: { tags:tag}}" v-if="tag" class="tag my-2">{{tag}}</router-link>
-              </div>
-
-
-
-
      </div>
             
             <div class="container">
@@ -75,12 +65,12 @@ moreFromAuthor
     data() {
         return {
             article: {},
-             id: this.$route.params.id,
+             tags: this.$route.params.tags,
         }
     },
   
         created() {
-             axios.get(`/article/getpost/${this.id}`)
+             axios.get(`/article/getpost/${this.tags}`)
             .then((response )=> {
                  this.article =response.data
                  console.log(this.article)
@@ -99,22 +89,7 @@ moreFromAuthor
  
 }
 
-.tags{
- display: inline-block;
-}
-.tag{
-  margin:5px 10px 5px 0;
-  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
-  padding: 3px 6px;
-  border-radius: 5px;
-  background: lightblue;
-  font-family: "Poppins";
-  font-size: 0.7rem;
-  color:black;
-}
-.tag:hover{
-  text-decoration: none;
-}
+
 .image1 {
  text-align: center;
 }

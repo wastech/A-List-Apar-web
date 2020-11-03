@@ -10,7 +10,7 @@
             <div class="row">
               <div
                 class="col-sm-12 col-12 col-md-6 col-lg-4 mb-5"
-                v-for="item in items.reverse()"
+                v-for="item in items"
                 :key="item.id"
               >
               <router-link

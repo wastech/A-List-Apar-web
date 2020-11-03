@@ -54,7 +54,7 @@ module.exports = (passport) => {
                                 userName: req.body.userName,
                                 bio: req.body.bio,
                                 url: req.body.url,
-                                profileImg: req.body.profileImg,
+                                imageUrl: req.body.imageUrl,
                             })
                                 .then((newUser) => {
                                     return done(null, newUser.dataValues);
