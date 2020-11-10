@@ -37,7 +37,7 @@ module.exports = {
   //*Get author categories
   async categories(req,res){
     try {
-      const category = req.query.category;
+      const category = req.params.category;
       const categories = await Author.find({
         where: {
           category: category,

@@ -22,6 +22,6 @@ router.post("/authors/signin", passport.authenticate("local-signin", {
 //router.get('/authors/:username', Author.getAuthor);
 router.get("/authors", Author.allAuthorDetails);
 router.get("/getauthor/:userName", Author.getAuthor);
-router.get("/:categories", Author.categories);
+router.get("/:category", Author.categories);
 
 module.exports = router;

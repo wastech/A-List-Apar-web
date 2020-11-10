@@ -55,9 +55,7 @@ export default {
 };
 </script>
 <style scoped>
-.container-fluid{
-  height: 35em;
-}
+
 .title{
   font-weight: bold;
   font-size: x-large;
