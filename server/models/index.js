@@ -23,14 +23,12 @@ const sequelize = new Sequelize(
 // }
 
 function connectModels(db) {
-  if (db.Article && db.Author && db.Event) {
+  if (db.Article && db.Author ) {
     console.log("connecting models.....");
     db.Author.hasMany(db.Article);
     db.Article.belongsTo(db.Author);
-
-    db.Event.belongsTo(db.Author);
-    db.Author.hasMany(db.Event);
   }
+
 }
 
 fs.readdirSync(__dirname)

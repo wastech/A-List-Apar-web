@@ -5,8 +5,7 @@ const passport = require("passport");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const article = require("./routes/Article");
-const author = require("./routes/Author");
-const event = require("./routes/Event");
+const author = require("./routes/Author")
 var flash = require('connect-flash');
 const { sequelize } = require("./models");
 const dotenv = require("dotenv");
@@ -31,7 +30,6 @@ app.use(flash());
 // =============================================
 app.use("/article", article);
 app.use("/author", author);
-app.use("/event", event);
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(500).send(err);

@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 const Home = () => import('../views/Home.vue')
 const articlePage = () => import('../views/articlePage.vue')
-const Event = () => import('../views/Event.vue')
 const Topic = () => import('../views/Topic.vue')
 const Author = () => import('../views/Author.vue')
 const addPost = () => import('../admin/addPost.vue')
@@ -12,7 +11,6 @@ const addAuthor = () => import('../admin/addAuthor.vue')
 const addEvent = () => import('../admin/addEvent.vue')
 const register = () => import('../admin/register.vue')
 const login = () => import('../admin/login.vue')
-const singleEvent = () => import('../views/singleEvent.vue')
 const singleArticle = () => import('../views/singleArticle.vue')
 const singleAuthor = () => import('../views/singleAuthor.vue')
 const tagSearch = () => import('../views/tagSearch.vue')
@@ -47,12 +45,6 @@ const routes = [
     path: '/addpost',
     name: 'addPost',
     component: addPost
-  },
- 
-  {
-    path: '/event',
-    name: 'Event',
-    component: Event
   },
   {
     path: '/topics',
@@ -90,11 +82,7 @@ const routes = [
     name: "singlearticle",
     component: singleArticle
   },
-  {
-    path: "/event/:id",
-    name: "singleevent",
-    component: singleEvent
-  },
+ 
   {
     path: "/article/:tags",
     name: "tagsearch",
