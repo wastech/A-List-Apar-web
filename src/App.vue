@@ -3,7 +3,7 @@
     <appHeader/>
     <titleApp/>
     <router-view/>
-    <appFooter/>
+   
   </div>
 </template>
 <script>
@@ -11,7 +11,7 @@
 import appHeader from '@/components/appHeader.vue'
 import titleApp from '@/components/titleApp.vue'
 
-import appFooter from '@/components/appFooter.vue'
+
 
 
 
@@ -19,7 +19,6 @@ export default {
   name: 'Home',
   components: {
     appHeader,
-    appFooter,
     titleApp
   }
 }
