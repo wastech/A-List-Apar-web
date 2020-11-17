@@ -14,6 +14,7 @@ const login = () => import('../admin/login.vue')
 const singleArticle = () => import('../views/singleArticle.vue')
 const singleAuthor = () => import('../views/singleAuthor.vue')
 const tagSearch = () => import('../views/tagSearch.vue')
+const profile = () => import('../views/profile.vue')
 
 const routes = [
   {
@@ -42,8 +43,13 @@ const routes = [
     component: editPost
   },
   {
+    path: '/profile',
+    name: 'profile',
+    component: profile
+  },
+  {
     path: '/addpost',
-    name: 'addPost',
+    name: 'addpost',
     component: addPost
   },
   {

@@ -24,6 +24,7 @@
   </form>
 </template>
 <script>
+
 import AuthenticationService from '@/services/AuthenticationService'
 import axios from 'axios'
 $(document).ready(function() {
@@ -63,12 +64,11 @@ export default {
           email: this.email,
           password: this.password
         })
-        
+          this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
-        
-        this.$router.push({
-         name: 'Home'
-        })
+        console.log("hello"+response.data.token )
+       
+     
       } catch (error) {
     
         this.error = error.response.data.error
@@ -78,6 +78,7 @@ export default {
 };
 </script>
 <style scoped>
+
 form {
   width: 60%;
   margin: 60px auto;

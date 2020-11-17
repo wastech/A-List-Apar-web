@@ -109,7 +109,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          // this.$router.push("/posts")
+          this.$router.push("/addpost")
           this.success= true;
         })
         .catch(function(error) { 

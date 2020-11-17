@@ -23,9 +23,7 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/event">EVENT</a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="/topics">TOPICS</a>
           </li>
@@ -34,27 +32,59 @@
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
+          
+         
+            <a class="nav-link" href="/addauthor" v-if="!isUserLoggedIn">sign up</a>
+        
+
+          
+            <a class="nav-link" href="/login" v-if="!isUserLoggedIn">login</a>
+         
+
+         
+            <a class="nav-link" href="/topics" v-if="isUserLoggedIn">logout</a>
+        
+
+        
+            <a class="nav-link" href="/profile">profile</a>
+       
         </form>
       </div>
     </nav>
   </div>
 </template>
+
+<script>
+import {mapState} from 'vuex'
+export default {
+  data () {
+    return {
+      key: 'value'
+    }
+  },
+  computed: {
+    ...mapState(['isUserLoggedIn'])
+  },
+  methods: {
+    logout () {
+    
+      this.$store.dispatch('setUser', null)
+   //   this.$router.push({
+   //     name: 'songs'
+   //   })
+    }
+  }
+}
+</script>
+
+
 <style scoped>
 .bg-light {
   background-color: #ffffff !important;
   opacity: 0.9;
 }
 a.nav-link {
-  font-size: 2em;
+  font-size: 1em;
   color: black !important;
   font-variant: small-caps;
   font-family: Luminari, fantasy;
