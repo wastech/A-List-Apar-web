@@ -54,13 +54,13 @@
               class="form-control shadow"
               id="exampleFormControlTextarea1"
               placeholder="your text...."
-              rows="10"
+              rows="8"
               v-model="body"
             ></textarea>
           </div>
           <button
             type="button"
-            class="btn btn-primary btn-lg btn-block mt-5"
+            class="btn btn-primary btn-lg btn-block mt-3"
             v-on:click.prevent="validateInputs"
           >
             submit
@@ -139,10 +139,10 @@ h4 {
   text-align: center;
 }
 .form-control {
-  padding: 2em;
+  padding: 1.5em;
 }
 label {
   font-weight: 900;
-  font-size: large;
+  font-size: small;
 }
 </style>

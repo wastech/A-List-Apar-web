@@ -3,7 +3,7 @@
     <div class="content" v-for="item in items.slice(0,2).reverse()" :key="item._id">
       <h1>
         <button type="button" class="btn btn-danger">
-          <h3>new!</h3>
+          new!
         </button>
         <small>{{item.createdAt}}</small>
       </h1>
@@ -48,29 +48,35 @@ export default {
 }
 .content {
   text-align: center;
-  margin-top: 2em;
+  margin-top: 0.5em;
   margin-bottom: 4em;
 }
+h3{
+ font-size: small;
+
+}
 button {
-  padding: 5px;
+  padding: px;
   border-radius: 10px;
 }
 small {
-  font-size: 0.7em;
-  font-weight: bold;
+  font-size: 0.5em;
+  font-weight: small;
 }
 h1.title {
   font-family: Impact, fantasy;
   font-style: normal;
   font-weight: 300;
+  font-size: large;
   margin-top: 1em;
 }
 span {
   color: blue;
+  font-size: medium;
 }
 p.text {
   font-size: Arial, sans-serif;
-  font-size: xx-large;
+  font-size: medium;
    overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4;

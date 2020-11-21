@@ -20,7 +20,7 @@
         <div class="line"></div>
       </div>
     </label>
-    <button type="submit" v-on:click.prevent="validateInputs">submit</button>
+    <button type="submit" @click="login">submit</button>
   </form>
 </template>
 <script>
@@ -53,22 +53,17 @@ export default {
     }
   },  
    methods:{
-      validateInputs(){
-          if(this.email==='' || this.password==='')
-            alert('Please Fill All The Necessary Fields');
-         this.login();
-      },
+     
      async login () {
       try {
         const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
-          this.$store.dispatch('setToken', response.data.token)
+         
         this.$store.dispatch('setUser', response.data.user)
-        console.log("hello"+response.data.token )
-       
-     
+         
+      
       } catch (error) {
     
         this.error = error.response.data.error

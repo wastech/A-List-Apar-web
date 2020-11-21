@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="container-fluid">
+    <div class="container">
       <div class="head">
         <div class="head1">
           <h1>More from A List Apart</h1>
@@ -9,8 +9,8 @@
           <div class="col-sm-8">
             <div class="row">
               <div
-                class="col-sm-12 col-12 col-md-6 col-lg-4 mb-5"
-                v-for="item in items"
+                class="col-sm-4 mb-1"
+                v-for="item in items .slice(2,)"
                 :key="item.id"
               >
               <router-link
@@ -19,7 +19,7 @@
                 <h1 class="title">{{item.title}}</h1>
               </router-link>
                 <h3 class="name">
-                  by
+                  <small> by</small>
                   <router-link
                       v-bind:to="{
                         name: 'singleauthor',
@@ -30,7 +30,7 @@
                   </router-link>
                 </h3>
                 <p class="text">{{item.body}}</p>
-                <p >{{item.Author.category}}</p>
+               
               </div>
             </div>
           </div>
@@ -62,23 +62,20 @@ export default {
     };
   },
   created() {
-    axios.get("article/getposts").then((response) => {
+    axios.get("http://localhost:3000/article/getposts").then((response) => {
       this.items = response.data;
-      console.log(this.items)
     });
   },
 }
 </script>
 <style scoped>
-.container-fluid {
-  max-width: 70%;
-}
+
 h1.title {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  font-size: xx-large;
+  font-size: large;
   font-weight: bold;
   font-family: fantasy;
   font-family: Impact, fantasy;
@@ -86,9 +83,8 @@ h1.title {
 }
 p.text {
   font-style: normal;
-  font-weight: 200;
   font-family: Verdana, sans-serif;
-  font-size: x-large;
+  font-size: medium;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 6;
@@ -105,7 +101,11 @@ p.text {
   border-top: 3px solid #ccc;
 }
 .paragraph {
-  margin-top: 2em;
+  margin-top: 1em;
+}
+small{
+  font-size: small;
+  margin-right: 0.4em;
 }
 p.blw {
   padding: 2em;
@@ -116,7 +116,7 @@ p.blw {
 span {
   color: blue;
   font-weight: bold;
-  font-size: large;
+  font-size: medium;
 }
 @media only screen and (max-width: 768px) {
   .head1 {

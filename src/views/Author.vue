@@ -54,6 +54,7 @@ h1 {
 p {
   overflow: auto;
   max-height: 30%;
+  font-size: small;
 }
 .img {
   text-align: center;
@@ -78,9 +79,9 @@ img {
   border-top: 2px solid #ccc;
 }
 .text {
-  font-size: xx-large;
+  font-size: medium;
   font-family: Georgia, Times, Times New Roman, serif;
-  font-size: 1.8rem;
+
   line-height: 1.7;
 }
 .container {

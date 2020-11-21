@@ -73,15 +73,16 @@ export default {
 }
 h1 {
   margin-top: 1rem;
-  margin-bottom: 3rem !important;
+  margin-bottom: 1rem !important;
   font-family: Luminari, fantasy;
   font-style: normal;
-  font-size: xxx-large;
+  font-size: large;
 }
 .title {
   color: #2455c3;
   overflow: hidden;
   display: -webkit-box;
+  font-size: medium;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
@@ -93,9 +94,15 @@ bold {
 small {
   color: #2455c3;
 }
+span{
+  font-size: small;
+}
+i{
+  font-size: small;
+}
 .paragraph {
   font-family: Times, Times New Roman, serif;
-  font-size: x-large;
+  font-size: small;
   font-weight: 500;
   overflow: hidden;
   display: -webkit-box;

@@ -200,10 +200,10 @@ h4 {
   text-align: center;
 }
 .form-control {
-  padding: 2em;
+  padding: 1.5em;
 }
 label {
   font-weight: 900;
-  font-size: large;
+  font-size: small;
 }
 </style>

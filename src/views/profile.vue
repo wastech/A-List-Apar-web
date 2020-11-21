@@ -1,17 +1,17 @@
 <template>
 
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-3 ">
       <div class="image">
         <img src="https://previews.123rf.com/images/aaronamat/aaronamat1805/aaronamat180500440/104448488-african-american-man-with-beard-thinking-thoughtful-with-smart-face-isolated-over-white-background.jpg" alt="">
       </div>
       <div class="name">
-        <h2>
+       
           
-          <p class="username">wastech wastech</p>
-             <p class="username">fataiwasiu@gmail.com</p>
+          <h3 class="username">wastech wastech</h3>
+             <h5 class="email">fataiwasiu@gmail.com</h5>
           <p class="paragraph">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. </p>
-        </h2>
+        
       </div>
 
     </div>
@@ -59,16 +59,22 @@ export default {
 <style scoped>
 .col-sm-3{
   background-color: #ccc;
+  border-right: 5px solid green;
+  
+  
 }
 p.paragraph{
-  font-size: large;
+  font-size: medium;
   text-align: center;
 }
-.image img{
+ img{
   width: 100%;
-  max-width: 50%;
+  max-width: 40%;
   border-radius: 50%;
-  height: 15em;
+  
+  height: 20vh;
+ 
+
   object-fit: cover;
 }
 .name{
@@ -78,5 +84,6 @@ p.paragraph{
 }
 .image{
   text-align: center; 
+  
 }
 </style>

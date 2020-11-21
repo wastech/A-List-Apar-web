@@ -10,7 +10,7 @@
           <div class="img">
             <img :src="items.imageUrl" alt />
             <div class="name">
-              <h2>{{ items.userName }}</h2>
+              <h3>{{ items.userName }}</h3>
             </div>
             <button type="button" class="btn btn-outline-primary mt-1 mb-1">{{ items.url }}</button>
           </div>
@@ -77,21 +77,24 @@ export default {
     });
   },
   
+  
 };
 </script>
 <style scoped>
 h1 {
   font-family: fantasy;
   margin-top: 2em;
+  font-size: medium;
 }
 p {
   overflow: auto;
   max-height: 30%;
+  font-size: small;
 }
 .img {
   text-align: center;
 
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 .from {
@@ -111,11 +114,14 @@ img {
   border-top: 2px solid #ccc;
 }
 .text {
-  font-size: xx-large;
+  font-size: medium;
   font-family: Georgia, Times, Times New Roman, serif;
-  font-size: 1.8rem;
+ 
   line-height: 1.7;
   
+}
+h5{
+  font-size: medium;
 }
 .container {
   max-width: 70%;
@@ -127,10 +133,12 @@ img {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  font-size: medium;
+
 }
 .paragraph {
   font-family: Times, Times New Roman, serif;
-  font-size: x-large;
+  font-size: medium;
   font-weight: 500;
   overflow: hidden;
   display: -webkit-box;
@@ -138,8 +146,9 @@ img {
   -webkit-box-orient: vertical;
 }
 .head2{
-  margin-top: 3em;
+  margin-top: 2em;
   margin-bottom: 1em;
   font-weight:900;
+  font-size: large;
 }
 </style>

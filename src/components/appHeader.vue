@@ -34,19 +34,19 @@
         <form class="form-inline my-2 my-lg-0">
           
          
-            <a class="nav-link" href="/addauthor" v-if="!isUserLoggedIn">sign up</a>
+            <a class="nav-link" href="/addauthor" v-if="!$store.state.isUserLoggedIn">sign up</a>
         
 
           
-            <a class="nav-link" href="/login" v-if="!isUserLoggedIn">login</a>
+            <a class="nav-link" href="/login" v-if="!$store.state.isUserLoggedIn" >login</a>
          
 
          
-            <a class="nav-link" href="/topics" v-if="isUserLoggedIn">logout</a>
+            <a class="nav-link" href="/topics" v-if="$store.state.isUserLoggedIn">logout</a>
         
 
         
-            <a class="nav-link" href="/profile">profile</a>
+            <a class="nav-link" href="/profile" v-if="$store.state.isUserLoggedIn">profile</a>
        
         </form>
       </div>
@@ -55,25 +55,15 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+
 export default {
   data () {
     return {
       key: 'value'
     }
   },
-  computed: {
-    ...mapState(['isUserLoggedIn'])
-  },
-  methods: {
-    logout () {
-    
-      this.$store.dispatch('setUser', null)
-   //   this.$router.push({
-   //     name: 'songs'
-   //   })
-    }
-  }
+ 
+ 
 }
 </script>
 
