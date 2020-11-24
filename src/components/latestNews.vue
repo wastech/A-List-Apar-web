@@ -45,6 +45,7 @@ export default {
 <style scoped>
 .container-fluid {
   max-width: 70%;
+  margin-top: 4em;
 }
 .content {
   text-align: center;

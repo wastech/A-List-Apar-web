@@ -4,6 +4,7 @@ module.exports = {
   //get author by unique username
   async getAuthor(req, res) {
     try {
+      
       const userName = req.params.userName;
       const author = await Author.findAll({
         where: {

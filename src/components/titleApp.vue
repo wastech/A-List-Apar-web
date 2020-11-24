@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <div class="title">
       <h1> wastech</h1>
     </div>
@@ -20,4 +20,4 @@
  
 }
 } 
-</style>
+</style>-->
