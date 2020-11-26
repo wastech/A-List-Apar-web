@@ -13,6 +13,17 @@ router.post(
   })
 );
 
+router.get(
+  "/api/users/me",
+ 
+  function (req, res) {
+    res.json({ user: req.user });
+    console.log({ user: req.user });
+    
+  },
+  
+);
+
 router.post("/authors/signin", passport.authenticate("local-signin", {
   successRedirect: "/article/getposts", // change this to your preferred route
   failureRedirect: "/article/getposts",

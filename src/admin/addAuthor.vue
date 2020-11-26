@@ -179,9 +179,9 @@ export default {
 
         });
         this.$store.dispatch('setUser', response.data.user)
-       // this.$router.push({
-       //    name: 'Home'
-       // })
+        this.$router.push({
+          name: 'profile'
+        })
        this.isSuccess= true
       } catch (error) {
       //  this.error = error.response.data.error;

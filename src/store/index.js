@@ -1,15 +1,15 @@
 import { createStore } from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+
 
 
 export default createStore({
-  strict: true,
+ 
 
   state: {
     user: localStorage.getItem("user") || "",
     isUserLoggedIn: false,
   },
-  plugins: [createPersistedState()],
+
   mutations: {
     setUser(state, user) {
       state.user = user;

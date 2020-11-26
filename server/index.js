@@ -24,7 +24,14 @@ app.use(morgan("dev"));
 
 // Express session middleware
 // =============================================
-app.use(session({ secret: "mysecret", saveUninitialized: true, resave: true ,cookie: {maxAge: 600000}}));
+app.use(
+  session({
+    secret: "mysecret",
+    saveUninitialized: true,
+    resave: true,
+    cookie: { maxAge: 60 * 60 * 24 * 7 * 1000 },
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

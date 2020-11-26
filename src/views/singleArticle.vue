@@ -10,7 +10,7 @@
     </div>
      <div class="header">
 <h1 class="title">{{article.title}}</h1>
-<h4 class="author mb-2"> by <small> {{article.Author.userName}} </small> <i>{{article.createdAt}}</i></h4>
+<h5 class="author mb-2"> by <small> {{article.Author.userName}} </small> <i>{{article.createdAt}}</i></h5>
 <!--
 <p>publish in <code>
   <div class="tags">
@@ -91,7 +91,9 @@ moreFromAuthor
 }
 </script>
 <style scoped>
-
+.main{
+  margin-top: 3em;
+}
  .image1 img{
   max-width: 50%;
   width: 100%;
@@ -146,7 +148,7 @@ h1{
   margin-bottom: 1.5rem !important;
   font-family: Luminari, fantasy;
   font-style: normal	;
-  font-size: xxx-large;
+  font-size: large;
 }
 .header{
   text-align: center;
@@ -156,8 +158,8 @@ small{
 }
 .paragraph{
   font-family: Times, Times New Roman, serif;
-  font-size: x-large;
-  font-weight: 500;
+  font-size: medium;
+ 
  
   
   

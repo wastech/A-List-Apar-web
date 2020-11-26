@@ -70,6 +70,7 @@ export default {
 }
 .main {
   border-top: 1px solid #ccc;
+  margin-top: 5em;
 }
 h1 {
   margin-top: 1rem;

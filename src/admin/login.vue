@@ -1,3 +1,4 @@
+  
 <template>
   <form>
 
@@ -20,11 +21,10 @@
         <div class="line"></div>
       </div>
     </label>
-    <button type="submit" @click="login">submit</button>
+    <button type="submit" v-on:click.prevent="validateInputs">submit</button>
   </form>
 </template>
 <script>
-
 import AuthenticationService from '@/services/AuthenticationService'
 import axios from 'axios'
 $(document).ready(function() {
@@ -34,7 +34,6 @@ $(document).ready(function() {
       .find(".label-txt")
       .addClass("label-active");
   });
-
   $(".input").focusout(function() {
     if ($(this).val() == "") {
       $(this)
@@ -53,17 +52,23 @@ export default {
     }
   },  
    methods:{
-     
+      validateInputs(){
+          if(this.email==='' || this.password==='')
+            alert('Please Fill All The Necessary Fields');
+         this.login();
+      },
      async login () {
       try {
         const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
-         
+        
         this.$store.dispatch('setUser', response.data.user)
-         
-      
+        
+        this.$router.push({
+         name: 'profile'
+        })
       } catch (error) {
     
         this.error = error.response.data.error
@@ -73,7 +78,6 @@ export default {
 };
 </script>
 <style scoped>
-
 form {
   width: 60%;
   margin: 60px auto;
@@ -105,14 +109,12 @@ label {
   border: none;
   outline: none;
 }
-
 .line-box {
   position: relative;
   width: 100%;
   height: 2px;
   background: #bcbcbc;
 }
-
 .line {
   position: absolute;
   width: 0%;
@@ -123,15 +125,12 @@ label {
   background: #8bc34a;
   transition: ease 0.6s;
 }
-
 .input:focus + .line-box .line {
   width: 100%;
 }
-
 .label-active {
   top: -3em;
 }
-
 button {
   display: inline-block;
   padding: 12px 24px;
@@ -144,7 +143,6 @@ button {
   cursor: pointer;
   transition: ease 0.3s;
 }
-
 button:hover {
   background: #8bc34a;
   color: #ffffff;

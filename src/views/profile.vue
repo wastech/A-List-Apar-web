@@ -3,14 +3,14 @@
   <div class="row">
     <div class="col-sm-3 ">
       <div class="image">
-        <img src="https://previews.123rf.com/images/aaronamat/aaronamat1805/aaronamat180500440/104448488-african-american-man-with-beard-thinking-thoughtful-with-smart-face-isolated-over-white-background.jpg" alt="">
+        <img :src="item.user.imageUrl" alt="">
       </div>
       <div class="name">
        
           
-          <h3 class="username">{{item.userName}}</h3>
-             <h5 class="email">fataiwasiu@gmail.com</h5>
-          <p class="paragraph">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. </p>
+          <h3 class="username">{{item.user.userName}}</h3>
+             <h5 class="email">{{item.user.email}}</h5>
+          <p class="paragraph">{{item.user.bio}}</p>
         
       </div>
 
@@ -46,10 +46,10 @@ export default {
   },
   
   created() {
-    let url = "author/getauthor";
+    let url = "author/api/users/me";
     axios.get(url).then((response) => {
-      this.item = response.data[0];
-      console.log("lll" +this.item);
+      this.item = response.data;
+      console.log(this.item);
     });
   },
 };
@@ -60,8 +60,12 @@ export default {
 .col-sm-3{
   background-color: #ccc;
   border-right: 5px solid green;
+  margin-top:3em;
   
   
+}
+.row{
+  margin-top: 3em;
 }
 p.paragraph{
   font-size: medium;
