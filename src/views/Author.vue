@@ -51,6 +51,9 @@ h1 {
   font-family: fantasy;
   margin-top: 2em;
 }
+.main{
+  margin-top: 2em;
+}
 p {
   overflow: auto;
   max-height: 30%;

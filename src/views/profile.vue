@@ -1,15 +1,22 @@
 <template>
 
   <div class="row">
-    <div class="col-sm-3 ">
+    <div class="col-sm-3  " >
       <div class="image">
         <img :src="item.user.imageUrl" alt="">
       </div>
       <div class="name">
        
-          
+        <router-link
+          v-bind:to="{
+            name: 'singleauthor',
+            params: { userName: item.user.userName },
+          }"
+        >
           <h3 class="username">{{item.user.userName}}</h3>
-             <h5 class="email">{{item.user.email}}</h5>
+        </router-link>
+          
+         
           <p class="paragraph">{{item.user.bio}}</p>
         
       </div>
@@ -61,6 +68,7 @@ export default {
   background-color: #ccc;
   border-right: 5px solid green;
   margin-top:3em;
+ 
   
   
 }
@@ -68,14 +76,15 @@ export default {
   margin-top: 3em;
 }
 p.paragraph{
-  font-size: medium;
-  text-align: center;
+  font-size: small;
+  text-align:center;
+  margin: 0 auto;
 }
  img{
   width: 100%;
   max-width: 40%;
   border-radius: 50%;
-  
+  margin-top: 2em;
   height: 20vh;
  
 
@@ -85,6 +94,9 @@ p.paragraph{
   text-align: center;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
+   max-width: 90%;
+   margin: 0 auto;
+   font-size: small;
 }
 .image{
   text-align: center; 

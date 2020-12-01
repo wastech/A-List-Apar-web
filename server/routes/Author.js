@@ -24,12 +24,10 @@ router.get(
   
 );
 
-router.post("/authors/signin", passport.authenticate("local-signin", {
-  successRedirect: "/article/getposts", // change this to your preferred route
-  failureRedirect: "/article/getposts",
-  failureFlash: true
-  // change this to your preferred route
-}));
+router.post("/authors/signin", passport.authenticate("local-signin"), function (req, res) {
+  console.log("hello! this is req.user", req.user)
+  res.send(req.user)
+});
 //router.get('/authors/:username', Author.getAuthor);
 router.get("/authors", Author.allAuthorDetails);
 router.get("/getauthor/:userName", Author.getAuthor);

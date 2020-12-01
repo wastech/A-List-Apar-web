@@ -1,12 +1,9 @@
   
 <template>
-  <form>
-
-     
-     
+  <form>  
     <label>
         <div class="alert alert-danger" role="alert" v-if="error">
- {{error}}
+Something went wrong with your Signin
 </div>
       <p class="label-txt">ENTER YOUR EMAil</p>
       <input type="text" class="input"  v-model="email"/>
@@ -63,15 +60,16 @@ export default {
           email: this.email,
           password: this.password
         })
+        console.log("response" , response)
+        this.$store.dispatch('setUser', response.data)
         
-        this.$store.dispatch('setUser', response.data.user)
         
-        this.$router.push({
-         name: 'profile'
+       this.$router.push({
+       name: 'profile'
         })
       } catch (error) {
-    
-        this.error = error.response.data.error
+   
+        this.error = true
       }
     }
   },

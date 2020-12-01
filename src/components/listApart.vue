@@ -18,7 +18,7 @@
               >
                 <h1 class="title">{{item.title}}</h1>
               </router-link>
-                <h3 class="name">
+                <h4 class="name">
                   <small> by</small>
                   <router-link
                       v-bind:to="{
@@ -28,7 +28,7 @@
                     >
                   <span>{{item.Author.userName}}</span>
                   </router-link>
-                </h3>
+                </h4>
                 <p class="text">{{item.body}}</p>
                
               </div>
@@ -84,7 +84,7 @@ h1.title {
 p.text {
   font-style: normal;
   font-family: Verdana, sans-serif;
-  font-size: medium;
+  font-size: small;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 6;
@@ -119,12 +119,7 @@ span {
   font-size: medium;
 }
 @media only screen and (max-width: 768px) {
-  .head1 {
-    margin-top: 2em;
-    margin-bottom: 2em;
-    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-    font-size: 1em;
-  }
+ 
   .container-fluid {
     max-width: 95%;
   }
@@ -133,26 +128,27 @@ span {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
     font-family: Impact, fantasy;
     font-weight: 10;
     text-align: center;
+    margin-top: 0em;
   }
-  .head1 {
+  .head1 h1 {
     text-align: center;
-    margin-top: 2em;
-    font-weight: 15;
-    margin-bottom: 2em;
+    margin-top: 1em;
+    font-weight: 400;
     font-family: Impact, fantasy;
-    font-size: 1em;
+    font-size: xx-large;
   }
   p.text {
     font-style: normal;
     font-weight: 200;
-    font-family: Verdana, sans-serif;
-    font-size: large;
+    text-align: left;
+    font-size: small;
     overflow: hidden;
+      font-size: Arial, sans-serif;
     display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
@@ -161,7 +157,7 @@ span {
   p.blw {
     padding: 1em;
     background-color: #ccc;
-    font-size: bold;
+    font-size: medium;
     font-weight: 15;
     font-family: Impact, fantasy;
     text-align: center;

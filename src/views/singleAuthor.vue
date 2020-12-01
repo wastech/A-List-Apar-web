@@ -112,6 +112,7 @@ img {
 }
 .main {
   border-top: 2px solid #ccc;
+  margin-top: 3em;
 }
 .text {
   font-size: medium;

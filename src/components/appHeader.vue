@@ -42,7 +42,7 @@
          
 
          
-            <a class="nav-link" href="/topics" v-if="$store.state.isUserLoggedIn">logout</a>
+            <a class="nav-link" href="/topics" v-if="$store.state.isUserLoggedIn"  @click="logout">logout</a>
         
 
         
@@ -55,14 +55,24 @@
 </template>
 
 <script>
-
+import {mapState} from 'vuex'
 export default {
   data () {
     return {
       key: 'value'
     }
   },
- 
+   computed: {
+    ...mapState(['isUserLoggedIn'])
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'Home'
+      })
+    }
+  }
  
 }
 </script>
