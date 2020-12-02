@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
       <div class="row">
     <div class="col-sm-3" v-for="item in items" :key="item.id">
       <div class="image">

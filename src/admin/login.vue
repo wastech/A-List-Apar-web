@@ -61,12 +61,12 @@ export default {
           password: this.password
         })
         console.log("response" , response)
-        this.$store.dispatch('setUser', response.data)
+        this.$store.dispatch('setUser', response.data.userName)
         
         
-       this.$router.push({
-       name: 'profile'
-        })
+     //  this.$router.push({
+     //  name: 'profile'
+     //   })
       } catch (error) {
    
         this.error = true
