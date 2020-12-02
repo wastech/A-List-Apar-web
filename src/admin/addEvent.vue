@@ -7,14 +7,16 @@
           <!--   <div v-if="!isLoggedIn">
             <h3>You have to Login or SignUp first to post!</h3>
           </div>-->
-             <div class="alert alert-success" role="alert" v-if="success">
-  <h4 class="alert-heading"></h4>
-  <p>the data has been successfuly sent to database</p>
-  <hr>
-  <p class="mb-0">have an awesome day Ahead!</p>
-</div>
+          <div class="alert alert-success" role="alert" v-if="success">
+            <h4 class="alert-heading"></h4>
+            <p>the data has been successfuly sent to database</p>
+            <hr />
+            <p class="mb-0">have an awesome day Ahead!</p>
+          </div>
           <div class="form-group required">
-            <label for="exampleInputPassword1" class="control-label">Title</label>
+            <label for="exampleInputPassword1" class="control-label"
+              >Title</label
+            >
             <input
               type="text"
               class="form-control shadow"
@@ -23,8 +25,10 @@
             />
           </div>
 
- <div class="form-group required">
-            <label for="exampleInputPassword1" class="control-label">transcript</label>
+          <div class="form-group required">
+            <label for="exampleInputPassword1" class="control-label"
+              >transcript</label
+            >
             <input
               type="text"
               class="form-control shadow"
@@ -44,7 +48,7 @@
               v-model="imageUrl"
             />
           </div>
-          
+
           <div class="form-group">
             <textarea
               class="form-control shadow"
@@ -58,7 +62,9 @@
             type="button"
             class="btn btn-primary btn-lg btn-block mt-5"
             v-on:click.prevent="validateInputs"
-          >submit</button>
+          >
+            submit
+          </button>
         </form>
       </div>
     </div>
@@ -73,11 +79,8 @@ export default {
       title: "",
       imageUrl: "",
       body: "",
-      transcript:"",
-      success: false
-
-    
-
+      transcript: "",
+      success: false,
     };
   },
 
@@ -93,21 +96,21 @@ export default {
           title: this.title,
           imageUrl: this.imageUrl,
           body: this.body,
-           transcript: this.transcript
+          transcript: this.transcript,
           //  isLoggedIn: false,
         })
         .then((res) => {
           console.log(res);
           // this.$router.push("/posts")
-          this.success= true
+          this.success = true;
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
       this.title = "";
       this.body = "";
       this.imageUrl = "";
-      this.transcript =""
+      this.transcript = "";
     },
   },
   /*  created() {

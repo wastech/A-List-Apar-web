@@ -9,24 +9,22 @@
 
           <div class="paragrph">
             <p class="text">
-              {{item.bio}}
+              {{ item.bio }}
             </p>
           </div>
-        
- </div>
+        </div>
         <div class="col-sm-5">
           <authorSide />
         </div>
       </div>
-     
     </div>
   </div>
 </template>
 <script>
 import authorSide from "@/components/authorSide.vue";
-import axios from 'axios'
+import axios from "axios";
 export default {
-   components: {
+  components: {
     authorSide,
   },
   data() {
@@ -34,16 +32,12 @@ export default {
       item: {},
     };
   },
-  
-        created() {
-             axios.get('/author/authors')
-            .then((response) => {
-                 this.item =response.data[0]
-                 console.log(this.item)
-                
-            });
-        
-}
+
+  created() {
+    axios.get("/author/authors").then((response) => {
+      this.item = response.data[0];
+    });
+  },
 };
 </script>
 <style scoped>
@@ -51,7 +45,7 @@ h1 {
   font-family: fantasy;
   margin-top: 2em;
 }
-.main{
+.main {
   margin-top: 2em;
 }
 p {

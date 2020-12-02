@@ -95,10 +95,10 @@ bold {
 small {
   color: #2455c3;
 }
-span{
+span {
   font-size: small;
 }
-i{
+i {
   font-size: small;
 }
 .paragraph {

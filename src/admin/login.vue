@@ -1,12 +1,11 @@
-  
 <template>
-  <form>  
+  <form>
     <label>
-        <div class="alert alert-danger" role="alert" v-if="error">
-Something went wrong with your Signin
-</div>
+      <div class="alert alert-danger" role="alert" v-if="error">
+        Something went wrong with your Signin
+      </div>
       <p class="label-txt">ENTER YOUR EMAil</p>
-      <input type="text" class="input"  v-model="email"/>
+      <input type="text" class="input" v-model="email" />
       <div class="line-box">
         <div class="line"></div>
       </div>
@@ -22,8 +21,8 @@ Something went wrong with your Signin
   </form>
 </template>
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
-import axios from 'axios'
+import AuthenticationService from "@/services/AuthenticationService";
+import axios from "axios";
 $(document).ready(function() {
   $(".input").focus(function() {
     $(this)
@@ -41,37 +40,35 @@ $(document).ready(function() {
   });
 });
 export default {
-  data(){
-    return{
-         email:'',
-        password:'',
-        error:''
-    }
-  },  
-   methods:{
-      validateInputs(){
-          if(this.email==='' || this.password==='')
-            alert('Please Fill All The Necessary Fields');
-         this.login();
-      },
-     async login () {
+  data() {
+    return {
+      email: "",
+      password: "",
+      error: "",
+    };
+  },
+  methods: {
+    validateInputs() {
+      if (this.email === "" || this.password === "")
+        alert("Please Fill All The Necessary Fields");
+      this.login();
+    },
+    async login() {
       try {
         const response = await AuthenticationService.login({
           email: this.email,
-          password: this.password
-        })
-        console.log("response" , response)
-        this.$store.dispatch('setUser', response.data.userName)
-        
-        
-     //  this.$router.push({
-     //  name: 'profile'
-     //   })
+          password: this.password,
+        });
+
+        this.$store.dispatch("setUser", response.data.userName);
+
+        this.$router.push({
+          name: "profile",
+        });
       } catch (error) {
-   
-        this.error = true
+        this.error = true;
       }
-    }
+    },
   },
 };
 </script>

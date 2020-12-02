@@ -12,7 +12,9 @@
             <div class="name">
               <h3>{{ items.userName }}</h3>
             </div>
-            <button type="button" class="btn btn-outline-primary mt-1 mb-1">{{ items.url }}</button>
+            <button type="button" class="btn btn-outline-primary mt-1 mb-1">
+              {{ items.url }}
+            </button>
           </div>
 
           <div class="paragrph">
@@ -21,33 +23,31 @@
             </p>
           </div>
 
- <!--  the all author posts-->
+          <!--  the all author posts-->
 
           <div class="authorposts">
-           <h2 class="head2">
-             Also from this author
-           </h2>
-                <div
-                  class="col mb-5"
-                  v-for="Article in items.Articles"
-                  :key="Article.index"
-                >
-                  <router-link
-                    v-bind:to="{
-                      name: 'singlearticle',
-                      params: { id: Article.id },
-                    }"
-                  >
-                    <h3 class="title">{{ Article.title }}</h3></router-link
-                  >
-                  <h5 class="author mb-2">
-                    <i>{{ Article.createdAt }}</i>
-                  </h5>
-                  <p class="paragraph">{{ Article.body }}</p>
-                </div>
-              </div>
-           
-         
+            <h2 class="head2">
+              Also from this author
+            </h2>
+            <div
+              class="col mb-5"
+              v-for="Article in items.Articles"
+              :key="Article.index"
+            >
+              <router-link
+                v-bind:to="{
+                  name: 'singlearticle',
+                  params: { id: Article.id },
+                }"
+              >
+                <h3 class="title">{{ Article.title }}</h3></router-link
+              >
+              <h5 class="author mb-2">
+                <i>{{ Article.createdAt }}</i>
+              </h5>
+              <p class="paragraph">{{ Article.body }}</p>
+            </div>
+          </div>
         </div>
         <div class="col-sm-5">
           <authorSide />
@@ -73,11 +73,8 @@ export default {
     let url = `/author/getauthor/${this.userName}`;
     axios.get(url).then((response) => {
       this.items = response.data[0];
-      console.log("lll" +this.items);
     });
   },
-  
-  
 };
 </script>
 <style scoped>
@@ -117,11 +114,10 @@ img {
 .text {
   font-size: medium;
   font-family: Georgia, Times, Times New Roman, serif;
- 
+
   line-height: 1.7;
-  
 }
-h5{
+h5 {
   font-size: medium;
 }
 .container {
@@ -129,13 +125,11 @@ h5{
 }
 
 .title {
- 
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   font-size: medium;
-
 }
 .paragraph {
   font-family: Times, Times New Roman, serif;
@@ -146,10 +140,10 @@ h5{
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
-.head2{
+.head2 {
   margin-top: 2em;
   margin-bottom: 1em;
-  font-weight:900;
+  font-weight: 900;
   font-size: large;
 }
 </style>

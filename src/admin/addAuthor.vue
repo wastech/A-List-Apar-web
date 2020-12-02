@@ -4,37 +4,57 @@
     <div class="row">
       <div class="col-sm-12">
         <form>
-          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" v-if="isSuccess">
-  <div class="toast-header">
-    <img src="" class="rounded mr-2" alt="...">
-    <strong class="mr-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-  </div>
-</div>
+          <div
+            class="toast"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+            v-if="isSuccess"
+          >
+            <div class="toast-header">
+              <img src="" class="rounded mr-2" alt="..." />
+              <strong class="mr-auto">Bootstrap</strong>
+              <small>11 mins ago</small>
+              <button
+                type="button"
+                class="ml-2 mb-1 close"
+                data-dismiss="toast"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="toast-body">
+              Hello, world! This is a toast message.
+            </div>
+          </div>
 
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" v-if="error">
-  <div class="toast-header">
-    <img src="" class="rounded mr-2" alt="...">
-    <strong class="mr-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-  </div>
-</div>
-
+          <div
+            class="toast"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+            v-if="error"
+          >
+            <div class="toast-header">
+              <img src="" class="rounded mr-2" alt="..." />
+              <strong class="mr-auto">Bootstrap</strong>
+              <small>11 mins ago</small>
+              <button
+                type="button"
+                class="ml-2 mb-1 close"
+                data-dismiss="toast"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="toast-body">
+              Hello, world! This is a toast message.
+            </div>
+          </div>
 
           <div class="form-group required">
-           
             <label for="" class="control-label">userName</label>
             <input
               type="text"
@@ -142,12 +162,12 @@ export default {
       password: "",
       cpassword: "",
       bio: "",
-       category: "",
+      category: "",
       imageUrl: "",
       email: "",
-      url:'',
+      url: "",
       isSuccess: "",
-      error:false
+      error: false,
     };
   },
   methods: {
@@ -158,8 +178,7 @@ export default {
         this.cpassword === "" ||
         this.bio === "" ||
         this.category === "" ||
-        this.imageUrl === "" 
-
+        this.imageUrl === ""
       )
         alert("Please Fill All The Necessary Fields");
       if (this.password !== this.cpassword)
@@ -175,17 +194,16 @@ export default {
           bio: this.bio,
           imageUrl: this.imageUrl,
           url: this.url,
-          category: this.category
-
+          category: this.category,
         });
-        this.$store.dispatch('setUser', response.data.user)
+        this.$store.dispatch("setUser", response.data.user);
         this.$router.push({
-          name: 'profile'
-        })
-       this.isSuccess= true
+          name: "profile",
+        });
+        this.isSuccess = true;
       } catch (error) {
-      //  this.error = error.response.data.error;
-      this.error =true
+        //  this.error = error.response.data.error;
+        this.error = true;
       }
     },
   },
@@ -206,7 +224,7 @@ label {
   font-weight: 900;
   font-size: small;
 }
-.container{
+.container {
   margin-top: 4em;
 }
 </style>

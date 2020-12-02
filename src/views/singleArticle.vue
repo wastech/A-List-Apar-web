@@ -66,7 +66,6 @@ export default {
   created() {
     axios.get(`/article/getpost/${this.id}`).then((response) => {
       this.article = response.data;
-      console.log(this.article);
     });
   },
 };
@@ -142,11 +141,11 @@ small {
   font-size: small;
   text-align: center;
 }
-h2{
+h2 {
   font-size: large;
   font-weight: 900;
 }
-h5{
+h5 {
   font-size: medium;
 }
 </style>
