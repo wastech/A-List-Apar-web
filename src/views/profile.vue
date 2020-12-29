@@ -39,7 +39,7 @@ export default {
   methods: {},
 
   created() {
-    let url = "author/api/users/me";
+    let url = "https://morning-garden-35872.herokuapp.com/author/api/users/me";
     axios.get(url).then((response) => {
       this.item = response.data;
     });
