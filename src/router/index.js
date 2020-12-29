@@ -9,7 +9,6 @@ const dashBoard = () => import('../admin/dashBoard.vue')
 const posts = () => import('../admin/posts.vue')
 const addAuthor = () => import('../admin/addAuthor.vue')
 const addEvent = () => import('../admin/addEvent.vue')
-const register = () => import('../admin/register.vue')
 const login = () => import('../admin/login.vue')
 const singleArticle = () => import('../views/singleArticle.vue')
 const singleAuthor = () => import('../views/singleAuthor.vue')
@@ -67,11 +66,7 @@ const routes = [
     name: 'addevent',
     component: addEvent
   },
-  {
-    path: '/register',
-    name: 'register',
-    component: register
-  },
+  
   {
     path: '/authors',
     name: 'Author',
